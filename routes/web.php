@@ -19,14 +19,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/menu', function() {
+Route::get('/speisekarte', function() {
     $categories = App\Category::orderby('sort')->get();
     return view('menu')->with('categories', $categories);
-})->name('menu');
+})->name('speisekarte');
 
-Route::get('/location', function() {
+Route::get('/anfahrt', function() {
     return view('location');
-})->name('location');
+})->name('anfahrt');
+
+Route::get('/reservierung', function() {
+    return view('reservation');
+})->name('reservierung');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('/menuitem', 'MenuItemController');

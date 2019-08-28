@@ -52,7 +52,7 @@ class MenuItemController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'image' => 'image|nullable|max:1999',
+            'image' => 'image|nullable|max:16384',
             'price' => [ new GermanPrice ]
         ]);
 

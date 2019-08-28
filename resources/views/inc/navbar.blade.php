@@ -16,15 +16,19 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">                  
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('menu') }}">{{ __('Speisekarte') }}</a>
+                            <a class="nav-link" href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('location') }}">{{ __('Anfahrt') }}</a>
+                            <a class="nav-link" href="{{ route('anfahrt') }}">{{ __('Anfahrt') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('location') }}">{{ __('Catering') }}</a>
+                            <a class="nav-link" href="{{ route('reservierung') }}">{{ __('Reservierung') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('anfahrt') }}">{{ __('Catering') }}</a>
                         </li>
                         <!-- Authentication Links -->
                         

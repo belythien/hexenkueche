@@ -24,7 +24,10 @@
         @include('inc.navbar')
 
         <main class="app_main py-4">
-            <div class="reservierung d-none d-md-block">{{ __('Reservierung per Telefon oder Whatsapp: 06126 5049523') }}</div>
+            <div class="reservierung d-none d-md-block">
+                <a href="{{ route('reservierung') }}">{!! __('Reservierung per Telefon<br>06126-5049523') !!}</a>
+            </div>
+            
             @yield('content')
         </main>
 

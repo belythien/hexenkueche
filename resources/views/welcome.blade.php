@@ -80,10 +80,12 @@
                     <a href="{{ route('home') }}"><img src="{{ asset('storage/img/hexenkueche_logo2.png') }}" width="500"/></a>
 
                     <div class="links">
-                        <a href="{{ route('menu') }}">{{ __('Speisekarte') }}</a>
-                        <a href="{{ route('location') }}">{{ __('Anfahrt') }}</a>
+                        <a href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
+                        <a href="{{ route('anfahrt') }}">{{ __('Anfahrt') }}</a>
                         <a href="">{{ __('Catering') }}</a>
-                        <div class="reservierung">{{ __('Reservierung per Telefon oder Whatsapp: 06126&nbsp;5049523') }}</div>
+                        <div class="reservierung">
+                            <a href="{{ route('reservierung') }}">{!! __('Reservierung per Telefon<br>06126-5049523') !!}</a>
+                        </div>
                     </div>
                     
                 </div>

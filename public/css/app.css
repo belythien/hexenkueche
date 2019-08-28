@@ -10772,6 +10772,11 @@ nav#navigation {
   width: 300px;
 }
 
+.reservierung a {
+  color: #fff;
+  text-decoration: none;
+}
+
 #app .reservierung {
   background: #e2023e;
   border: 1px dashed #fff;
