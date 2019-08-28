@@ -58,6 +58,8 @@ class CategoryController extends Controller
         $category->name = $request->input('name');
         $category->description = $request->input('description');
         $category->sort = $sort;
+        $category->publication = $request->input('publication');
+        $category->expiration = $request->input('expiration');
         //$category->user_id = auth()->user()->id;
         $category->save();
 
