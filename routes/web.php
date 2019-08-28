@@ -32,6 +32,10 @@ Route::get('/reservierung', function() {
     return view('reservation');
 })->name('reservierung');
 
+Route::get('/catering', function() {
+    return view('catering');
+})->name('catering');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('/menuitem', 'MenuItemController');
 

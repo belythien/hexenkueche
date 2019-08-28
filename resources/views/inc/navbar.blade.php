@@ -28,7 +28,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('anfahrt') }}">{{ __('Catering') }}</a>
+                            <a class="nav-link" href="{{ route('catering') }}">{{ __('Catering') }}</a>
                         </li>
                         <!-- Authentication Links -->
                         

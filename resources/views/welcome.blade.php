@@ -82,7 +82,7 @@
                     <div class="links">
                         <a href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
                         <a href="{{ route('anfahrt') }}">{{ __('Anfahrt') }}</a>
-                        <a href="">{{ __('Catering') }}</a>
+                        <a href="{{ route('catering') }}">{{ __('Catering') }}</a>
                         <div class="reservierung">
                             <a href="{{ route('reservierung') }}">{!! __('Reservierung per Telefon<br>06126-5049523') !!}</a>
                         </div>
