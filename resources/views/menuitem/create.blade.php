@@ -24,6 +24,14 @@
                 {{Form::label('price', 'Preis')}}
                 {{Form::text('price', '', ['class' => 'form-control', 'placeholder' => 'Preis'])}}
             </div>
+             <div class="form-group">
+                {{Form::label('publication', 'Anzeigen ab')}}
+                {{Form::date('publication', '', ['class' => 'form-control', 'placeholder' => 'Anzeigen ab'])}}
+            </div>
+            <div class="form-group">
+                {{Form::label('expiration', 'Anzeigen bis')}}
+                {{Form::date('expiration', '', ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
+            </div>
             <div class="form-group">
                 {{Form::file('image')}}
             </div>

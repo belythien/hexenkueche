@@ -92,6 +92,8 @@ class MenuItemController extends Controller
         $menuItem->category_id = $category_id;
         $menuItem->sort = $sort;
         $menuItem->image = $fileNameToStore;
+        $menuItem->publication = $request->input('publication');
+        $menuItem->expiration = $request->input('expiration');
         $menuItem->save();
 
         return redirect('/menuitem')->with('success', 'Speise angelegt');
