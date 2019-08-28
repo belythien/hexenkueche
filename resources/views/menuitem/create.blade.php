@@ -13,6 +13,10 @@
                 {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
             </div>
             <div class="form-group">
+                {{Form::label('category', 'Kategorie')}}
+                {{Form::select('category[]', $categories->pluck('name', 'id'), '', ['class' => 'form-control'])}}
+            </div>
+            <div class="form-group">
                 {{Form::label('description', 'Beschreibung')}}
                 {{Form::textarea('description', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Beschreibung'])}}
             </div>

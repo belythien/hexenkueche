@@ -167,6 +167,13 @@ class OptionSeeder extends Seeder
             'menu_item_id' => 25
         ]);
 
+        // Bio-Zisch
+        DB::table('options')->insert([
+            'name' => '0.33l',
+            'price' => 3.0,
+            'menu_item_id' => 26
+        ]);
+
         // Saft
         DB::table('options')->insert([
             'name' => '0.33l',
@@ -347,6 +354,12 @@ class OptionSeeder extends Seeder
             'name' => '0.50l',
             'price' => 3.5,
             'menu_item_id' => 38
+        ]);
+
+        DB::table('options')->insert([
+            'name' => '0.20l',
+            'price' => 4.0,
+            'menu_item_id' => 39
         ]);
 
         DB::table('options')->insert([

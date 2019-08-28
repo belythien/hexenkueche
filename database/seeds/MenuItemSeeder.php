@@ -220,9 +220,7 @@ class MenuItemSeeder extends Seeder
         DB::table('menu_items')->insert([
             'name' => 'Bio-Zisch Limonaden',
             'description' => 'Zitrone-Naturtrüb, Orange, Cola, Rosenblüte, Mate, Tonic, Ginger Life, Matcha, Hanf, Nature Energy, Himbeer-Cassis',
-            'amount' => '0,33l',
             'image' => 'bio-zisch.jpg',
-            'price' => 3.0,
             'sort' => 2,
             'category_id' => 9
         ]);
@@ -319,8 +317,6 @@ class MenuItemSeeder extends Seeder
         DB::table('menu_items')->insert([
             'name' => 'Rosé (bio)',
             'description' => 'Amphorium Garnacha Rosé Romance*',
-            'amount' => '0,20l',
-            'price' => 4.0,
             'sort' => 2,
             'category_id' => 11
         ]);

@@ -39,7 +39,8 @@ class MenuItemController extends Controller
      */
     public function create()
     {
-        return view('menuitem.create');
+        $categories = Category::orderby('sort')->get();
+        return view('menuitem.create')->with('categories', $categories);
     }
 
     /**
@@ -81,12 +82,14 @@ class MenuItemController extends Controller
             $fileNameToStore = '';
         }
 
+        $category_id = $request->input('category')[0];
+
         // Create MenuItem
         $menuItem = new MenuItem;
         $menuItem->name = $request->input('name');
         $menuItem->description = $request->input('description');
         $menuItem->price = $price;
-        $menuItem->category_id = 1;
+        $menuItem->category_id = $category_id;
         $menuItem->sort = $sort;
         $menuItem->image = $fileNameToStore;
         $menuItem->save();

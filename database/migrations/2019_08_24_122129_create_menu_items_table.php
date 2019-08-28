@@ -18,7 +18,6 @@ class CreateMenuItemsTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('amount')->nullable();
             $table->double('price')->nullable();
             $table->integer('sort')->nullable();
             $table->integer('category_id')->nullable();
