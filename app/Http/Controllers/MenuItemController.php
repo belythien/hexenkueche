@@ -9,16 +9,14 @@ use App\MenuItem;
 use App\Rules\GermanPrice;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class MenuItemController extends Controller
-{
+class MenuItemController extends Controller {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
+    public function __construct() {
+        $this->middleware( 'auth' );
     }
 
     /**
@@ -26,10 +24,9 @@ class MenuItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $categories = Category::orderby('sort')->get();
-        return view('menuitem.index')->with('categories', $categories);
+    public function index() {
+        $categories = Category::orderby( 'sort' )->get();
+        return view( 'menuitem.index' )->with( 'categories', $categories );
     }
 
     /**
@@ -37,41 +34,39 @@ class MenuItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $categories = Category::orderby('sort')->get();
-        return view('menuitem.create')->with('categories', $categories);
+    public function create() {
+        $categories = Category::orderby( 'sort' )->get();
+        return view( 'menuitem.create' )->with( 'categories', $categories );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
+    public function store( Request $request ) {
+        $this->validate( $request, [
+            'name'  => 'required',
             'image' => 'image|nullable|max:16384',
             'price' => [ new GermanPrice ]
-        ]);
+        ] );
 
         // get next sort
-        $sort = DB::table('menu_items')->max('sort') + 10;
+        $sort = DB::table( 'menu_items' )->max( 'sort' ) + 10;
 
-        $price = (double)str_replace(',', '.', $request->input('price'));
+        $price = (double)str_replace( ',', '.', $request->input( 'price' ) );
 
         // Handle File Upload
-        if($request->hasFile('image')){
+        if( $request->hasFile( 'image' ) ) {
             // Get filename with the extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filenameWithExt = $request->file( 'image' )->getClientOriginalName();
             // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $filename = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
             // Get just ext
-            $extension = $request->file('image')->getClientOriginalExtension();
+            $extension = $request->file( 'image' )->getClientOriginalExtension();
             // Filename to store
-            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             // Upload Image
             //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
 
@@ -82,65 +77,61 @@ class MenuItemController extends Controller
             $fileNameToStore = '';
         }
 
-        $category_id = $request->input('category')[0];
+        $category_id = $request->input( 'category' )[ 0 ];
 
         // Create MenuItem
         $menuItem = new MenuItem;
-        $menuItem->name = $request->input('name');
-        $menuItem->description = $request->input('description');
+        $menuItem->name = $request->input( 'name' );
+        $menuItem->description = $request->input( 'description' );
         $menuItem->price = $price;
         $menuItem->category_id = $category_id;
         $menuItem->sort = $sort;
         $menuItem->image = $fileNameToStore;
-        $menuItem->publication = $request->input('publication');
-        $menuItem->expiration = $request->input('expiration');
+        $menuItem->publication = $request->input( 'publication' );
+        $menuItem->expiration = $request->input( 'expiration' );
         $menuItem->save();
 
-        return redirect('/menuitem')->with('success', 'Speise angelegt');
+        return redirect( '/menuitem' )->with( 'success', 'Speise angelegt' );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\menuItem  $menuItem
+     * @param \App\menuItem $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function show(menuItem $menuItem)
-    {
+    public function show( menuItem $menuItem ) {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\menuItem  $menuItem
+     * @param \App\menuItem $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(menuItem $menuItem)
-    {
-        return view('menuitem.edit')->with('menuItem', $menuItem);
+    public function edit( menuItem $menuItem ) {
+        return view( 'menuitem.edit' )->with( 'menuItem', $menuItem );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\menuItem  $menuItem
+     * @param \Illuminate\Http\Request $request
+     * @param \App\menuItem $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, menuItem $menuItem)
-    {
+    public function update( Request $request, menuItem $menuItem ) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\menuItem  $menuItem
+     * @param \App\menuItem $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(menuItem $menuItem)
-    {
+    public function destroy( menuItem $menuItem ) {
         //
     }
 

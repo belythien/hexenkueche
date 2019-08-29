@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <link rel="icon" href="{{ asset('img/favicon.png') }}">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -73,11 +75,11 @@
         <div class="bg1"></div>
         <div class="bg2"></div>
         <div class="welcome flex-center position-ref full-height">
-            
+
             <div class="content">
 
                 <div class="title m-b-md">
-                    <a href="{{ route('home') }}"><img src="{{ asset('storage/img/hexenkueche_logo2.png') }}" width="500"/></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('img/hexenkueche_logo.png') }}" width="500"/></a>
 
                     <div class="links">
                         <a href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
@@ -87,7 +89,7 @@
                             <a href="{{ route('reservierung') }}">{!! __('Reservierung per Telefon<br>06126-5049523') !!}</a>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

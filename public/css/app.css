@@ -10650,7 +10650,8 @@ html {
 }
 
 body {
-  background: url(/images/wood.jpg?dc184542843e8dbc699d3de02bd341c3) no-repeat center center;
+  background: url("/img/wood.jpg") no-repeat center center;
+  /*background: url(../img/wood.jpg) no-repeat center center;*/
   background-size: cover;
   background-attachment: fixed;
   margin-bottom: 60px;
@@ -10658,7 +10659,7 @@ body {
 }
 
 div.welcome {
-  background: url(/images/welcome.png?3f76b69c13ccaa56b9f4930b1c951e33) no-repeat center center;
+  background: url("/img/welcome.png") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
@@ -10666,7 +10667,7 @@ div.welcome {
 }
 
 div.bg1 {
-  background: url(/images/bg1.jpg?8782387f1739b9801fe4d248b1ba35ca) no-repeat center center;
+  background: url("/img/bg1.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;

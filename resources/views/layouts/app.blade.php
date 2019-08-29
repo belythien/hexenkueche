@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -27,7 +29,7 @@
             <div class="reservierung d-none d-md-block">
                 <a href="{{ route('reservierung') }}">{!! __('Reservierung per Telefon<br>06126-5049523') !!}</a>
             </div>
-            
+
             @yield('content')
         </main>
 

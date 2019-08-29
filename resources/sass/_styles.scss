@@ -4,14 +4,15 @@ html {
 }
 
 body {
-    background: url(../img/wood.jpg) no-repeat center center;
+    background: url('/img/wood.jpg') no-repeat center center;
+    /*background: url(../img/wood.jpg) no-repeat center center;*/
     background-size: cover;
     background-attachment: fixed;
     margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
 div.welcome {
-    background: url(../img/welcome.png) no-repeat center center;
+    background: url('/img/welcome.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
@@ -19,7 +20,7 @@ div.welcome {
 }
 
 div.bg1 {
-    background: url(../img/bg1.jpg) no-repeat center center;
+    background: url('/img/bg1.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
@@ -59,7 +60,7 @@ div.bg2 {
       color: $red;
       text-decoration: none;
   }
-  
+
   h2.category_name {
       color: $green;
       font-weight: bold;

@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\option;
 use Illuminate\Http\Request;
 
-class OptionController extends Controller
-{
+class OptionController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -22,64 +20,58 @@ class OptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store( Request $request ) {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\option  $option
+     * @param \App\option $option
      * @return \Illuminate\Http\Response
      */
-    public function show(option $option)
-    {
+    public function show( option $option ) {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\option  $option
+     * @param \App\option $option
      * @return \Illuminate\Http\Response
      */
-    public function edit(option $option)
-    {
+    public function edit( option $option ) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\option  $option
+     * @param \Illuminate\Http\Request $request
+     * @param \App\option $option
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, option $option)
-    {
+    public function update( Request $request, option $option ) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\option  $option
+     * @param \App\option $option
      * @return \Illuminate\Http\Response
      */
-    public function destroy(option $option)
-    {
+    public function destroy( option $option ) {
         //
     }
 }
