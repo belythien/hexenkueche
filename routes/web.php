@@ -13,7 +13,7 @@
 
 Route::get( '/', function () {
     $hotbox = \App\Hotbox::find( 1 );
-    return view( 'welcome' )->with( 'hotbox', $hotbox );
+    return view( 'welcome', compact('hotbox') );
 } );
 
 Auth::routes();
@@ -21,12 +21,14 @@ Auth::routes();
 Route::get( '/home', 'HomeController@index' )->name( 'home' );
 
 Route::get( '/speisekarte', function () {
+    $hotbox = \App\Hotbox::find( 2 );
     $categories = App\Category::orderby( 'sort' )->get();
-    return view( 'menu' )->with( 'categories', $categories );
+    return view( 'menu', compact( 'categories', 'hotbox' ) );
 } )->name( 'speisekarte' );
 
 Route::get( '/anfahrt', function () {
-    return view( 'location' );
+    $hotbox = \App\Hotbox::find( 3 );
+    return view( 'location', compact('hotbox') );
 } )->name( 'anfahrt' );
 
 Route::get( '/reservierung', function () {

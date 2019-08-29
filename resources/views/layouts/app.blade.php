@@ -26,9 +26,12 @@
         @include('inc.navbar')
 
         <main class="app_main py-4">
-            <div class="reservierung d-none d-md-block">
-                <a href="{{ route('reservierung') }}">{!! __('Reservierung per Telefon<br>06126-5049523') !!}</a>
-            </div>
+
+            @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
+                <div class="reservierung d-none d-md-block">
+                    <a href="{{ route($hotbox->url) }}">{!! $hotbox->text !!}</a>
+                </div>
+            @endif
 
             @yield('content')
         </main>
