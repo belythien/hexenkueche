@@ -10761,7 +10761,7 @@ nav#navigation {
   margin-left: 15px;
 }
 
-.title .links {
+.title .links.with-hotbox {
   padding-right: 230px;
   position: relative;
 }

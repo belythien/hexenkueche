@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class option extends Model {
+class Option extends Model {
     protected $fillable = [ 'name', 'price', 'publication', 'expiration' ];
 
     public function menuItem() {

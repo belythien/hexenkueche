@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class menuItem extends Model {
+class MenuItem extends Model {
     protected $fillable = [ 'name', 'description', 'price', 'category_id', 'image', 'sort', 'publication', 'expiration' ];
 
     public function category() {

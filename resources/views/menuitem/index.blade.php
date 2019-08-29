@@ -36,7 +36,7 @@
                     {!! Form::open(['action' => [ 'CategoryController@moveUp', $category->id ], 'method' => 'POST' ]) !!}
                         {{Form::submit('▲', ['class' => 'btn btn-outline-success float-right'])}}
                     {!! Form::close() !!}
-                    <a href="{{ route('category.edit', $category) }}" class="btn btn-success float-right ml-2">{{ __('Kategorie bearbeiten') }}</a>
+                    <a href="{{ route('category.edit', $category) }}" class="btn btn-success float-right ml-2 mr-2">{{ __('Kategorie bearbeiten') }}</a>
                 </div>
                 <p>{!! $category->description !!}</p>
                 <table class="table table-striped table-sm mb-5">
@@ -45,7 +45,7 @@
                             <th scope="col" style="width:40px">#</th>
                             <th scope="col" style="width:200px">{{ __('Name') }}</th>
                             <th scope="col">{{ __('Beschreibung') }}</th>
-                            <th scope="col" style="width:300px">{{ __('Optionen') }}</th>
+                            <th scope="col" style="width:400px">{{ __('Optionen') }}</th>
                             <th scope="col" style="width:40px"></th>
                         </tr>
                     </thead>
