@@ -45,7 +45,7 @@
                             <th scope="col" style="width:40px">#</th>
                             <th scope="col" style="width:200px">{{ __('Name') }}</th>
                             <th scope="col">{{ __('Beschreibung') }}</th>
-                            <th scope="col" style="width:300px">{{ __('Preis') }}</th>
+                            <th scope="col" style="width:300px">{{ __('Optionen') }}</th>
                             <th scope="col" style="width:40px"></th>
                         </tr>
                     </thead>
@@ -62,17 +62,27 @@
                                 @endif
                                 {!! $menuItem->description !!}
                             </td>
-                            <td>
-                                @if( sizeof( $menuItem->options ) > 0 )
+                            <td class="admin_options_row">
+{{--                                @if( sizeof( $menuItem->options ) > 0 )--}}
                                     @foreach( $menuItem->options as $option )
-                                        <div>{!! $option->name !!} <strong>{{ str_replace('.', ',', number_format($option->price, 2)) }}€</strong></div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {!! $option->name !!}
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{ $option->amount }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{ str_replace('.', ',', number_format($option->price, 2)) }}€
+                                            </div>
+                                        </div>
                                     @endforeach
-                                @else
-                                    @if( $menuItem->amount ) 
-                                        {!! $menuItem->amount !!}
-                                    @endif
-                                    <strong>{{ str_replace('.', ',', number_format($menuItem->price, 2)) }}€</strong>
-                                @endif
+{{--                                @else--}}
+{{--                                    @if( $menuItem->amount ) --}}
+{{--                                        {!! $menuItem->amount !!}--}}
+{{--                                    @endif--}}
+{{--                                    <strong>{{ str_replace('.', ',', number_format($menuItem->price, 2)) }}€</strong>--}}
+{{--                                @endif--}}
                             </td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-success mb-1">{{ __('Bearbeiten') }}</a>

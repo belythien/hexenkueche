@@ -10750,6 +10750,15 @@ nav#navigation {
 
 .dotted_line {
   border-bottom: 1px dotted #ccc;
+  padding-right: 0;
+}
+
+.dotted_line div:first-of-type {
+  margin-left: -15px;
+}
+
+.dotted_line div:last-of-type {
+  margin-left: 15px;
 }
 
 .title .links {
@@ -10818,5 +10827,10 @@ nav#navigation {
 
 .strong-hr {
   border-top: 2px solid #65b32c;
+}
+
+.admin_options_row div.row:hover div {
+  background: #65b32c;
+  color: #fff;
 }
 

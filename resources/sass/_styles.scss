@@ -101,6 +101,15 @@ div.bg2 {
 
 .dotted_line {
     border-bottom: 1px dotted #ccc;
+    padding-right: 0;
+
+    div:first-of-type {
+        margin-left: -15px;
+    }
+
+    div:last-of-type {
+        margin-left: 15px;
+    }
 }
 
 .title .links {
@@ -169,4 +178,9 @@ div.bg2 {
 
 .strong-hr {
     border-top: 2px solid $green;
+}
+
+.admin_options_row div.row:hover div {
+    background: $green;
+    color: #fff;
 }

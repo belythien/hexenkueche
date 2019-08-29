@@ -42,13 +42,13 @@
                                                         @foreach($menuItem->options as $option)
                                                             <div class="container">
                                                                 <div class="row dotted_line">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-xl-8 col-lg-6">
                                                                         {!! $option->name !!}
                                                                     </div>
-                                                                    <div class="col-md-3 text-right">
+                                                                    <div class="col-xl-2 col-lg-3 text-right">
                                                                         {{ $option->amount }}
                                                                     </div>
-                                                                    <div class="col-md-3 text-right">
+                                                                    <div class="col-xl-2 col-lg-3 text-right">
                                                                         {{ str_replace('.', ',', number_format($option->price, 2)) }}€
                                                                     </div>
                                                                 </div>
