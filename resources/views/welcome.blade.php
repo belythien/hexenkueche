@@ -79,7 +79,7 @@
     <div class="content">
 
         <div class="title m-b-md">
-            <a href="{{ route('home') }}"><img src="{{ asset('img/hexenkueche_logo.png') }}" width="500" /></a>
+            <a href="{{ route('home') }}"><img src="{{ asset('img/hexenkueche_logo2.png') }}" width="500" /></a>
 
             <div class="links {{ isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '' ? 'with-hotbox' : '' }}">
                 <a href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
