@@ -77,8 +77,13 @@ class PageController extends Controller {
     }
 
     public function view( $slug ) {
-        $page = Page::where( 'slug', $slug )->where( 'status', 1 )->firstOrFail();
-        $hotbox = Hotbox::find(2);
-        return view( 'page', compact( 'page', 'hotbox' ) );
+        $page = Page::where( 'slug', $slug )->where( 'status', 1 )->first();
+        if( isset( $page ) ) {
+            $hotbox = $page->hotbox;
+            return view( 'page', compact( 'page', 'hotbox' ) );
+        } else {
+            return redirect( route( 'page', [ '404' ] ) );
+        }
+
     }
 }

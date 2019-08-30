@@ -79,15 +79,18 @@
     <div class="content">
 
         <div class="title m-b-md">
-            <a href="{{ route('home') }}"><img src="{{ asset('img/hexenkueche_logo2.png') }}" width="500" /></a>
+            <a href="{{ route('page', ['home']) }}"><img src="{{ asset('img/hexenkueche_logo2.png') }}" width="500"
+                /></a>
 
-            <div class="links {{ isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '' ? 'with-hotbox' : '' }}">
+            <div
+                class="links {{ isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '' ? 'with-hotbox' : '' }}"
+            >
                 <a href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
                 <a href="{{ route('page', ['anfahrt']) }}">{{ __('Anfahrt') }}</a>
                 <a href="{{ route('page', ['catering']) }}">{{ __('Catering') }}</a>
                 @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
                     <div class="reservierung">
-                        <a href="{{ route($hotbox->url) }}">{!! $hotbox->text !!}</a>
+                        <a href="{{ route( 'page', [ $hotbox->url ]) }}">{!! $hotbox->text !!}</a>
                     </div>
                 @endif
             </div>

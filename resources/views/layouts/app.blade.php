@@ -22,21 +22,21 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        @include('inc.navbar')
+<div id="app">
+    @include('inc.navbar')
 
-        <main class="app_main py-4">
+    <main class="app_main py-4">
 
-            @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
-                <div class="reservierung d-none d-md-block">
-                    <a href="{{ route($hotbox->url) }}">{!! $hotbox->text !!}</a>
-                </div>
-            @endif
+        @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
+            <div class="reservierung d-none d-md-block">
+                <a href="{{ route('page', [$hotbox->url]) }}">{!! $hotbox->text !!}</a>
+            </div>
+        @endif
 
-            @yield('content')
-        </main>
+        @yield('content')
+    </main>
 
-    </div>
-    @include('inc.footer')
+</div>
+@include('inc.footer')
 </body>
 </html>

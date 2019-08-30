@@ -10679,7 +10679,7 @@ div.bg1 {
 }
 
 div.bg2 {
-  background: url(/images/bg2.jpg?b327100ab72d0191cace37de2a394b7b) no-repeat center center;
+  background: url("/img/bg2.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;

@@ -2,12 +2,12 @@
     <div class="container">
         <span class="text-muted">&copy; Hexenküche {{ now()->year }}</span>
         <div class="float-right">
-            <a href="#">Kontakt</a>
+            <a href="{{ route('page', ['kontakt']) }}">{{ __('Kontakt') }}</a>
             <span class="divider">•</span>
-            <a href="#">Datenschutz</a>
+            <a href="{{ route('page', ['datenschutz']) }}">{{ __('Datenschutz') }}</a>
             <span class="divider">•</span>
-            <a href="#">Impressum</a>
+            <a href="{{ route('page', ['impressum']) }}">{{ __('Impressum') }}</a>
         </div>
-        
+
     </div>
 </footer>

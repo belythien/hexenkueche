@@ -6,10 +6,20 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h1>{{ __('Speisekarte') }}</h1>
+                        @if(isset($page) && $page->title > '')
+                            <h1>{{ $page->title }}</h1>
+                        @else
+                            <h1>{{ __('Speisekarte') }}</h1>
+                        @endif
                     </div>
 
                     <div class="card-body container">
+                        @if(isset($page) && $page->content > '')
+                            <div class="row">
+                                {!! $page->content !!}
+                            </div>
+                            <hr>
+                        @endif
                         <div class="row">
                             @foreach($categories as $category)
                                 @if($category->status == 1)
@@ -49,7 +59,8 @@
                                                                         {{ $option->amount }}
                                                                     </div>
                                                                     <div class="col-xl-2 col-lg-3 text-right">
-                                                                        {{ str_replace('.', ',', number_format($option->price, 2)) }}€
+                                                                        {{ str_replace('.', ',', number_format($option->price, 2)) }}
+                                                                        €
                                                                     </div>
                                                                 </div>
                                                             </div>

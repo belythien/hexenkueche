@@ -27,7 +27,15 @@ class PageSeeder extends Seeder {
                             </p>
                             <p>Wir freuen uns auf Ihren Besuch!</p>
                             <p>Ihre Hexenküche</p>',
+            'hotbox_id'  => 2,
             'status'     => 1
+        ] );
+
+        DB::table( 'pages' )->insert( [
+            'slug'    => '404',
+            'title'   => 'Au weia!',
+            'content' => 'Diese Seite existiert nicht...<br><br><br><img src="/img/404.png" width="50%" class="float-right">',
+            'status'  => 1
         ] );
 
         DB::table( 'pages' )->insert( [
@@ -39,6 +47,7 @@ class PageSeeder extends Seeder {
                     65510 Idstein-Wörsdorf
                     </p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.58894305102!2d8.253570615842166!3d50.24358381012987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bdb7d31032fd17%3A0x3391e97b21da569b!2sHexenk%C3%BCche!5e0!3m2!1sde!2sde!4v1566656329419!5m2!1sde!2sde" width="100%" height="550" frameborder="0" style="border:0;" allowfullscreen=""></iframe>',
+            'hotbox_id'  => 2,
             'status'     => 1
         ] );
 
@@ -59,6 +68,7 @@ class PageSeeder extends Seeder {
                         <div class="col-lg-4">
                             <img class="img-thumbnail mb-3" src="/storage/images/IMG_20190824_215835-01_1567012807.jpeg">
                         </div>',
+            'hotbox_id'  => 3,
             'status'     => 1
         ] );
 
@@ -73,11 +83,36 @@ class PageSeeder extends Seeder {
         ] );
 
         DB::table( 'pages' )->insert( [
-            'slug'    => 'speisekarte',
-            'title'   => 'Speisekarte',
-            'menu_title'   => 'Speisekarte',
-            'content' => '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>',
-            'status'  => 1
+            'slug'       => 'speisekarte',
+            'title'      => 'Speisekarte',
+            'menu_title' => 'Speisekarte',
+            'content'    => '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>',
+            'hotbox_id'  => 2,
+            'status'     => 1
+        ] );
+
+        DB::table( 'pages' )->insert( [
+            'slug'       => 'impressum',
+            'title'      => 'Impressum',
+            'menu_title' => 'Impressum',
+            'content'    => 'lalala',
+            'status'     => 1
+        ] );
+
+        DB::table( 'pages' )->insert( [
+            'slug'       => 'datenschutz',
+            'title'      => 'Datenschutz',
+            'menu_title' => 'Datenschutz',
+            'content'    => 'lalala',
+            'status'     => 1
+        ] );
+
+        DB::table( 'pages' )->insert( [
+            'slug'       => 'kontakt',
+            'title'      => 'Kontakt',
+            'menu_title' => 'Kontakt',
+            'content'    => 'lalala',
+            'status'     => 1
         ] );
     }
 }

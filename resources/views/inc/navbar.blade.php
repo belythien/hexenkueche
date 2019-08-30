@@ -1,6 +1,6 @@
 <nav id="navigation" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/home') }}">
+        <a class="navbar-brand" href="{{ route('page', ['home']) }}">
             <img src="{{ asset('img/hexenkueche_logo2.png') }}" height="80" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -18,7 +18,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
+                    <a class="nav-link" href="{{ route('page', ['speisekarte']) }}">{{ __('Speisekarte') }}</a>
                 </li>
 
                 <li class="nav-item">
@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('reservierung') }}">{{ __('Reservierung') }}</a>
+                    <a class="nav-link" href="{{ route('page', ['reservierung']) }}">{{ __('Reservierung') }}</a>
                 </li>
 
                 <li class="nav-item">
@@ -43,7 +43,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('home') }}">
+                            <a class="dropdown-item" href="{{ route('page', ['dashboard']) }}">
                                 {{ __('Dashboard') }}
                             </a>
 
