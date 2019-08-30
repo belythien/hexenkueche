@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 
         $this->call( OptionSeeder::class );
 
+        $this->call( PageSeeder::class );
         $this->call( HotboxSeeder::class );
     }
 }

@@ -13,7 +13,7 @@
 
 Route::get( '/', function () {
     $hotbox = \App\Hotbox::find( 1 );
-    return view( 'welcome', compact('hotbox') );
+    return view( 'welcome', compact( 'hotbox' ) );
 } );
 
 Auth::routes();
@@ -26,18 +26,19 @@ Route::get( '/speisekarte', function () {
     return view( 'menu', compact( 'categories', 'hotbox' ) );
 } )->name( 'speisekarte' );
 
-Route::get( '/anfahrt', function () {
-    $hotbox = \App\Hotbox::find( 3 );
-    return view( 'location', compact('hotbox') );
-} )->name( 'anfahrt' );
+//Route::get( '/anfahrt', function () {
+//    $hotbox = \App\Hotbox::find( 3 );
+//    return view( 'location', compact( 'hotbox' ) );
+//} )->name( 'anfahrt' );
 
 Route::get( '/reservierung', function () {
     return view( 'reservation' );
 } )->name( 'reservierung' );
 
-Route::get( '/catering', function () {
-    return view( 'catering' );
-} )->name( 'catering' );
+//Route::get( '/catering', function () {
+//    $page = \App\Page::where( 'slug', 'catering' )->first();
+//    return view( 'catering', compact( 'page' ) );
+//} )->name( 'catering' );
 
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::resource( '/menuitem', 'MenuItemController' );
@@ -48,3 +49,11 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 
     Route::resource( '/option', 'OptionController' );
 } );
+
+//Route::get( '/{slug}', function ( $slug ) {
+//    $page = \App\Page::where( 'slug', $slug )->first();
+//    dd($page);
+//    return view( $slug, compact( 'page' ) );
+//} )->name( 'page' );
+
+Route::get( '/{slug}', 'PageController@view' )->where( 'slug', '([A-Za-z0-9\-\/]+)' )->name( 'page' );
