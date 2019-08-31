@@ -17,25 +17,12 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-				@foreach($primary_menu->pages as $page)
+				@foreach($menus[1]->pages as $page)
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
 					</li>
 				@endforeach
                 
-				<!--
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('page', ['anfahrt']) }}">{{ __('Anfahrt') }}</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('page', ['reservierung']) }}">{{ __('Reservierung') }}</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('page', ['catering']) }}">{{ __('Catering') }}</a>
-                </li>
-				-->
                 <!-- Authentication Links -->
 
                 @auth
@@ -55,6 +42,8 @@
                             >{{ __('Speisekarte bearbeiten') }}</a>
 
                             <a class="dropdown-item" href="{{ route('page.index') }}" class="d-block">{{ __('Seiten bearbeiten') }}</a>
+							
+							<a class="dropdown-item" href="{{ route('hotbox.index') }}" class="d-block">{{ __('Hotboxes bearbeiten') }}</a>
                             <hr>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

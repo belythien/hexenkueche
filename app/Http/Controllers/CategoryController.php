@@ -31,9 +31,8 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-		$primary_menu = \App\Menu::find(2);
-		$footer_menu = \App\Menu::find(3);
-        return view( 'category.create', compact('primary_menu', 'footer_menu') );
+		$menus = \App\Menu::all();
+        return view( 'category.create', compact('menus') );
     }
 
     /**
@@ -80,9 +79,8 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( category $category ) {
-		$primary_menu = \App\Menu::find(2);
-		$footer_menu = \App\Menu::find(3);
-        return view( 'category.edit', compact('category', 'primary_menu', 'footer_menu') );
+		$menus = \App\Menu::all();
+        return view( 'category.edit', compact('category', 'menus') );
     }
 
     /**

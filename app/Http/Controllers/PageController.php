@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller {
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct() {
+        $this->middleware( 'auth' );
+    }
+	
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +24,8 @@ class PageController extends Controller {
      */
     public function index() {
 		$pages = Page::orderby('menu_title')->with('hotbox')->get();
-		$primary_menu = \App\Menu::find(2);
-		$footer_menu = \App\Menu::find(3);
-		return view( 'page.index', compact( 'pages', 'primary_menu', 'footer_menu' ) );
+		$menus = \App\Menu::all();
+		return view( 'page.index', compact( 'pages', 'menus' ) );
     }
 
     /**
@@ -26,10 +34,9 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-		$primary_menu = \App\Menu::find(2);
-		$footer_menu = \App\Menu::find(3);
+		$menus = \App\Menu::all();
 		$hotboxes = Hotbox::all();
-        return view( 'page.create', compact('hotboxes', 'primary_menu', 'footer_menu'));
+        return view( 'page.create', compact('hotboxes', 'menus'));
     }
 
     /**
@@ -78,10 +85,9 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Page $page ) {
-		$primary_menu = \App\Menu::find(2);
-		$footer_menu = \App\Menu::find(3);
+		$menus = \App\Menu::all();
 		$hotboxes = Hotbox::all();
-        return view( 'page.edit', compact('page', 'hotboxes', 'primary_menu', 'footer_menu') );
+        return view( 'page.edit', compact('page', 'hotboxes', 'menus') );
     }
 
     /**
@@ -123,23 +129,5 @@ class PageController extends Controller {
      */
     public function destroy( Page $page ) {
         //
-    }
-
-    public function view( $slug ) {
-		if(Auth::check()) {
-			$page = Page::where( 'slug', $slug )->first();
-		} else {
-			$page = Page::where( 'slug', $slug )->where( 'status', 1 )->first();
-		}
-        
-        if( isset( $page ) ) {
-			$primary_menu = \App\Menu::find(2);
-			$footer_menu = \App\Menu::find(3);
-            $hotbox = $page->hotbox;
-            return view( 'page', compact( 'page', 'hotbox', 'primary_menu', 'footer_menu' ) );
-        } else {
-            return redirect( route( 'page', [ '404' ] ) );
-        }
-
     }
 }

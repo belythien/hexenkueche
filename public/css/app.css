@@ -10848,8 +10848,7 @@ nav#navigation {
 }
 
 .edit_page_box {
-  border-radius: 0 10px 10px 0;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  background: transparent;
   position: fixed;
   bottom: 70px;
   left: 0;
@@ -10857,7 +10856,10 @@ nav#navigation {
 }
 
 .edit_page_box a {
+  border: 1px solid #fff;
+  border-left: none;
   border-radius: 0 10px 10px 0;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   background: #65b32c;
   display: block;
   color: #fff;

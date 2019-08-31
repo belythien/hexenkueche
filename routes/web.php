@@ -12,20 +12,19 @@
 */
 
 Route::get( '/', function () {
-	$menu = \App\Menu::find(1);
+	$menus = \App\Menu::all();
     $hotbox = \App\Hotbox::find( 1 );
-    return view( 'welcome', compact( 'menu', 'hotbox' ) );
+    return view( 'welcome', compact( 'menus', 'hotbox' ) );
 } );
 
 Auth::routes();
 
 Route::get( '/speisekarte', function () {
     $page = \App\Page::where( 'slug', 'speisekarte' )->first();
-	$primary_menu = \App\Menu::find(2);
-	$footer_menu = \App\Menu::find(3);
+	$menus = \App\Menu::all();
     $hotbox = $page->hotbox;
     $categories = App\Category::orderby( 'sort' )->get();
-    return view( 'menu', compact( 'categories', 'page', 'hotbox', 'primary_menu', 'footer_menu' ) );
+    return view( 'menu', compact( 'categories', 'page', 'hotbox', 'menus' ) );
 } )->name( 'speisekarte' );
 
 Route::group( [ 'middleware' => 'auth' ], function () {
@@ -38,6 +37,22 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::resource( '/option', 'OptionController' );
 	
 	Route::resource( '/page', 'PageController' );
+	
+	Route::resource( '/hotbox', 'HotboxController' );
 } );
 
-Route::get( '/{slug}', 'PageController@view' )->name( 'page' );
+Route::get( '/{slug}', function($slug) {
+	if(Auth::check()) {
+		$page = \App\Page::where( 'slug', $slug )->first();
+	} else {
+		$page = \App\Page::where( 'slug', $slug )->where( 'status', 1 )->first();
+	}
+	
+	if( isset( $page ) ) {
+		$menus = \App\Menu::all();
+		$hotbox = $page->hotbox;
+		return view( 'page', compact( 'page', 'hotbox', 'menus' ) );
+	} else {
+		return redirect( route( 'page', [ '404' ] ) );
+	}
+} )->name( 'page' );
