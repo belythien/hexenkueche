@@ -25,9 +25,9 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-		$menus = \App\Menu::all();
+        $menus = \App\Menu::all();
         $categories = Category::orderby( 'sort' )->get();
-        return view( 'menuitem.index', compact('categories', 'menus') );
+        return view( 'menuitem.index', compact( 'categories', 'menus' ) );
     }
 
     /**
@@ -36,9 +36,9 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-		$menus = \App\Menu::all();
+        $menus = \App\Menu::all();
         $categories = Category::orderby( 'sort' )->get();
-        return view( 'menuitem.create', compact('categories', 'menus') );
+        return view( 'menuitem.create', compact( 'categories', 'menus' ) );
     }
 
     /**
@@ -113,8 +113,8 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( menuItem $menuItem ) {
-		$menus = \App\Menu::all();
-        return view( 'menuitem.edit', compact('menuItem', 'menus' ) );
+        $menus = \App\Menu::all();
+        return view( 'menuitem.edit', compact( 'menuItem', 'menus' ) );
     }
 
     /**

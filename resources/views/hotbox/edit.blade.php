@@ -34,7 +34,7 @@
 			</div>
             {{Form::hidden('_method','PUT')}}
             {{Form::submit('Aktualisieren', ['class'=>'btn btn-danger'])}}
-            <a href="{{ route('page.index') }}" class="btn btn-success">{{ __('Abbrechen') }}</a>
+            <a href="{{ route('hotbox.index') }}" class="btn btn-success">{{ __('Abbrechen') }}</a>
         {!! Form::close() !!}
         {!!Form::open(['action' => ['PageController@destroy', $hotbox->id], 'method' => 'POST', 'class' => 'float-right'])!!}
             {{Form::hidden('_method', 'DELETE')}}

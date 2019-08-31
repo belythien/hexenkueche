@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-		$menus = \App\Menu::all();
+		$menus = Menu::all();
         return view( 'category.create', compact('menus') );
     }
 
@@ -79,7 +80,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( category $category ) {
-		$menus = \App\Menu::all();
+		$menus = Menu::all();
         return view( 'category.edit', compact('category', 'menus') );
     }
 

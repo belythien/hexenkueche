@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder {
         $this->call( OptionSeeder::class );
 		$this->call( HotboxSeeder::class );
 		$this->call( MenuSeeder::class );
-		
+
         $this->call( PageSeeder::class );
-        
+
 		$this->call( MenuPageSeeder::class );
-        
+
     }
 }

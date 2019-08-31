@@ -32,11 +32,11 @@ class PageSeeder extends Seeder {
         ] );
 
         DB::table( 'pages' )->insert( [
-            'slug'    => '404',
-            'title'   => 'Au weia!',
-			'menu_title' => 'Seite nicht gefunden',
-            'content' => 'Diese Seite existiert nicht...<br><br><br><img src="/img/404.png" width="50%" class="float-right">',
-            'status'  => 1
+            'slug'       => '404',
+            'title'      => 'Au weia!',
+            'menu_title' => 'Seite nicht gefunden',
+            'content'    => 'Diese Seite existiert nicht...<br><br><br><img src="/img/404.png" width="50%" class="float-right">',
+            'status'     => 1
         ] );
 
         DB::table( 'pages' )->insert( [
