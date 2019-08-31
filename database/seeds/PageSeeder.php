@@ -34,6 +34,7 @@ class PageSeeder extends Seeder {
         DB::table( 'pages' )->insert( [
             'slug'    => '404',
             'title'   => 'Au weia!',
+			'menu_title' => 'Seite nicht gefunden',
             'content' => 'Diese Seite existiert nicht...<br><br><br><img src="/img/404.png" width="50%" class="float-right">',
             'status'  => 1
         ] );
@@ -54,7 +55,7 @@ class PageSeeder extends Seeder {
         DB::table( 'pages' )->insert( [
             'slug'       => 'reservierung',
             'title'      => 'Gerne reservieren wir einen Tisch für Sie!',
-            'menu_title' => 'Startseite',
+            'menu_title' => 'Reservierung',
             'content'    => 'Rufen Sie dazu einfach an unter 06126 5049523 oder schreiben Sie eine Whatsapp an 0160 7744836.<br>
                     Reservierungen per Mail bekommen wir möglicherweise zu spät mit, weil wir viel zu sehr mit kochen beschäftigt sind :)
 

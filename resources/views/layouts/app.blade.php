@@ -28,10 +28,16 @@
     <main class="app_main py-4">
 
         @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
-            <div class="reservierung d-none d-md-block">
+            <div class="hotbox d-none d-md-block">
                 <a href="{{ route('page', [$hotbox->url]) }}">{!! $hotbox->text !!}</a>
             </div>
         @endif
+
+		@auth
+			<div class="edit_page_box">
+				<a href="{{ route('page.edit', [$page->id]) }}">Seite bearbeiten</a>
+			</div>
+		@endauth
 
         @yield('content')
     </main>

@@ -89,7 +89,7 @@
                 <a href="{{ route('page', ['anfahrt']) }}">{{ __('Anfahrt') }}</a>
                 <a href="{{ route('page', ['catering']) }}">{{ __('Catering') }}</a>
                 @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
-                    <div class="reservierung">
+                    <div class="hotbox">
                         <a href="{{ route( 'page', [ $hotbox->url ]) }}">{!! $hotbox->text !!}</a>
                     </div>
                 @endif

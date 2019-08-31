@@ -50,7 +50,7 @@
                             <a class="dropdown-item" href="{{ route('menuitem.index')}}" class="d-block"
                             >{{ __('Speisekarte bearbeiten') }}</a>
 
-                            <a class="dropdown-item" href="#" class="d-block">{{ __('Seiten') }}</a>
+                            <a class="dropdown-item" href="{{ route('page.index') }}" class="d-block">{{ __('Seiten bearbeiten') }}</a>
                             <hr>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

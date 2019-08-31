@@ -78,7 +78,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( category $category ) {
-        return view( 'category.edit' )->with( 'category', $category );
+        return view( 'category.edit', compact('category') );
     }
 
     /**

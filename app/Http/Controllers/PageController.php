@@ -13,7 +13,8 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-
+		$pages = Page::orderby('menu_title')->get();
+		return view( 'page.index', compact( 'pages' ) );
     }
 
     /**
@@ -52,7 +53,7 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Page $page ) {
-        //
+        return view( 'page.edit', compact('page') );
     }
 
     /**
@@ -62,8 +63,25 @@ class PageController extends Controller {
      * @param \App\Page $page
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, Page $page ) {
-        //
+    public function update( Request $request, $id ) {
+        $this->validate( $request, [
+            'menu_title' => 'required',
+			'slug' => 'required'
+        ] );
+
+        $page = Page::find( $id );
+		if(isset($page)) {
+			$page->title = $request->input( 'title' );
+			$page->menu_title = $request->input( 'menu_title' );
+			$page->content = $request->input( 'content' );
+			$page->publication = $request->input( 'publication' );
+			$page->expiration = $request->input( 'expiration' );
+			$page->save();
+
+			return redirect( route('page', [$page->slug]) )->with( 'success', 'Seite aktualisiert' );
+		} else {
+			return redirect( '/page' )->with( 'danger', 'Ein Fehler ist aufgetreten' );
+		}
     }
 
     /**

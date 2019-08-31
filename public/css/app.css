@@ -10658,6 +10658,15 @@ body {
   /* Margin bottom by footer height */
 }
 
+main a {
+  color: #65b32c;
+}
+
+main a:hover,
+main a:focus {
+  color: #e2023e;
+}
+
 div.welcome {
   background: url("/img/welcome.png") no-repeat center center;
   background-size: cover;
@@ -10766,7 +10775,7 @@ nav#navigation {
   position: relative;
 }
 
-.title .reservierung {
+.title .hotbox {
   background: #e2023e;
   border: 1px dashed #fff;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
@@ -10782,12 +10791,12 @@ nav#navigation {
   width: 300px;
 }
 
-.reservierung a {
+.hotbox a {
   color: #fff;
   text-decoration: none;
 }
 
-#app .reservierung {
+#app .hotbox {
   background: #e2023e;
   border: 1px dashed #fff;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
@@ -10832,5 +10841,27 @@ nav#navigation {
 .admin_options_row div.row:hover div {
   background: #65b32c;
   color: #fff;
+}
+
+.edit_page_box {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  bottom: 70px;
+  left: 0;
+  z-index: 100;
+}
+
+.edit_page_box a {
+  background: #65b32c;
+  display: block;
+  color: #fff;
+  padding: 4px 8px;
+}
+
+.edit_page_box a:hover,
+.edit_page_box a:focus {
+  background: #e2023e;
+  color: #fff;
+  text-decoration: none;
 }
 

@@ -33,6 +33,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::post( '/category/{id}/down', 'CategoryController@moveDown' )->name( 'category_down' );
 
     Route::resource( '/option', 'OptionController' );
+	
+	Route::resource( '/page', 'PageController' );
 } );
 
 Route::get( '/{slug}', 'PageController@view' )->name( 'page' );
