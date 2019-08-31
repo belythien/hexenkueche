@@ -41,7 +41,7 @@
 			@endif
 		
 			<div class="edit_page_box">
-				<a href="{{ route('page.edit', [$page->id]) }}">Seite bearbeiten</a>
+				<a href="{{ route('page.edit', [$page->id]) }}"><i class="fas fa-edit"></i></a>
 			</div>
 		@endauth
 

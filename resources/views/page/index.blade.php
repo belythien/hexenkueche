@@ -7,9 +7,9 @@
         </div>
         <div class="card-body">
 			<div class="text-right">
-                <a href="{{ route('page.create') }}" class="btn btn-danger">{{ __('Seite anlegen' ) }}</a>
+                <a href="{{ route('page.create') }}" class="btn btn-danger"><i class="fas fa-plus-circle"></i> {{ __('Seite anlegen' ) }}</a>
             </div>
-			<table class="table table-striped mt-3">
+			<table class="table table-striped table-sm mt-3">
 			  <thead>
 				<tr>
 				  <th scope="col">{{ __('Titel (kurz)') }}</th>
@@ -18,6 +18,7 @@
 				  <th scope="col">{{ __('Status') }}</th>
 				  <th scope="col">{{ __('Anzeigen ab') }}</th>
 				  <th scope="col">{{ __('Anzeigen bis') }}</th>
+				  <th scope="col"></th>
 				</tr>
 			  </thead>
 			  <tbody>
@@ -65,6 +66,9 @@
 							</span>
 						@endif
 					@endif
+				  </td>
+				  <td style="width:100px">
+					<a class="btn btn-sm btn-success float-right" href="{{ route('page.edit', [$page->id]) }}"><i class="fas fa-edit"></i></a>
 				  </td>
 				</tr>
 				@endforeach

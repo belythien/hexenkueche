@@ -192,11 +192,6 @@ div.bg2 {
     border-top: 2px solid $green;
 }
 
-.admin_options_row div.row:hover div {
-    background: $green;
-    color: #fff;
-}
-
 .edit_page_box {
 	background: transparent;
 	position: fixed;
@@ -247,4 +242,9 @@ input[type=radio], input[type=checkbox] {
 .admin_info_text {
 	color: #999;
 	font-size: 80%;
+}
+
+a.btn,
+input.btn {
+    min-width: 32px;
 }

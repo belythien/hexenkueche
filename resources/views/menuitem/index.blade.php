@@ -7,8 +7,8 @@
         </div>
         <div class="card-body">
             <div class="text-right">
-                <a href="{{ route('category.create') }}" class="btn btn-danger">{{ __('Kategorie anlegen' ) }}</a>
-                <a href="{{ route('menuitem.create') }}" class="btn btn-danger">{{ __('Gericht/Getränk anlegen' ) }}</a>
+                <a href="{{ route('category.create') }}" class="btn btn-danger"><i class="fas fa-list-alt"></i> {{ __('Kategorie anlegen' ) }}</a>
+                <a href="{{ route('menuitem.create') }}" class="btn btn-danger"><i class="fas fa-utensils"></i> {{ __('Gericht/Getränk anlegen' ) }}</a>
             </div>
             <hr>
             @foreach($categories as $category)
@@ -36,7 +36,7 @@
                     {!! Form::open(['action' => [ 'CategoryController@moveUp', $category->id ], 'method' => 'POST' ]) !!}
                         {{Form::submit('▲', ['class' => 'btn btn-outline-success float-right'])}}
                     {!! Form::close() !!}
-                    <a href="{{ route('category.edit', $category) }}" class="btn btn-success float-right ml-2 mr-2">{{ __('Kategorie bearbeiten') }}</a>
+                    <a href="{{ route('category.edit', $category) }}" class="btn btn-success float-right ml-2 mr-2"><i class="fas fa-list-alt"></i> {{ __('Kategorie bearbeiten') }}</a>
                 </div>
                 <p>{!! $category->description !!}</p>
                 <table class="table table-striped table-sm mb-5">
@@ -85,12 +85,12 @@
 {{--                                @endif--}}
                             </td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-success mb-1">{{ __('Bearbeiten') }}</a>
-                                {!! Form::open(['action' => [ 'CategoryController@moveDown', $category->id ], 'method' => 'POST' ]) !!}
-                                    {{Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm float-right'])}}
-                                {!! Form::close() !!}
+                                <a href="#" class="btn btn-sm btn-success mb-1"><i class="fas fa-edit"></i></a>
                                 {!! Form::open(['action' => [ 'CategoryController@moveUp', $category->id ], 'method' => 'POST' ]) !!}
                                     {{Form::submit('▲', ['class' => 'btn btn-outline-success btn-sm float-right'])}}
+                                {!! Form::close() !!}
+                                {!! Form::open(['action' => [ 'CategoryController@moveDown', $category->id ], 'method' => 'POST' ]) !!}
+                                    {{Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm float-right'])}}
                                 {!! Form::close() !!}
                             </td>
                         </tr>

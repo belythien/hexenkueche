@@ -51,10 +51,12 @@
             {{Form::submit('Aktualisieren', ['class'=>'btn btn-danger'])}}
             <a href="{{ route('page.index') }}" class="btn btn-success">{{ __('Abbrechen') }}</a>
         {!! Form::close() !!}
-        {!!Form::open(['action' => ['PageController@destroy', $page->id], 'method' => 'POST', 'class' => 'float-right'])!!}
-            {{Form::hidden('_method', 'DELETE')}}
-            {{Form::submit('Löschen', ['class' => 'btn btn-outline-danger'])}}
-        {!!Form::close()!!}
+		@if($page->slug != '404' && $page->slug != 'speisekarte' && $page->slug != 'home')
+			{!!Form::open(['action' => ['PageController@destroy', $page->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+				{{Form::hidden('_method', 'DELETE')}}
+				{{Form::submit('Löschen', ['class' => 'btn btn-outline-danger', 'onclick' => 'return confirm("Soll die Seite ' . $page->menu_title . ' wirklich gelöscht werden?")'])}}
+			{!!Form::close()!!}
+		@endif
     </div>
 </div>
 @endsection

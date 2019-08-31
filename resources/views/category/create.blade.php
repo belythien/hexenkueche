@@ -24,9 +24,10 @@
                 {{Form::label('expiration', 'Anzeigen bis')}}
                 {{Form::date('expiration', '', ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
             </div>
-            {{Form::submit('Anlegen', ['class'=>'btn btn-danger'])}}
-            <a href="{{ route('menuitem.index') }}" class="btn btn-success">{{ __('Abbrechen') }}</a>
-        {!! Form::close() !!}
+            {{Form::hidden('_method','PUT')}}
+                {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+                <a href="{{ route('menuitem.index') }}" class="btn btn-success"><i class="fas fa-times-circle"></i> {{ __('Abbrechen') }}</a>
+            {!! Form::close() !!}
     </div>
 </div>
 @endsection

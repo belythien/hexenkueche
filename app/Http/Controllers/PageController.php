@@ -127,7 +127,14 @@ class PageController extends Controller {
      * @param \App\Page $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Page $page ) {
-        //
+    public function destroy( $id ) {
+        $page = Page::find( $id );
+
+        if( !isset( $page ) ) {
+            return redirect( '/page' )->with( 'error', 'Seite nicht gefunden' );
+        }
+
+        $page->delete();
+        return redirect( '/page' )->with( 'success', 'Seite entfernt' );
     }
 }

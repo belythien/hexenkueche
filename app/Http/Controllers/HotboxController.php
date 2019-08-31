@@ -110,6 +110,14 @@ class HotboxController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy( $id ) {
-        //
+        $hotbox = Hotbox::find( $id );
+
+        //Check if post exists before deleting
+        if( !isset( $hotbox ) ) {
+            return redirect( '/hotbox' )->with( 'error', 'Hotbox nicht gefunden' );
+        }
+
+        $hotbox->delete();
+        return redirect( '/hotbox' )->with( 'success', 'Hotbox entfernt' );
     }
 }

@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <div class="text-right">
-                <a href="{{ route('hotbox.create') }}" class="btn btn-danger">{{ __('Hotbox anlegen' ) }}</a>
+                <a href="{{ route('hotbox.create') }}" class="btn btn-danger"><i class="fas fa-plus-circle"></i> {{ __('Hotbox anlegen' ) }}</a>
             </div>
             <table class="table table-striped mt-3">
                 <thead>
@@ -67,7 +67,11 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-sm btn-success float-right" href="{{ route('hotbox.edit', [$hotbox->id]) }}">{{ __('Bearbeiten') }}</a>
+                                {!!Form::open(['action' => ['HotboxController@destroy', $hotbox->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+                                    {{Form::hidden('_method', 'DELETE')}}
+                                    {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit'])}}
+                                {!!Form::close()!!}
+                                <a class="btn btn-sm btn-success float-right" href="{{ route('hotbox.edit', [$hotbox->id]) }}"><i class="fas fa-edit"></i></a>
                             </td>
                         </tr>
                     @endforeach
