@@ -127,8 +127,10 @@ class PageController extends Controller {
 		}
         
         if( isset( $page ) ) {
+			$primary_menu = \App\Menu::find(2);
+			$footer_menu = \App\Menu::find(3);
             $hotbox = $page->hotbox;
-            return view( 'page', compact( 'page', 'hotbox' ) );
+            return view( 'page', compact( 'page', 'hotbox', 'primary_menu', 'footer_menu' ) );
         } else {
             return redirect( route( 'page', [ '404' ] ) );
         }

@@ -2,14 +2,9 @@
     <div class="container">
         <span class="text-muted">&copy; Hexenküche {{ now()->year }}</span>
         <div class="float-right">
-			<!--
-            <a href="{{ route('page', ['kontakt']) }}">{{ __('Kontakt') }}</a>
-            <span class="divider">•</span>
-			-->
-            <a href="{{ route('page', ['datenschutz']) }}">{{ __('Datenschutz') }}</a>
-            <span class="divider">•</span>
-            <a href="{{ route('page', ['impressum']) }}">{{ __('Impressum') }}</a>
+			@foreach($footer_menu->pages as $page)
+				<a class="ml-3" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+			@endforeach
         </div>
-
     </div>
 </footer>

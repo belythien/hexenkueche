@@ -12,17 +12,20 @@
 */
 
 Route::get( '/', function () {
+	$menu = \App\Menu::find(1);
     $hotbox = \App\Hotbox::find( 1 );
-    return view( 'welcome', compact( 'hotbox' ) );
+    return view( 'welcome', compact( 'menu', 'hotbox' ) );
 } );
 
 Auth::routes();
 
 Route::get( '/speisekarte', function () {
     $page = \App\Page::where( 'slug', 'speisekarte' )->first();
+	$primary_menu = \App\Menu::find(2);
+	$footer_menu = \App\Menu::find(3);
     $hotbox = $page->hotbox;
     $categories = App\Category::orderby( 'sort' )->get();
-    return view( 'menu', compact( 'categories', 'page', 'hotbox' ) );
+    return view( 'menu', compact( 'categories', 'page', 'hotbox', 'primary_menu', 'footer_menu' ) );
 } )->name( 'speisekarte' );
 
 Route::group( [ 'middleware' => 'auth' ], function () {

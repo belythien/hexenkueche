@@ -17,10 +17,13 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('page', ['speisekarte']) }}">{{ __('Speisekarte') }}</a>
-                </li>
-
+				@foreach($primary_menu->pages as $page)
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+					</li>
+				@endforeach
+                
+				<!--
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('page', ['anfahrt']) }}">{{ __('Anfahrt') }}</a>
                 </li>
@@ -32,6 +35,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('page', ['catering']) }}">{{ __('Catering') }}</a>
                 </li>
+				-->
                 <!-- Authentication Links -->
 
                 @auth

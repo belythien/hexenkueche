@@ -85,9 +85,9 @@
             <div
                 class="links {{ isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '' ? 'with-hotbox' : '' }}"
             >
-                <a href="{{ route('speisekarte') }}">{{ __('Speisekarte') }}</a>
-                <a href="{{ route('page', ['anfahrt']) }}">{{ __('Anfahrt') }}</a>
-                <a href="{{ route('page', ['catering']) }}">{{ __('Catering') }}</a>
+				@foreach($menu->pages as $page)
+					<a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+				@endforeach
                 @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
                     <div class="hotbox">
                         <a href="{{ route( 'page', [ $hotbox->url ]) }}">{!! $hotbox->text !!}</a>
