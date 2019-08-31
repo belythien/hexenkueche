@@ -15,7 +15,9 @@ class PageController extends Controller {
      */
     public function index() {
 		$pages = Page::orderby('menu_title')->with('hotbox')->get();
-		return view( 'page.index', compact( 'pages' ) );
+		$primary_menu = \App\Menu::find(2);
+		$footer_menu = \App\Menu::find(3);
+		return view( 'page.index', compact( 'pages', 'primary_menu', 'footer_menu' ) );
     }
 
     /**
@@ -24,8 +26,10 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+		$primary_menu = \App\Menu::find(2);
+		$footer_menu = \App\Menu::find(3);
 		$hotboxes = Hotbox::all();
-        return view( 'page.create', compact('hotboxes'));
+        return view( 'page.create', compact('hotboxes', 'primary_menu', 'footer_menu'));
     }
 
     /**
@@ -74,8 +78,10 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Page $page ) {
+		$primary_menu = \App\Menu::find(2);
+		$footer_menu = \App\Menu::find(3);
 		$hotboxes = Hotbox::all();
-        return view( 'page.edit', compact('page', 'hotboxes') );
+        return view( 'page.edit', compact('page', 'hotboxes', 'primary_menu', 'footer_menu') );
     }
 
     /**

@@ -25,8 +25,10 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+		$primary_menu = \App\Menu::find(2);
+		$footer_menu = \App\Menu::find(3);
         $categories = Category::orderby( 'sort' )->get();
-        return view( 'menuitem.index' )->with( 'categories', $categories );
+        return view( 'menuitem.index', compact('categories', 'primary_menu', 'footer_menu') );
     }
 
     /**
@@ -35,8 +37,10 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+		$primary_menu = \App\Menu::find(2);
+		$footer_menu = \App\Menu::find(3);
         $categories = Category::orderby( 'sort' )->get();
-        return view( 'menuitem.create' )->with( 'categories', $categories );
+        return view( 'menuitem.create', compact('categories', 'primary_menu', 'footer_menu') );
     }
 
     /**
@@ -111,7 +115,9 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( menuItem $menuItem ) {
-        return view( 'menuitem.edit' )->with( 'menuItem', $menuItem );
+		$primary_menu = \App\Menu::find(2);
+		$footer_menu = \App\Menu::find(3);
+        return view( 'menuitem.edit', compact('menuItem', 'primary_menu', 'footer_menu' ) );
     }
 
     /**
