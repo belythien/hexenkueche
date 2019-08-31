@@ -87,8 +87,7 @@ class PageController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'menu_title' => 'required',
-			'slug' => 'required'
+            'menu_title' => 'required'
         ] );
 
 		$hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
@@ -98,7 +97,6 @@ class PageController extends Controller {
 			$page->title = $request->input( 'title' );
 			$page->menu_title = $request->input( 'menu_title' );
 			$page->content = $request->input( 'content' );
-			$page->slug = $request->input( 'slug' );
 			$page->status = $request->input( 'status' );
 			$page->hotbox_id = $hotbox_id;
 			$page->publication = $request->input( 'publication' );
