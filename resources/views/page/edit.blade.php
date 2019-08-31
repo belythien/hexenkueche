@@ -15,7 +15,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					{{Form::label('slug', 'Slug')}}
-					{{Form::text('slug', $page->slug, ['class' => 'form-control', 'placeholder' => 'Slug'])}}
+					{{Form::text('slug', $page->slug, ['disabled' => 'true', 'class' => 'form-control', 'placeholder' => 'Slug'])}}
 				</div>			
 			</div>
 			<div class="form-group">
@@ -33,13 +33,17 @@
 				<input name="status" type="radio" value="0" id="status_inactive" {{ $page->status == 0 ? 'checked="checked"' : '' }}>
 				<p>{{ __('Solange die Seite inaktiv ist, kann sie nur von eingeloggten Usern aufgerufen werden') }}</p>
             </div>
+			<div class="form-group">
+				{{Form::label('hotbox_id', 'Hotbox')}}
+                {{Form::select('hotbox_id[]', $hotboxes->pluck('text', 'id'), $page->hotbox_id, ['class' => 'form-control'])}}
+			</div>
 			<div class="row">
 				<div class="form-group col-md-6">
-					{{Form::label('publication', 'Anzeigen ab')}}
+					{{Form::label('publication', 'Anzeigen ab (optional)')}}
 					{{Form::date('publication', $page->publication, ['class' => 'form-control', 'placeholder' => 'Anzeigen ab'])}}
 				</div>
 				<div class="form-group col-md-6">
-					{{Form::label('expiration', 'Anzeigen bis')}}
+					{{Form::label('expiration', 'Anzeigen bis (optional)')}}
 					{{Form::date('expiration', $page->expiration, ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
 				</div>
 			</div>

@@ -17,14 +17,13 @@ class HotboxSeeder extends Seeder {
         ] );
 
         DB::table( 'hotboxes' )->insert( [
-            'text'        => 'Reservierung per Telefon<br>06126-5049523',
-            'url'         => 'reservierung',
+            'text'        => 'Sommer-Aktion!',
+            'url'         => 'special',
             'status'        => 1
         ] );
 
         DB::table( 'hotboxes' )->insert( [
-            'text'        => 'Reservierung per Telefon<br>06126-5049523',
-            'url'         => 'reservierung',
+            'text'        => 'Betriebsferien',
             'status'        => 1
         ] );
     }

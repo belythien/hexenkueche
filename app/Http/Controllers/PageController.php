@@ -24,7 +24,8 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view( 'page.create' );
+		$hotboxes = Hotbox::all();
+        return view( 'page.create', compact('hotboxes'));
     }
 
     /**
@@ -34,7 +35,26 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store( Request $request ) {
-        //
+        $this->validate( $request, [
+            'menu_title' => 'required',
+			'slug' => 'required|unique:pages'
+        ] );
+
+		$hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
+
+        $page = new Page();
+		$page->title = $request->input( 'title' );
+		$page->menu_title = $request->input( 'menu_title' );
+		$page->content = $request->input( 'content' );
+		$page->slug = $request->input( 'slug' );
+		$page->status = 0;
+		$page->hotbox_id = $hotbox_id;
+		$page->publication = $request->input( 'publication' );
+		$page->expiration = $request->input( 'expiration' );
+		$page->save();
+
+		return redirect( route('page', [$page->slug]) )->with( 'info', 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' );
+
     }
 
     /**
@@ -54,7 +74,8 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Page $page ) {
-        return view( 'page.edit', compact('page') );
+		$hotboxes = Hotbox::all();
+        return view( 'page.edit', compact('page', 'hotboxes') );
     }
 
     /**
@@ -70,12 +91,16 @@ class PageController extends Controller {
 			'slug' => 'required'
         ] );
 
+		$hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
+
         $page = Page::find( $id );
 		if(isset($page)) {
 			$page->title = $request->input( 'title' );
 			$page->menu_title = $request->input( 'menu_title' );
 			$page->content = $request->input( 'content' );
+			$page->slug = $request->input( 'slug' );
 			$page->status = $request->input( 'status' );
+			$page->hotbox_id = $hotbox_id;
 			$page->publication = $request->input( 'publication' );
 			$page->expiration = $request->input( 'expiration' );
 			$page->save();

@@ -10889,3 +10889,8 @@ input[type=checkbox] {
   width: 20px;
 }
 
+.admin_info_text {
+  color: #999;
+  font-size: 80%;
+}
+
