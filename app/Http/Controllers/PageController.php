@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Hotbox;
 use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller {
     /**
@@ -13,7 +14,7 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-		$pages = Page::orderby('menu_title')->get();
+		$pages = Page::orderby('menu_title')->with('hotbox')->get();
 		return view( 'page.index', compact( 'pages' ) );
     }
 
@@ -23,7 +24,7 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        return view( 'page.create' );
     }
 
     /**
@@ -74,6 +75,7 @@ class PageController extends Controller {
 			$page->title = $request->input( 'title' );
 			$page->menu_title = $request->input( 'menu_title' );
 			$page->content = $request->input( 'content' );
+			$page->status = $request->input( 'status' );
 			$page->publication = $request->input( 'publication' );
 			$page->expiration = $request->input( 'expiration' );
 			$page->save();
@@ -95,7 +97,12 @@ class PageController extends Controller {
     }
 
     public function view( $slug ) {
-        $page = Page::where( 'slug', $slug )->where( 'status', 1 )->first();
+		if(Auth::check()) {
+			$page = Page::where( 'slug', $slug )->first();
+		} else {
+			$page = Page::where( 'slug', $slug )->where( 'status', 1 )->first();
+		}
+        
         if( isset( $page ) ) {
             $hotbox = $page->hotbox;
             return view( 'page', compact( 'page', 'hotbox' ) );

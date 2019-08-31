@@ -27,10 +27,11 @@
                 {{Form::textarea('content', $page->content, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Inhalt'])}}
             </div>
 			<div class="form-group">
-                {{Form::label('status', 'aktiv')}}
-                {{Form::radio('status', $page->status, $page->status == 1)}}
-				{{Form::label('status', 'inaktiv')}}
-                {{Form::radio('status', $page->status, $page->status == 0)}}
+                <label for="status_active" class="badge badge-success">aktiv</label>
+				<input name="status" type="radio" value="1" id="status_active" {{ $page->status == 1 ? 'checked="checked"' : '' }}>
+				<label for="status_inactive" class="badge badge-danger">inaktiv</label>
+				<input name="status" type="radio" value="0" id="status_inactive" {{ $page->status == 0 ? 'checked="checked"' : '' }}>
+				<p>{{ __('Solange die Seite inaktiv ist, kann sie nur von eingeloggten Usern aufgerufen werden') }}</p>
             </div>
 			<div class="row">
 				<div class="form-group col-md-6">

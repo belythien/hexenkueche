@@ -15,7 +15,7 @@ class PageSeeder extends Seeder {
             'title'      => 'Herzlich Willkommen in unserer Hexenküche in Idstein!',
             'menu_title' => 'Startseite',
             'content'    => '<h4>Über uns</h4>
-                            <p>Wir sind größtenteils ein Familienunternehmen und haben unsere Leidenschaft für Essen nicht erst seit der Eröffnung dieses Lokals im März 2019 entdeckt. Die Hexenküche ist eben die “Heimat des Veggiemobils”, das die Gaumen von Menschen über die Grenzen Hessens hinaus verwöhnt und eine Bereicherung für jeden darstellt, der ehrliche und vollwertige Alternativen zu fleischlastigen und fettigen Fertiggerichten sucht.</p>
+                            <p>Wir haben unsere Leidenschaft für Essen nicht erst seit der Eröffnung dieses Lokals im März 2019 entdeckt. Die Hexenküche ist die “Heimat des Veggiemobil”, das die Gaumen von Menschen über die Grenzen Hessens hinaus verwöhnt und eine Bereicherung für jeden darstellt, der ehrliche und vollwertige Alternativen zu fleischlastigen und fettigen Fertiggerichten sucht.</p>
                             <h4>Speisen</h4>
                             <p>Auch wenn die Karte auf den ersten Blick nicht danach aussieht: <br>
                             Sie werden bei uns keine fertigen Saucen und Dressings finden! Darüber hinaus haben wir überwiegend Speisen im Programm, die hier in dieser Küche selbst gemacht sind - wie zum Beispiel unsere Falafel sowie unseren Champion- und Power-Burger. Die Burgerbrötchen, auch Buns genannt, stammen von einer befreundeten Bäckerei, die diese exklusiv mit uns entwickelt hat und uns ständig mit frischem Nachschub versorgt.</p>

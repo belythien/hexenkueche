@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
 			<div class="text-right">
-                <a href="{{ route('category.create') }}" class="btn btn-danger">{{ __('Seite anlegen' ) }}</a>
+                <a href="{{ route('page.create') }}" class="btn btn-danger">{{ __('Seite anlegen' ) }}</a>
             </div>
 			<table class="table table-striped mt-3">
 			  <thead>
@@ -27,7 +27,12 @@
 					<a href="{{ route('page.edit', [$page->id]) }}">{{ $page->menu_title }}</a>
 				  </th>
 				  <td>{{ str_limit(strip_tags($page->content), 50, '...') }}</td>
-				  <td>{{ $page->hotbox_id }}</td>
+				  <td>
+					@if(!empty($page->hotbox))
+						<a href="#" class="badge badge-danger">{{ $page->hotbox_id }}</a>
+						{{ $page->hotbox->text }}
+					@endif
+				  </td>
 				  <td>
 					@if( $page->status == 1 )
 						<span class="badge badge-success">{{ __('aktiv') }}</span>
@@ -35,8 +40,32 @@
 						<span class="badge badge-danger">{{ __('inaktiv') }}</span>
 					@endif
 				  </td>
-				  <td>{{ !empty($page->publication) ? date('d.m.Y', strtotime($page->publication)) : '' }}</td>
-				  <td>{{ !empty($page->expiration) ? date('d.m.Y', strtotime($page->expiration)) : '' }}</td>
+				  <td>
+					@if(!empty($page->publication))
+						@if($page->publication > date('Y-m-d') )
+							<span class="badge badge-danger">
+							{{ date('d.m.Y', strtotime($page->publication)) }}
+							</span>
+						@else
+							<span class="badge badge-success">
+							{{ date('d.m.Y', strtotime($page->publication)) }}
+							</span>
+						@endif
+					@endif
+				  </td>
+				  <td>
+					@if(!empty($page->expiration))
+						@if($page->expiration < date('Y-m-d') )
+							<span class="badge badge-danger">
+							{{ date('d.m.Y', strtotime($page->expiration)) }}
+							</span>
+						@else
+							<span class="badge badge-success">
+							{{ date('d.m.Y', strtotime($page->expiration)) }}
+							</span>
+						@endif
+					@endif
+				  </td>
 				</tr>
 				@endforeach
 			  </tbody>

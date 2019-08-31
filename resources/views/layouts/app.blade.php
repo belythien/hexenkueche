@@ -34,6 +34,12 @@
         @endif
 
 		@auth
+			@if( $page->status != 1 )
+			<div class="page_inactive_box">
+				{{ __('inaktiv') }}
+			</div>
+			@endif
+		
 			<div class="edit_page_box">
 				<a href="{{ route('page.edit', [$page->id]) }}">Seite bearbeiten</a>
 			</div>

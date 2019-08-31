@@ -146,6 +146,10 @@ div.bg2 {
     text-decoration: none;
 }
 
+.hotbox a:hover {
+	color: #fff;
+}
+
 #app .hotbox {
     background: $red;
     border: 1px dashed #fff;
@@ -213,4 +217,24 @@ div.bg2 {
 		text-decoration: none;
 	}
 	
+}
+
+.page_inactive_box {
+	box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+	color: #fff;
+	padding: 4px 8px;
+	position: fixed;
+	bottom: 100px;
+	left: 0;
+	z-index: 100;
+	background: $red;
+
+}
+
+input[type=radio], input[type=checkbox] {
+	cursor: pointer;
+	height: 20px;
+	position: relative;
+		top: 7px;
+	width: 20px;
 }
