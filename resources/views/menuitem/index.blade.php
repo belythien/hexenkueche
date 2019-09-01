@@ -63,7 +63,6 @@
                                 {!! $menuItem->description !!}
                             </td>
                             <td class="admin_options_row">
-{{--                                @if( sizeof( $menuItem->options ) > 0 )--}}
                                     @foreach( $menuItem->options as $option )
                                         <div class="row">
                                             <div class="col-md-6">
@@ -77,15 +76,9 @@
                                             </div>
                                         </div>
                                     @endforeach
-{{--                                @else--}}
-{{--                                    @if( $menuItem->amount ) --}}
-{{--                                        {!! $menuItem->amount !!}--}}
-{{--                                    @endif--}}
-{{--                                    <strong>{{ str_replace('.', ',', number_format($menuItem->price, 2)) }}€</strong>--}}
-{{--                                @endif--}}
                             </td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-success mb-1"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('menuitem.edit', [ $menuItem->id ]) }}" class="btn btn-sm btn-success mb-1"><i class="fas fa-edit"></i></a>
                                 {!! Form::open(['action' => [ 'CategoryController@moveUp', $category->id ], 'method' => 'POST' ]) !!}
                                     {{Form::submit('▲', ['class' => 'btn btn-outline-success btn-sm float-right'])}}
                                 {!! Form::close() !!}

@@ -35,18 +35,14 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('page', ['dashboard']) }}">
-                                {{ __('Dashboard') }}
-                            </a>
-
                             <a class="dropdown-item" href="{{ route('menuitem.index')}}" class="d-block"
-                            >{{ __('Speisekarte bearbeiten') }}</a>
+                            ><i class="fas fa-utensils"></i> {{ __('Speisekarte') }}</a>
 
                             <a class="dropdown-item" href="{{ route('page.index') }}" class="d-block"
-                            >{{ __('Seiten bearbeiten') }}</a>
+                            ><i class="fas fa-file-alt"></i> {{ __('Seiten') }}</a>
 
                             <a class="dropdown-item" href="{{ route('hotbox.index') }}" class="d-block"
-                            >{{ __('Hotboxes bearbeiten') }}</a>
+                            ><i class="fas fa-certificate"></i> {{ __('Hotboxes') }}</a>
                             <hr>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

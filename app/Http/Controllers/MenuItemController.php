@@ -112,9 +112,16 @@ class MenuItemController extends Controller {
      * @param \App\menuItem $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function edit( menuItem $menuItem ) {
-        $menus = \App\Menu::all();
-        return view( 'menuitem.edit', compact( 'menuItem', 'menus' ) );
+    public function edit( $id ) {
+        $menuItem = MenuItem::find($id);
+        if(isset($menuItem)) {
+            $menus = \App\Menu::all();
+            $categories = Category::orderby( 'sort' )->get();
+            return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus' ) );
+        } else {
+            return redirect('/menuitem')->with('error', 'Eintrag nicht gefunden');
+        }
+        
     }
 
     /**
@@ -134,8 +141,16 @@ class MenuItemController extends Controller {
      * @param \App\menuItem $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy( menuItem $menuItem ) {
-        //
+    public function destroy( $id ) {
+        $menuItem = MenuItem::find( $id );
+
+        if( !isset( $menuItem ) ) {
+            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+        }
+
+        $name = $menuItem->name;
+        $menuItem->delete();
+        return redirect( '/menuitem' )->with( 'success', 'Eintrag ' . $name . ' entfernt' );
     }
 
 }

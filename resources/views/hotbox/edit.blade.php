@@ -33,12 +33,12 @@
 				</div>
 			</div>
             {{Form::hidden('_method','PUT')}}
-            {{Form::submit('Aktualisieren', ['class'=>'btn btn-danger'])}}
-            <a href="{{ route('hotbox.index') }}" class="btn btn-success">{{ __('Abbrechen') }}</a>
+            {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+            <a href="{{ route('menuitem.index') }}" class="btn btn-success"><i class="fas fa-times-circle"></i> {{ __('Abbrechen') }}</a>
         {!! Form::close() !!}
-        {!!Form::open(['action' => ['PageController@destroy', $hotbox->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+        {!!Form::open(['action' => ['HotboxController@destroy', $hotbox->id], 'method' => 'POST', 'class' => 'float-right'])!!}
             {{Form::hidden('_method', 'DELETE')}}
-            {{Form::submit('Löschen', ['class' => 'btn btn-outline-danger'])}}
+            {{Form::button('<i class="fas fa-trash-alt"></i> Löschen', ['class' => 'btn btn-outline-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll Hotbox ' . $hotbox->id . ' wirklich gelöscht werden?")'])}}
         {!!Form::close()!!}
     </div>
 </div>

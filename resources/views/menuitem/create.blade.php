@@ -33,10 +33,7 @@
                     {{Form::date('expiration', '', ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
                 </div>
             </div>
-            {{--            <div class="form-group">--}}
-            {{--                {{Form::label('price', 'Preis')}}--}}
-            {{--                {{Form::text('price', '', ['class' => 'form-control', 'placeholder' => 'Preis'])}}--}}
-            {{--            </div>--}}
+
             <div class="form-group">
                 {{Form::label('image', 'Bild')}}
                 {{Form::file('image')}}
@@ -61,8 +58,8 @@
                 </div>
             @endfor
             <div class="mt-3">
-                {{Form::submit('Anlegen', ['class'=>'btn btn-danger'])}}
-                <a href="{{ route('menuitem.index') }}" class="btn btn-success">{{ __('Abbrechen') }}</a>
+            {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+                <a href="{{ route('menuitem.index') }}" class="btn btn-success"><i class="fas fa-times-circle"></i> {{ __('Abbrechen') }}</a>
             </div>
             {!! Form::close() !!}
         </div>
