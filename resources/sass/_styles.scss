@@ -196,8 +196,10 @@ div.bg2 {
 	background: transparent;
 	position: fixed;
 	bottom: 70px;
-	left: 0;
-	z-index: 100;
+	left: -77px;
+    z-index: 100;
+    animation-name: left;
+    animation-duration: 0.5s;
 	
 	a {
 		border: 1px solid #fff;
@@ -216,6 +218,10 @@ div.bg2 {
 		text-decoration: none;
 	}
 	
+}
+
+.edit_page_box:hover {
+    left: 0;
 }
 
 .page_inactive_box {

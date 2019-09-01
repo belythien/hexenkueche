@@ -10850,8 +10850,12 @@ nav#navigation {
   background: transparent;
   position: fixed;
   bottom: 70px;
-  left: 0;
+  left: -77px;
   z-index: 100;
+  -webkit-animation-name: left;
+          animation-name: left;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .edit_page_box a {
@@ -10870,6 +10874,10 @@ nav#navigation {
   background: #e2023e;
   color: #fff;
   text-decoration: none;
+}
+
+.edit_page_box:hover {
+  left: 0;
 }
 
 .page_inactive_box {
