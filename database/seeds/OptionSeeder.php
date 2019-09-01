@@ -12,6 +12,7 @@ class OptionSeeder extends Seeder {
      */
     public function run() {
         // Salate
+        // Rumpelstilzchen
         DB::table( 'options' )->insert( [
             'amount'       => 'mittel',
             'price'        => 8.50,
@@ -24,6 +25,7 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 1
         ] );
 
+        // Italian
         DB::table( 'options' )->insert( [
             'amount'       => 'mittel',
             'price'        => 8.50,
@@ -35,8 +37,21 @@ class OptionSeeder extends Seeder {
             'price'        => 11.50,
             'menu_item_id' => 2
         ] );
+
+        // Kleiner Salat
+        DB::table( 'options' )->insert( [
+            'price'        => 4.5,
+            'menu_item_id' => 3
+        ] );
+        DB::table( 'options' )->insert( [
+            'price'        => 5.8,
+            'menu_item_id' => 4
+        ] );
+
+        // Caprese
 
         // Kartoffeliges
+        // Süßkartoffel-Pommes
         DB::table( 'options' )->insert( [
             'amount'       => 'klein',
             'price'        => 3.0,
@@ -49,6 +64,7 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 5
         ] );
 
+        // Kartoffel-Dippers
         DB::table( 'options' )->insert( [
             'amount'       => 'klein',
             'price'        => 2.0,
@@ -61,6 +77,7 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 6
         ] );
 
+        // Kartoffel-Pommes
         DB::table( 'options' )->insert( [
             'amount'       => 'klein',
             'price'        => 2.0,
@@ -71,9 +88,29 @@ class OptionSeeder extends Seeder {
             'amount'       => 'groß',
             'price'        => 3.5,
             'menu_item_id' => 7
+        ] );
+
+        // Sweet-Chili-Cheeze-Fries
+        DB::table( 'options' )->insert( [
+            'price'        => 6.0,
+            'menu_item_id' => 8
+        ] );
+
+        // Nachos
+        // Chili-Cheeze
+        DB::table( 'options' )->insert( [
+            'price'        => 5.5,
+            'menu_item_id' => 9
+        ] );
+
+         // Nacho Trio
+         DB::table( 'options' )->insert( [
+            'price'        => 5.5,
+            'menu_item_id' => 10
         ] );
 
         // Specials
+        // Falafel-Teller
         DB::table( 'options' )->insert( [
             'name'         => 'mit Kartoffel-Pommes',
             'price'        => 8.50,
@@ -86,6 +123,7 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 11
         ] );
 
+        // Jack-Teller
         DB::table( 'options' )->insert( [
             'name'         => 'auf Kartoffel-Pommes',
             'price'        => 8.50,
@@ -99,6 +137,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         // Burger
+        // Champion-Burger
         DB::table( 'options' )->insert( [
             'name'         => 'mit Süßkartoffel-Pommes',
             'price'        => 10.50,
@@ -117,6 +156,7 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 13
         ] );
 
+        // Power-Burger
         DB::table( 'options' )->insert( [
             'name'         => 'mit Süßkartoffel-Pommes',
             'price'        => 10.50,
@@ -135,6 +175,7 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 14
         ] );
 
+        // Meat-Love-Burger
         DB::table( 'options' )->insert( [
             'name'         => 'mit Süßkartoffel-Pommes',
             'price'        => 13.50,
@@ -153,6 +194,65 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 15
         ] );
 
+        // Wraps
+        // Laxx-Wrap
+        DB::table( 'options' )->insert( [
+            'price'        => 8.0,
+            'menu_item_id' => 16
+        ] );
+
+        // Power-Wrap
+        DB::table( 'options' )->insert( [
+            'price'        => 7.5,
+            'menu_item_id' => 17
+        ] );
+
+        // Falafel-Wrap
+        DB::table( 'options' )->insert( [
+            'price'        => 6.0,
+            'menu_item_id' => 18
+        ] );
+
+        // Flammkuchen
+        // Classic
+        DB::table( 'options' )->insert( [
+            'price'        => 7.0,
+            'menu_item_id' => 19
+        ] );
+
+        // Italian
+        DB::table( 'options' )->insert( [
+            'price'        => 8.5,
+            'menu_item_id' => 20
+        ] );
+
+        // Spezial
+        DB::table( 'options' )->insert( [
+            'price'        => 8.5,
+            'menu_item_id' => 21
+        ] );
+
+        // Gaumenfreuden
+        // Baklava
+        DB::table( 'options' )->insert( [
+            'price'        => 3.0,
+            'menu_item_id' => 22
+        ] );
+
+        // Bananen-Tiramisu
+        DB::table( 'options' )->insert( [
+            'price'        => 4.0,
+            'menu_item_id' => 23
+        ] );
+
+        // Himbeer Panna Cocos
+        DB::table( 'options' )->insert( [
+            'price'        => 3.8,
+            'menu_item_id' => 24
+        ] );
+
+        // Durstlöscher
+        // Wasser
         DB::table( 'options' )->insert( [
             'amount'       => '0,2l',
             'price'        => 2.0,
@@ -174,206 +274,232 @@ class OptionSeeder extends Seeder {
 
         // Saft
         DB::table( 'options' )->insert( [
+            'name'         => 'Orange, Apfel',
             'amount'       => '0,33l',
             'price'        => 3.0,
             'menu_item_id' => 27
         ] );
 
         DB::table( 'options' )->insert( [
+            'name'         => 'Mango, Kirsch, Maracuja, Banane, Mango-Kokos, KiBa',
+            'amount'       => '0,33l',
+            'price'        => 3.8,
+            'menu_item_id' => 27
+        ] );
+
+        DB::table( 'options' )->insert( [
+            'name'         => 'Orange, Apfel',
             'amount'       => '0,50l',
             'price'        => 3.8,
             'menu_item_id' => 27
         ] );
 
         DB::table( 'options' )->insert( [
-            'amount'       => '0,33l',
-            'price'        => 3.8,
-            'menu_item_id' => 28
-        ] );
-
-        DB::table( 'options' )->insert( [
+            'name'         => 'Mango, Kirsch, Maracuja, Banane, Mango-Kokos, KiBa',
             'amount'       => '0,50l',
             'price'        => 4.8,
-            'menu_item_id' => 28
+            'menu_item_id' => 27
         ] );
 
         // Saftschorlen
         DB::table( 'options' )->insert( [
+            'name'         => 'Orange, Apfel',
             'amount'       => '0,33l',
             'price'        => 2.8,
-            'menu_item_id' => 29
+            'menu_item_id' => 28
         ] );
 
         DB::table( 'options' )->insert( [
-            'amount'       => '0,50l',
-            'price'        => 3.5,
-            'menu_item_id' => 29
-        ] );
-
-        DB::table( 'options' )->insert( [
+            'name'         => 'Mango, Kirsch, Maracuja, Banane, Mango-Kokos, KiBa',
             'amount'       => '0,33l',
             'price'        => 3.2,
-            'menu_item_id' => 30
+            'menu_item_id' => 28
         ] );
 
         DB::table( 'options' )->insert( [
+            'name'         => 'Orange, Apfel',
             'amount'       => '0,50l',
-            'price'        => 4.0,
-            'menu_item_id' => 30
+            'price'        => 3.5,
+            'menu_item_id' => 28
         ] );
 
+        DB::table( 'options' )->insert( [
+            'name'         => 'Mango, Kirsch, Maracuja, Banane, Mango-Kokos, KiBa',
+            'amount'       => '0,50l',
+            'price'        => 4.0,
+            'menu_item_id' => 28
+        ] );
+
+        // Eistee (bio & fair)
         DB::table( 'options' )->insert( [
             'name'         => 'Pfirsich-Zitrone',
             'amount'       => '0,33l',
             'price'        => 3.5,
-            'menu_item_id' => 31
+            'menu_item_id' => 29
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Himbeer-Hibiskus',
             'amount'       => '0,33l',
             'price'        => 3.5,
-            'menu_item_id' => 31
+            'menu_item_id' => 29
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Matcha',
             'amount'       => '0,50l',
             'price'        => 4.5,
-            'menu_item_id' => 31
+            'menu_item_id' => 29
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Mate-Zitrone',
             'amount'       => '0,50l',
             'price'        => 4.5,
-            'menu_item_id' => 31
+            'menu_item_id' => 29
         ] );
 
+        // Hexenbräu vom Fass
         DB::table( 'options' )->insert( [
             'amount'       => '0,33l',
             'price'        => 2.8,
-            'menu_item_id' => 32
+            'menu_item_id' => 30
         ] );
 
         DB::table( 'options' )->insert( [
             'amount'       => '0,50l',
             'price'        => 4.2,
-            'menu_item_id' => 32
+            'menu_item_id' => 30
         ] );
 
+        // Lahnstein-Brauerei Flaschenbier
         DB::table( 'options' )->insert( [
             'name'         => 'Hefeweizen oder Hefeweizen alkoholfrei',
             'amount'       => '0,50l',
             'price'        => 3.5,
-            'menu_item_id' => 33
+            'menu_item_id' => 31
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Pils alkoholfrei',
             'amount'       => '0,50l',
             'price'        => 3.2,
-            'menu_item_id' => 33
+            'menu_item_id' => 31
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Malztrunk',
             'amount'       => '0,50l',
             'price'        => 3.0,
-            'menu_item_id' => 33
+            'menu_item_id' => 31
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Radler',
             'amount'       => '0,33l',
             'price'        => 2.8,
-            'menu_item_id' => 33
+            'menu_item_id' => 31
         ] );
 
+        // Heißes
+        // Tee (bio)
         DB::table( 'options' )->insert( [
             'name'         => 'Oriental-Chai, Grüner Tee/Matcha, Calm&Relax',
             'price'        => 2.5,
-            'menu_item_id' => 34
+            'menu_item_id' => 32
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Bio-Blütenrispentee: Bergtee, Kamille, Wilder Thymian, Lindenblüte',
             'price'        => 3.0,
-            'menu_item_id' => 34
+            'menu_item_id' => 32
         ] );
 
+        // Kaffee (fair & bio)
         DB::table( 'options' )->insert( [
             'name'         => 'Cafe Creme',
             'price'        => 2.5,
-            'menu_item_id' => 35
+            'menu_item_id' => 33
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Cappuccino',
             'price'        => 2.8,
-            'menu_item_id' => 35
+            'menu_item_id' => 33
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Latte Macchiato',
             'price'        => 3.5,
-            'menu_item_id' => 35
+            'menu_item_id' => 33
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Espresso',
             'price'        => 2.0,
-            'menu_item_id' => 35
+            'menu_item_id' => 33
         ] );
 
+        // Kakao (bio)
+        DB::table( 'options' )->insert( [
+            'name'         => 'Oatly!',
+            'price'        => 2.5,
+            'menu_item_id' => 34
+        ] );
+
+        // Latte & Co
         DB::table( 'options' )->insert( [
             'name'         => 'Chai Latte',
             'price'        => 4.0,
-            'menu_item_id' => 37
+            'menu_item_id' => 35
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Matcha Latte',
             'price'        => 4.0,
-            'menu_item_id' => 37
+            'menu_item_id' => 35
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Kurkuma Latte',
             'price'        => 4.0,
-            'menu_item_id' => 37
+            'menu_item_id' => 35
         ] );
 
         DB::table( 'options' )->insert( [
             'name'         => 'Pink-Superfruit-Latte',
             'price'        => 4.0,
-            'menu_item_id' => 37
+            'menu_item_id' => 35
         ] );
 
+        // Weinkarte
+        // Apfelwein (regional)
         DB::table( 'options' )->insert( [
             'amount'       => '0,25l',
             'price'        => 2.0,
-            'menu_item_id' => 38
+            'menu_item_id' => 36
         ] );
 
         DB::table( 'options' )->insert( [
             'amount'       => '0,50l',
             'price'        => 3.5,
-            'menu_item_id' => 38
+            'menu_item_id' => 36
         ] );
 
+        // Rosé (bio)
         DB::table( 'options' )->insert( [
             'amount'       => '0,20l',
             'price'        => 4.0,
-            'menu_item_id' => 39
+            'menu_item_id' => 37
         ] );
 
+        // Weißwein (bio)
         DB::table( 'options' )->insert( [
             'name'         => '<em>Sauvignon-Verdejo</em> fruchtig, aromatisch',
             'amount'       => '0,20l',
             'price'        => 4.0,
             'sort'         => 1,
-            'menu_item_id' => 40
+            'menu_item_id' => 38
         ] );
 
         DB::table( 'options' )->insert( [
@@ -381,7 +507,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 2,
-            'menu_item_id' => 40
+            'menu_item_id' => 38
         ] );
 
         DB::table( 'options' )->insert( [
@@ -389,7 +515,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 3,
-            'menu_item_id' => 40
+            'menu_item_id' => 38
         ] );
 
         DB::table( 'options' )->insert( [
@@ -397,7 +523,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 4,
-            'menu_item_id' => 40
+            'menu_item_id' => 38
         ] );
 
         DB::table( 'options' )->insert( [
@@ -405,7 +531,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 5,
-            'menu_item_id' => 40
+            'menu_item_id' => 38
         ] );
 
         DB::table( 'options' )->insert( [
@@ -413,23 +539,25 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 6,
-            'menu_item_id' => 40
+            'menu_item_id' => 38
         ] );
 
+        // Dessertwein (bio)
         DB::table( 'options' )->insert( [
             'name'         => '<em>Gewürztraminer*</em> lieblich',
             'amount'       => '0,10l',
             'price'        => 4.0,
             'sort'         => 1,
-            'menu_item_id' => 41
+            'menu_item_id' => 39
         ] );
 
+        // Rotwein (bio)
         DB::table( 'options' )->insert( [
             'name'         => '<em>Merlot</em> trocken',
             'amount'       => '0,20l',
             'price'        => 4.0,
             'sort'         => 1,
-            'menu_item_id' => 42
+            'menu_item_id' => 40
         ] );
 
         DB::table( 'options' )->insert( [
@@ -437,7 +565,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 4.0,
             'sort'         => 2,
-            'menu_item_id' => 42
+            'menu_item_id' => 40
         ] );
 
         DB::table( 'options' )->insert( [
@@ -445,7 +573,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 4.0,
             'sort'         => 3,
-            'menu_item_id' => 42
+            'menu_item_id' => 40
         ] );
 
         DB::table( 'options' )->insert( [
@@ -453,7 +581,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 4,
-            'menu_item_id' => 42
+            'menu_item_id' => 40
         ] );
 
         DB::table( 'options' )->insert( [
@@ -461,7 +589,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 5,
-            'menu_item_id' => 42
+            'menu_item_id' => 40
         ] );
 
         DB::table( 'options' )->insert( [
@@ -469,15 +597,16 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 6,
-            'menu_item_id' => 42
+            'menu_item_id' => 40
         ] );
 
+        // Prosecco (bio)
         DB::table( 'options' )->insert( [
             'name'         => '<em>Prosecco*</em> Sparkling Pink',
             'amount'       => '0,10l',
             'price'        => 3.0,
             'sort'         => 1,
-            'menu_item_id' => 43
+            'menu_item_id' => 41
         ] );
 
         DB::table( 'options' )->insert( [
@@ -485,14 +614,16 @@ class OptionSeeder extends Seeder {
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 2,
-            'menu_item_id' => 43
+            'menu_item_id' => 41
         ] );
 
+        // Hochprozentiges
+        // Klassiker
         DB::table( 'options' )->insert( [
             'name'         => 'Asbach-Cola',
             'price'        => 3.5,
             'sort'         => 1,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -500,7 +631,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 3.8,
             'sort'         => 2,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -508,7 +639,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '4cl',
             'price'        => 4.5,
             'sort'         => 3,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -516,7 +647,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '4cl',
             'price'        => 4.5,
             'sort'         => 4,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -524,7 +655,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 4.2,
             'sort'         => 5,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -532,7 +663,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 4.2,
             'sort'         => 6,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -540,7 +671,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 4.2,
             'sort'         => 7,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -548,7 +679,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 2.5,
             'sort'         => 8,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
         DB::table( 'options' )->insert( [
@@ -556,15 +687,16 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 2.5,
             'sort'         => 9,
-            'menu_item_id' => 44
+            'menu_item_id' => 42
         ] );
 
+        // Weinbrand
         DB::table( 'options' )->insert( [
             'name'         => '“O de wie” (Apfelweinbrand)',
             'amount'       => '2cl',
             'price'        => 2.5,
             'sort'         => 1,
-            'menu_item_id' => 45
+            'menu_item_id' => 43
         ] );
 
         DB::table( 'options' )->insert( [
@@ -572,7 +704,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 2.0,
             'sort'         => 2,
-            'menu_item_id' => 45
+            'menu_item_id' => 43
         ] );
 
         DB::table( 'options' )->insert( [
@@ -580,7 +712,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 2.0,
             'sort'         => 3,
-            'menu_item_id' => 45
+            'menu_item_id' => 43
         ] );
 
         DB::table( 'options' )->insert( [
@@ -588,15 +720,16 @@ class OptionSeeder extends Seeder {
             'amount'       => '2cl',
             'price'        => 2.0,
             'sort'         => 4,
-            'menu_item_id' => 45
+            'menu_item_id' => 43
         ] );
 
+        // Specials
         DB::table( 'options' )->insert( [
             'name'         => 'Taunus Benzin (Reichspostbitter)',
             'amount'       => '2cl',
             'price'        => 2.5,
             'sort'         => 1,
-            'menu_item_id' => 46
+            'menu_item_id' => 44
         ] );
 
         DB::table( 'options' )->insert( [
@@ -604,7 +737,7 @@ class OptionSeeder extends Seeder {
             'amount'       => '1cl',
             'price'        => 2.0,
             'sort'         => 2,
-            'menu_item_id' => 46
+            'menu_item_id' => 44
         ] );
     }
 }

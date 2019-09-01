@@ -35,7 +35,7 @@ class PageController extends Controller {
      */
     public function create() {
         $menus = \App\Menu::all();
-        $hotboxes = Hotbox::all();
+        $hotboxes = Hotbox::pluck('text', 'id');
         return view( 'page.create', compact( 'hotboxes', 'menus' ) );
     }
 
@@ -86,7 +86,7 @@ class PageController extends Controller {
      */
     public function edit( Page $page ) {
         $menus = \App\Menu::all();
-        $hotboxes = Hotbox::all();
+        $hotboxes = Hotbox::pluck('text', 'id');
         return view( 'page.edit', compact( 'page', 'hotboxes', 'menus' ) );
     }
 

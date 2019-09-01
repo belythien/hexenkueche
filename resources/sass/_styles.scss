@@ -88,6 +88,11 @@ div.bg2 {
     text-transform: uppercase;
   }
 
+  a.footer-link-inactive,
+  #navigation a.nav-link-inactive {
+      color: #999;
+  }
+
   .admin-menu a,
   .admin-menu a:hover {
     color: $green;
@@ -225,12 +230,14 @@ div.bg2 {
 }
 
 .page_inactive_box {
-	border-radius: 0 10px 0 0;
+    border: 1px solid #fff;
+    border-left: none;
+	border-radius: 0 10px 10px 0;
 	box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
 	color: #fff;
 	padding: 4px 8px;
 	position: fixed;
-	bottom: 100px;
+	top: 160px;
 	left: 0;
 	z-index: 100;
 	background: $red;

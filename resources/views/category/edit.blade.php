@@ -17,6 +17,12 @@
                 {{Form::textarea('description', $category->description, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Beschreibung'])}}
             </div>
             <div class="form-group">
+                <label for="status_active" class="badge badge-success">aktiv</label>
+				<input name="status" type="radio" value="1" id="status_active" {{ $category->status == 1 ? 'checked="checked"' : '' }}>
+				<label for="status_inactive" class="badge badge-danger">inaktiv</label>
+				<input name="status" type="radio" value="0" id="status_inactive" {{ $category->status == 0 ? 'checked="checked"' : '' }}>
+            </div>
+            <div class="form-group">
                 {{Form::label('publication', 'Anzeigen ab')}}
                 {{Form::date('publication', $category->publication, ['class' => 'form-control', 'placeholder' => 'Anzeigen ab'])}}
             </div>

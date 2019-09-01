@@ -19,9 +19,17 @@
             <ul class="navbar-nav ml-auto">
                 @if(isset($menus[1]))
                     @foreach($menus[1]->pages as $page)
+                        @if($page->isLive() == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
                         </li>
+                        @else 
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-inactive" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                            </li>
+                            @endauth
+                        @endif
                     @endforeach
                 @endif
             <!-- Authentication Links -->

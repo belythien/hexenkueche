@@ -17,13 +17,7 @@ class HotboxSeeder extends Seeder {
         ] );
 
         DB::table( 'hotboxes' )->insert( [
-            'text'   => 'Sommer-Aktion!',
-            'url'    => 'special',
-            'status' => 1
-        ] );
-
-        DB::table( 'hotboxes' )->insert( [
-            'text'   => 'Betriebsferien',
+            'text'   => 'Gleich anrufen unter<br>06126-5049523',
             'status' => 1
         ] );
     }

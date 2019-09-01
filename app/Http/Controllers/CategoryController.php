@@ -55,6 +55,7 @@ class CategoryController extends Controller {
         $category->name = $request->input( 'name' );
         $category->description = $request->input( 'description' );
         $category->sort = $sort;
+        $category->status = $request->input('status');
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
         //$category->user_id = auth()->user()->id;
@@ -99,11 +100,12 @@ class CategoryController extends Controller {
         $category = Category::find( $id );
         $category->name = $request->input( 'name' );
         $category->description = $request->input( 'description' );
+        $category->status = $request->input('status');
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
         $category->save();
 
-        return redirect( '/menuitem' )->with( 'success', 'Kategorie aktualisiert' );
+        return redirect( '/menuitem' )->with( 'success', 'Kategorie ' . $category->name . ' aktualisiert' );
     }
 
     /**
@@ -120,8 +122,10 @@ class CategoryController extends Controller {
             return redirect( '/menuitem' )->with( 'error', 'Kategorie nicht gefunden' );
         }
 
+        $name = $category->name;
+
         $category->delete();
-        return redirect( '/menuitem' )->with( 'success', 'Kategorie entfernt' );
+        return redirect( '/menuitem' )->with( 'success', 'Kategorie ' . $name . ' entfernt' );
     }
 
     public function moveUp( $id ) {

@@ -19,7 +19,7 @@ class MenuItemSeeder extends Seeder {
         ] );
 
         DB::table( 'menu_items' )->insert( [
-            'name'        => 'Mediteran',
+            'name'        => 'Italian',
             'description' => 'Blattsalat, Paprika, Oliven, Möhren, Cocktail-Tomaten, rote Zwiebeln und Flohzarella',
             'sort'        => 2,
             'category_id' => 1
@@ -28,7 +28,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Kleiner gemischter Salat der Saison',
             'description' => '',
-            'price'       => 4.5,
             'sort'        => 3,
             'category_id' => 1
         ] );
@@ -37,7 +36,6 @@ class MenuItemSeeder extends Seeder {
             'name'        => 'Caprese',
             'description' => 'Tomaten, Flohzarella, Olivenöl, Balsamico und frischer Basilikum',
             'image'       => 'caprese.jpg',
-            'price'       => 5.8,
             'sort'        => 4,
             'category_id' => 1
         ] );
@@ -69,7 +67,6 @@ class MenuItemSeeder extends Seeder {
             'description' => 'Süßkartoffel-Pommes, Jalapenos, selbst gemachte Cheeze-Sauce',
             'image'       => 'chili-cheeze-fries.jpg',
             'sort'        => 4,
-            'price'       => 6.0,
             'category_id' => 2
         ] );
 
@@ -78,7 +75,6 @@ class MenuItemSeeder extends Seeder {
             'name'        => 'Chili-Cheeze',
             'description' => 'mit Jalapenos und selbst gemachter Cheeze-Sauce',
             'sort'        => 1,
-            'price'       => 5.5,
             'category_id' => 3
         ] );
 
@@ -86,7 +82,6 @@ class MenuItemSeeder extends Seeder {
             'name'        => 'Nacho Trio',
             'description' => 'mit Aioli, Tomate-Chili und Avocado-Creme',
             'sort'        => 2,
-            'price'       => 5.5,
             'category_id' => 3
         ] );
 
@@ -133,7 +128,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Laxx-Wrap',
             'description' => 'grüne Sauce, Blattsalat, Laxx, Mais, Möhren, rote Zwiebeln',
-            'price'       => 8.00,
             'sort'        => 1,
             'category_id' => 6
         ] );
@@ -141,7 +135,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Power-Wrap',
             'description' => 'Avocado-Creme, Blattsalat, Sandwich-Gurken, Süßkartoffel, schwarze Bohnen, Jalapenos, Nachos, Tomaten-Chili-Sauce',
-            'price'       => 7.50,
             'sort'        => 2,
             'category_id' => 6
         ] );
@@ -149,7 +142,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Falafel-Wrap',
             'description' => 'selbst gemachter Falafel, Mais, Tomaten, Gurken, Blattsalat, Hummus, Möhren, Tomaten-Chili-Sauce',
-            'price'       => 6.00,
             'sort'        => 3,
             'category_id' => 6
         ] );
@@ -158,7 +150,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Classic',
             'description' => 'Hefeschmelz, Räuchertofu, rote und weiße Zwiebeln',
-            'price'       => 7.00,
             'sort'        => 1,
             'category_id' => 7
         ] );
@@ -166,7 +157,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Italian',
             'description' => 'Hefeschmelz, Cocktail-Tomaten, Rucola, rote und weiße Zwiebeln',
-            'price'       => 8.50,
             'sort'        => 2,
             'category_id' => 7
         ] );
@@ -175,7 +165,6 @@ class MenuItemSeeder extends Seeder {
             'name'        => 'Spezial',
             'description' => 'Hefeschmelz, Champignons, Rucola, rote und weiße Zwiebeln',
             'image'       => 'flammkuchen.jpg',
-            'price'       => 8.50,
             'sort'        => 3,
             'category_id' => 7
         ] );
@@ -185,7 +174,6 @@ class MenuItemSeeder extends Seeder {
             'name'        => 'Baklava',
             'description' => '',
             'image'       => 'baklava.jpg',
-            'price'       => 3.0,
             'sort'        => 1,
             'category_id' => 8
         ] );
@@ -193,7 +181,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Bananen-Tiramisu',
             'description' => '',
-            'price'       => 4.0,
             'sort'        => 2,
             'category_id' => 8
         ] );
@@ -201,7 +188,6 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Himbeer Panna Cocos',
             'description' => '',
-            'price'       => 3.8,
             'sort'        => 3,
             'category_id' => 8
         ] );
@@ -224,29 +210,13 @@ class MenuItemSeeder extends Seeder {
 
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Saft',
-            'description' => 'Orange, Apfel',
             'sort'        => 3,
             'category_id' => 9
         ] );
 
         DB::table( 'menu_items' )->insert( [
-            'name'        => 'Saft',
-            'description' => 'Mango, Kirsch, Maracuja, Banane, Mango-Kokos, KiBa',
-            'sort'        => 4,
-            'category_id' => 9
-        ] );
-
-        DB::table( 'menu_items' )->insert( [
             'name'        => 'Saftschorle',
-            'description' => 'Orange, Apfel',
             'sort'        => 5,
-            'category_id' => 9
-        ] );
-
-        DB::table( 'menu_items' )->insert( [
-            'name'        => 'Saftschorle',
-            'description' => 'Mango, Kirsch, Maracuja, Banane, Mango-Kokos, KiBa',
-            'sort'        => 6,
             'category_id' => 9
         ] );
 
@@ -289,8 +259,6 @@ class MenuItemSeeder extends Seeder {
 
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Kakao (bio)',
-            'description' => 'Oatly!',
-            'price'       => 2.5,
             'sort'        => 3,
             'category_id' => 10
         ] );

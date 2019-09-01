@@ -12,7 +12,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     {{Form::label('category', 'Kategorie')}}
-                    {{Form::select('category[]', $categories->pluck('name', 'id'), $menuItem->category_id, ['class' => 'form-control'])}}
+                    {{Form::select('category[]', $categories, $menuItem->category_id, ['class' => 'form-control'])}}
                 </div>
             </div>
             <div class="form-group">

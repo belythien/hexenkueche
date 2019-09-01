@@ -30,7 +30,7 @@
 				  <td>{{ str_limit(strip_tags($page->content), 50, '...') }}</td>
 				  <td>
 					@if(!empty($page->hotbox))
-						<a href="#" class="badge badge-danger">{{ $page->hotbox_id }}</a>
+						<a href="{{ route('hotbox.edit', [ $page->hotbox_id ])}}" class="badge badge-danger">{{ $page->hotbox_id }}</a>
 						{{ $page->hotbox->text }}
 					@endif
 				  </td>

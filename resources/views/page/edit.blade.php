@@ -35,7 +35,7 @@
             </div>
 			<div class="form-group">
 				{{Form::label('hotbox_id', 'Hotbox')}}
-                {{Form::select('hotbox_id[]', $hotboxes->pluck('text', 'id'), $page->hotbox_id, ['class' => 'form-control'])}}
+                {{Form::select('hotbox_id[]', [ null => '-----------------'] + $hotboxes->toArray(), $page->hotbox_id, ['class' => 'form-control'])}}
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">
@@ -47,14 +47,15 @@
 					{{Form::date('expiration', $page->expiration, ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
 				</div>
 			</div>
-            {{Form::hidden('_method','PUT')}}
-            {{Form::submit('Aktualisieren', ['class'=>'btn btn-danger'])}}
-            <a href="{{ route('page.index') }}" class="btn btn-success">{{ __('Abbrechen') }}</a>
+	        {{Form::hidden('_method','PUT')}}
+            {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+            <a href="{{ route('page.index') }}" class="btn btn-success"><i class="fas fa-times-circle"></i> {{ __('Abbrechen') }}</a>
+			<a href="{{ route('page', [ $page->slug ]) }}" class="btn btn-success"><i class="fas fa-eye"></i> {{ __('Ansehen') }}</a>
         {!! Form::close() !!}
 		@if($page->slug != '404' && $page->slug != 'speisekarte' && $page->slug != 'home')
 			{!!Form::open(['action' => ['PageController@destroy', $page->id], 'method' => 'POST', 'class' => 'float-right'])!!}
 				{{Form::hidden('_method', 'DELETE')}}
-				{{Form::submit('Löschen', ['class' => 'btn btn-outline-danger', 'onclick' => 'return confirm("Soll die Seite ' . $page->menu_title . ' wirklich gelöscht werden?")'])}}
+				{{Form::button('<i class="fas fa-trash-alt"></i> Löschen', ['class' => 'btn btn-outline-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll der Eintrag ' . $page->menu_title . ' wirklich gelöscht werden?")'])}}
 			{!!Form::close()!!}
 		@endif
     </div>

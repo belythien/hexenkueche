@@ -66,6 +66,10 @@
             text-transform: uppercase;
         }
 
+        .links > a.welcome-inactive-link {
+            color: #999;
+        }
+
         .m-b-md {
             /*margin-bottom: 30px;*/
         }
@@ -87,7 +91,13 @@
             >
                 @if(isset($menus[0]))
                     @foreach($menus[0]->pages as $page)
+                        @if($page->isLive() == 1)
                         <a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                        @else
+                            @auth
+                            <a class="welcome-inactive-link" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                            @endauth
+                        @endif
                     @endforeach
                 @endif
                 @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')

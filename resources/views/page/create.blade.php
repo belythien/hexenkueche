@@ -29,18 +29,9 @@
                 {{Form::label('content', 'Inhalt')}}
                 {{Form::textarea('content', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Inhalt'])}}
             </div>
-			<!--
-			<div class="form-group">
-				<label for="status_active" class="badge badge-success">aktiv</label>
-				<input name="status" type="radio" value="1" id="status_active">
-				<label for="status_inactive" class="badge badge-danger">inaktiv</label>
-				<input checked="checked" name="status" type="radio" value="0" id="status_inactive">
-				<p>{{ __('Solange die Seite inaktiv ist, kann sie nur von eingeloggten Usern aufgerufen werden') }}</p>
-            </div>
-			-->
 			<div class="form-group">
 				{{Form::label('hotbox_id', 'Hotbox')}}
-                {{Form::select('hotbox_id[]', $hotboxes->pluck('text', 'id'), '', ['class' => 'form-control'])}}
+                {{Form::select('hotbox_id[]', [ null => '-----------------'] + $hotboxes->toArray(), '', ['class' => 'form-control'])}}
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">

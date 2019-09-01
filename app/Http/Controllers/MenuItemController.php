@@ -116,7 +116,7 @@ class MenuItemController extends Controller {
         $menuItem = MenuItem::find($id);
         if(isset($menuItem)) {
             $menus = \App\Menu::all();
-            $categories = Category::orderby( 'sort' )->get();
+            $categories = Category::orderby( 'sort' )->pluck('name', 'id');
             return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus' ) );
         } else {
             return redirect('/menuitem')->with('error', 'Eintrag nicht gefunden');

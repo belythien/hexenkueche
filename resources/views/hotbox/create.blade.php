@@ -17,9 +17,9 @@
             {{Form::text('url', '', ['class' => 'form-control', 'placeholder' => 'Slug der Ziel-Seite (optional)'])}}
         </div>
         <div class="form-group">
-            <label for="status_active" class="badge badge-success">aktiv</label>
+            <label for="status_active" class="badge badge-success">{{ __('aktiv') }}</label>
             <input name="status" type="radio" value="1" id="status_active" checked="checked">
-            <label for="status_inactive" class="badge badge-danger">inaktiv</label>
+            <label for="status_inactive" class="badge badge-danger">{{ __('inaktiv') }}</label>
             <input name="status" type="radio" value="0" id="status_inactive">
         </div>
         <div class="row">
