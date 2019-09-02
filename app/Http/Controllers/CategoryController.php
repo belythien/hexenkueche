@@ -32,8 +32,8 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-		$menus = Menu::all();
-        return view( 'category.create', compact('menus') );
+        $menus = Menu::all();
+        return view( 'category.create', compact( 'menus' ) );
     }
 
     /**
@@ -55,7 +55,7 @@ class CategoryController extends Controller {
         $category->name = $request->input( 'name' );
         $category->description = $request->input( 'description' );
         $category->sort = $sort;
-        $category->status = $request->input('status');
+        $category->status = $request->input( 'status' );
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
         //$category->user_id = auth()->user()->id;
@@ -81,8 +81,8 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( category $category ) {
-		$menus = Menu::all();
-        return view( 'category.edit', compact('category', 'menus') );
+        $menus = Menu::all();
+        return view( 'category.edit', compact( 'category', 'menus' ) );
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoryController extends Controller {
         $category = Category::find( $id );
         $category->name = $request->input( 'name' );
         $category->description = $request->input( 'description' );
-        $category->status = $request->input('status');
+        $category->status = $request->input( 'status' );
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
         $category->save();

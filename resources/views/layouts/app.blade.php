@@ -12,7 +12,7 @@
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,17 +33,19 @@
             </div>
         @endif
 
-		@auth
-			@if( $page->status != 1 )
-			<div class="page_inactive_box">
-				{{ __('inaktiv') }}
-			</div>
-			@endif
-		
-			<div class="edit_page_box">
-				<a href="{{ route('page.edit', [$page->id]) }}">{{ __('Bearbeiten') }} <i class="fas fa-edit"></i></a>
-			</div>
-		@endauth
+        @auth
+            @if( $page->isLive() != 1 )
+                <div class="page_inactive_box">
+                    {{ __('inaktiv') }}
+                    @if(isset($page->publication))
+                        <br>Sichtbar ab: {{ date('d.m.Y', strtotime($page->publication)) }}
+                    @endif
+                    @if(isset($page->expiration))
+                        <br>Sichtbar bis: {{ date('d.m.Y', strtotime($page->expiration)) }}
+                    @endif
+                </div>
+            @endif
+        @endauth
 
         @yield('content')
     </main>

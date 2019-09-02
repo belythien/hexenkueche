@@ -12,9 +12,9 @@ class Hotbox extends Model {
     }
 
     public function isLive() {
-        if($this->status == 1) {
-            if($this->publication == '' || $this->publication <= date('Y-m-d')) {
-                if($this->expiration == '' || $this->expiration > date('Y-m-d')) {
+        if( $this->status == 1 ) {
+            if( $this->publication == '' || $this->publication <= date( 'Y-m-d' ) ) {
+                if( $this->expiration == '' || $this->expiration > date( 'Y-m-d' ) ) {
                     return 1;
                 }
                 return 0;

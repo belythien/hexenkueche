@@ -10851,40 +10851,6 @@ a.footer-link-inactive,
   border-top: 2px solid #65b32c;
 }
 
-.edit_page_box {
-  background: transparent;
-  position: fixed;
-  bottom: 70px;
-  left: -77px;
-  z-index: 100;
-  -webkit-animation-name: left;
-          animation-name: left;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-}
-
-.edit_page_box a {
-  border: 1px solid #fff;
-  border-left: none;
-  border-radius: 0 10px 10px 0;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-  background: #65b32c;
-  display: block;
-  color: #fff;
-  padding: 4px 8px;
-}
-
-.edit_page_box a:hover,
-.edit_page_box a:focus {
-  background: #e2023e;
-  color: #fff;
-  text-decoration: none;
-}
-
-.edit_page_box:hover {
-  left: 0;
-}
-
 .page_inactive_box {
   border: 1px solid #fff;
   border-left: none;
@@ -10916,5 +10882,19 @@ input[type=checkbox] {
 a.btn,
 input.btn {
   min-width: 32px;
+}
+
+.dropdown-menu a.dropdown-item i {
+  width: 20px;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #e2023e;
+  color: #fff;
+}
+
+table td ol {
+  padding-left: 20px;
 }
 

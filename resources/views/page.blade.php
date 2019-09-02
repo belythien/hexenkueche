@@ -7,12 +7,19 @@
                 <div class="card">
                     @if(isset($page->title))
                         <div class="card-header">
-                            <h1>{{ isset($page) ? $page->title : '' }}</h1>
+                            <h1>{{ isset($page) ? $page->title : '' }}
+                                @auth
+                                    <a href="{{ route('page.edit', [ $page->id ]) }}" class="btn btn-danger float-right"><i class="fas fa-edit"></i> {{ __('Bearbeiten') }}</a>
+                                @endauth
+                            </h1>
                         </div>
                     @endif
 
                     <div class="card-body">
                         {!! isset($page) ? $page->content : ''!!}
+                        @auth
+                            <a href="{{ route('page.edit', [ $page->id ]) }}" class="btn btn-danger btn-sm"><i class="fas fa-edit"></i> {{ __('Bearbeiten') }}</a>
+                        @endauth
                     </div>
                 </div>
             </div>

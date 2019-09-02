@@ -113,15 +113,15 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( $id ) {
-        $menuItem = MenuItem::find($id);
-        if(isset($menuItem)) {
+        $menuItem = MenuItem::find( $id );
+        if( isset( $menuItem ) ) {
             $menus = \App\Menu::all();
-            $categories = Category::orderby( 'sort' )->pluck('name', 'id');
+            $categories = Category::orderby( 'sort' )->pluck( 'name', 'id' );
             return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus' ) );
         } else {
-            return redirect('/menuitem')->with('error', 'Eintrag nicht gefunden');
+            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
         }
-        
+
     }
 
     /**

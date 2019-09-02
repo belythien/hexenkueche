@@ -103,8 +103,8 @@ class OptionSeeder extends Seeder {
             'menu_item_id' => 9
         ] );
 
-         // Nacho Trio
-         DB::table( 'options' )->insert( [
+        // Nacho Trio
+        DB::table( 'options' )->insert( [
             'price'        => 5.5,
             'menu_item_id' => 10
         ] );

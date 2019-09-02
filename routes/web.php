@@ -43,16 +43,19 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::resource( '/page', 'PageController' );
 
     Route::resource( '/hotbox', 'HotboxController' );
+
+    Route::resource('/menu', 'MenuController');
+    Route::post( '/menu/{menu_id}/page/{page_id}/up', 'MenuController@moveUp' )->name( 'menu_page_up' );
+    Route::post( '/menu/{menu_id}/page/{page_id}/down', 'MenuController@moveDown' )->name( 'menu_page_down' );
+
+
+    Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 } );
 
 Route::get( '/{slug}', function ( $slug ) {
-    if( Auth::check() ) {
-        $page = Page::where( 'slug', $slug )->first();
-    } else {
-        $page = Page::where( 'slug', $slug )->where( 'status', 1 )->first();
-    }
+    $page = Page::where( 'slug', $slug )->first();
 
-    if( isset( $page ) ) {
+    if( isset( $page ) && ( $page->isLive() || Auth::check() ) ) {
         $menus = Menu::all();
         $hotbox = $page->hotbox;
         return view( 'page', compact( 'page', 'hotbox', 'menus' ) );

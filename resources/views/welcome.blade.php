@@ -92,10 +92,11 @@
                 @if(isset($menus[0]))
                     @foreach($menus[0]->pages as $page)
                         @if($page->isLive() == 1)
-                        <a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                            <a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
                         @else
                             @auth
-                            <a class="welcome-inactive-link" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                                <a class="welcome-inactive-link" href="{{ route('page', [$page->slug]) }}"
+                                >{{ $page->menu_title }}</a>
                             @endauth
                         @endif
                     @endforeach

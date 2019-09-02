@@ -14,14 +14,14 @@ class PageSeeder extends Seeder {
             'slug'       => 'home',
             'title'      => 'Herzlich Willkommen in unserer Hexenküche in Idstein!',
             'menu_title' => 'Startseite',
-            'content'    => '<h4>Über uns</h4>
+            'content'    => '<h2>Über uns</h2>
                             <p>Wir haben unsere Leidenschaft für Essen nicht erst seit der Eröffnung dieses Lokals im März 2019 entdeckt. Die Hexenküche ist die “Heimat des Veggiemobil”, das die Gaumen von Menschen über die Grenzen Hessens hinaus verwöhnt und eine Bereicherung für jeden darstellt, der ehrliche und vollwertige Alternativen zu fleischlastigen und fettigen Fertiggerichten sucht.</p>
-                            <h4>Speisen</h4>
+                            <h2>Speisen</h2>
                             <p>Auch wenn die Karte auf den ersten Blick nicht danach aussieht: <br>
                             Sie werden bei uns keine fertigen Saucen und Dressings finden! Darüber hinaus haben wir überwiegend Speisen im Programm, die hier in dieser Küche selbst gemacht sind - wie zum Beispiel unsere Falafel sowie unseren Champion- und Power-Burger. Die Burgerbrötchen, auch Buns genannt, stammen von einer befreundeten Bäckerei, die diese exklusiv mit uns entwickelt hat und uns ständig mit frischem Nachschub versorgt.</p>
-                            <h4>Einfach aber gut</h4>
+                            <h2>Einfach aber gut</h2>
                             <p>Das bedeutet als Konsequenz für Sie, dass keine künstlichen Aromen oder Geschmacksverstärker enthalten und die Anzahl der Allergene auf ein Minimum reduziert sind. Jedoch kann es unter Umständen mal etwas länger dauern, da bei uns mit frischen Lebensmitteln gearbeitet wird! Wir bitten in diesem Fall um Ihr Verständnis!</p>
-                            <h4>Mehr als nur Trinken</h4>
+                            <h2>Mehr als nur Trinken</h2>
                             <p>Auch bei unseren Getränken haben wir uns etwas einfallen lassen! So sind unsere Weine ausschließlich bio und vegan, d. h. mineralisch geklärt. Die mit einem * versehenen Weine beziehen wir vom Weingut Gerald Fürnkranz aus dem österreichischen Weinviertel. Sie wurden mehrfach prämiert und besitzen einen Histamingehalt von unter 0,1 mg pro Liter.<br>
                             Auch bei unseren restlichen Getränken haben wir darauf geachtet, Bio-Produkte zu verwenden, wenn möglich aus fairem Anbau und in Glas-Flaschen statt in der üblichen PET.<br>
                             </p>
@@ -47,6 +47,7 @@ class PageSeeder extends Seeder {
                     Goethestraße 2<br>
                     65510 Idstein-Wörsdorf
                     </p>
+                    <strong style="color:red">TODO: Iframe fliegt beim Bearbeiten immer raus!!!</strong>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.58894305102!2d8.253570615842166!3d50.24358381012987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bdb7d31032fd17%3A0x3391e97b21da569b!2sHexenk%C3%BCche!5e0!3m2!1sde!2sde!4v1566656329419!5m2!1sde!2sde" width="100%" height="550" frameborder="0" style="border:0;" allowfullscreen=""></iframe>',
             'hotbox_id'  => 1,
             'status'     => 1

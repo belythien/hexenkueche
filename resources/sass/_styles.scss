@@ -197,38 +197,6 @@ div.bg2 {
     border-top: 2px solid $green;
 }
 
-.edit_page_box {
-	background: transparent;
-	position: fixed;
-	bottom: 70px;
-	left: -77px;
-    z-index: 100;
-    animation-name: left;
-    animation-duration: 0.5s;
-	
-	a {
-		border: 1px solid #fff;
-		border-left: none;
-		border-radius: 0 10px 10px 0;
-		box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
-		background: $green;
-		display: block;
-		color: #fff;
-		padding: 4px 8px;
-	}
-	
-	a:hover,a:focus {
-		background: $red;
-		color: #fff;
-		text-decoration: none;
-	}
-	
-}
-
-.edit_page_box:hover {
-    left: 0;
-}
-
 .page_inactive_box {
     border: 1px solid #fff;
     border-left: none;
@@ -260,4 +228,17 @@ input[type=radio], input[type=checkbox] {
 a.btn,
 input.btn {
     min-width: 32px;
+}
+
+.dropdown-menu a.dropdown-item i {
+    width: 20px;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: $red;
+    color: #fff;
+}
+
+table td ol {
+    padding-left: 20px;
 }

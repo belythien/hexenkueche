@@ -20,14 +20,16 @@
                 @if(isset($menus[1]))
                     @foreach($menus[1]->pages as $page)
                         @if($page->isLive() == 1)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
-                        </li>
-                        @else 
-                            @auth
                             <li class="nav-item">
-                                <a class="nav-link nav-link-inactive" href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                                <a class="nav-link" href="{{ route('page', [$page->slug]) }}"
+                                >{{ $page->menu_title }}</a>
                             </li>
+                        @else
+                            @auth
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-inactive" href="{{ route('page', [$page->slug]) }}"
+                                    >{{ $page->menu_title }}</a>
+                                </li>
                             @endauth
                         @endif
                     @endforeach
@@ -51,6 +53,11 @@
 
                             <a class="dropdown-item" href="{{ route('hotbox.index') }}" class="d-block"
                             ><i class="fas fa-certificate"></i> {{ __('Hotboxes') }}</a>
+
+                            <a class="dropdown-item" href="{{ route('menu.index') }}" class="d-block"
+                            ><i class="fas fa-compass"></i> {{ __('Navi-Leisten') }}</a>
+
+
                             <hr>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

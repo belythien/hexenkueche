@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 {{Form::label('description', 'Beschreibung')}}
-                {{Form::textarea('description', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Beschreibung'])}}
+                {{Form::textarea('description', '', ['id' => 'text-ckeditor', 'class' => 'form-control', 'placeholder' => 'Beschreibung'])}}
             </div>
 
             <div class="row">
@@ -58,8 +58,9 @@
                 </div>
             @endfor
             <div class="mt-3">
-            {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
-                <a href="{{ route('menuitem.index') }}" class="btn btn-success"><i class="fas fa-times-circle"></i> {{ __('Abbrechen') }}</a>
+                {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+                <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"
+                    ></i> {{ __('Abbrechen') }}</a>
             </div>
             {!! Form::close() !!}
         </div>
