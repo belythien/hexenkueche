@@ -13,12 +13,12 @@ class CategorySeeder extends Seeder {
     public function run() {
         DB::table( 'categories' )->insert( [
             'name'        => 'Salate',
-            'description' => 'Dressings zur Wahl: Apfel-Senf, Balsamico & Olivenöl oder Kräuter-Creme',
+            'description' => 'Dressings zur Wahl: Apfel-Senf<sup class="allergen" title="Senf">3</sup>, Balsamico & Olivenöl oder Kräuter-Creme<sup class="allergen" title="Soja">2</sup>',
             'sort'        => 10
         ] );
         DB::table( 'categories' )->insert( [
             'name'        => 'Pommes',
-            'description' => 'mit 1 Dip zur Wahl (Jeder weitere Dip  0.50€ extra):<br>Mayo,  Aioli,  Ketchup,  Tomate-Chili, Barbecue, Mango-Kokos',
+            'description' => 'mit 1 Dip zur Wahl (Jeder weitere Dip  0.50€ extra):<br>Mayo<sup class="allergen" title="Soja">2</sup><sup class="allergen" title="Senf">3</sup>,  Aioli,  Ketchup,  Tomate-Chili, Barbecue<sup class="allergen" title="Senf">3</sup><sup class="allergen" title="Cashew">6</sup><sup class="allergen" title="Sellerie">7</sup>, Mango-Kokos',
             'sort'        => 20
         ] );
         DB::table( 'categories' )->insert( [
@@ -31,12 +31,12 @@ class CategorySeeder extends Seeder {
         ] );
         DB::table( 'categories' )->insert( [
             'name'        => 'Burger',
-            'description' => 'Wir bieten Ihnen exklusiv mit unserer Bäckerei entwickelte und stets frisch hergestellte Burger-Brötchen an! Mais-Dinkel-Brötchen oder Laugenbrötchen',
+            'description' => 'Wir bieten Ihnen exklusiv mit unserer Bäckerei entwickelte und stets frisch hergestellte Burger-Brötchen an! Mais-Dinkel-Brötchen<sup class="allergen" title="Weizen">1</sup><sup class="allergen" title="Roggen">8</sup><sup class="allergen" title="Sesam">9</sup> oder Laugenbrötchen<sup class="allergen" title="Weizen">1</sup>',
             'sort'        => 50
         ] );
         DB::table( 'categories' )->insert( [
             'name'        => 'Wraps',
-            'description' => 'Zu allen Wraps wird ein kleiner gemischter Beilagensalat gereicht! (Dressings zur Wahl siehe Salate)',
+            'description' => 'Zu allen Wraps wird ein kleiner gemischter Beilagensalat gereicht!<br>Dressings zur Wahl: Apfel-Senf<sup class="allergen" title="Senf">3</sup>, Balsamico & Olivenöl oder Kräuter-Creme<sup class="allergen" title="Soja">2</sup>',
             'sort'        => 60
         ] );
         DB::table( 'categories' )->insert( [

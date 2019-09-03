@@ -242,3 +242,15 @@ input.btn {
 table td ol {
     padding-left: 20px;
 }
+
+.allergen {
+    color: $green;
+    cursor: help;
+    font-size: 10px;
+    margin-right: 2px;
+    top: -1em;
+}
+
+.allergen:hover {
+    color: $red;
+}

@@ -10898,3 +10898,15 @@ table td ol {
   padding-left: 20px;
 }
 
+.allergen {
+  color: #65b32c;
+  cursor: help;
+  font-size: 10px;
+  margin-right: 2px;
+  top: -1em;
+}
+
+.allergen:hover {
+  color: #e2023e;
+}
+

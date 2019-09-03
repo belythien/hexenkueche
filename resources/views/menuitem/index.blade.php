@@ -64,7 +64,9 @@
                             <tr>
                                 <th scope="row">{{ $menuItem->sort }}</th>
                                 <td>
-                                    {{ $menuItem->name }}
+                                    {{ $menuItem->name }}@foreach($menuItem->allergens as $allergen)<sup
+                                        class="allergen" title="{{$allergen->name}}"
+                                    >{{ $allergen->id }}</sup>@endforeach
                                 </td>
                                 <td>
                                     @if( $menuItem->image )

@@ -11,6 +11,7 @@
 |
 */
 
+use App\Allergen;
 use App\Hotbox;
 use App\Menu;
 use App\Page;
@@ -26,9 +27,10 @@ Auth::routes();
 Route::get( '/speisekarte', function () {
     $page = Page::where( 'slug', 'speisekarte' )->first();
     $menus = Menu::all();
+    $allergens = Allergen::all();
     $hotbox = $page->hotbox;
     $categories = App\Category::orderby( 'sort' )->get();
-    return view( 'menu', compact( 'categories', 'page', 'hotbox', 'menus' ) );
+    return view( 'menu', compact( 'categories', 'page', 'hotbox', 'menus', 'allergens' ) );
 } )->name( 'speisekarte' );
 
 Route::group( [ 'middleware' => 'auth' ], function () {

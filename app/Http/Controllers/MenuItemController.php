@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Allergen;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -114,10 +115,11 @@ class MenuItemController extends Controller {
      */
     public function edit( $id ) {
         $menuItem = MenuItem::find( $id );
+        $allergens = Allergen::all();
         if( isset( $menuItem ) ) {
             $menus = \App\Menu::all();
             $categories = Category::orderby( 'sort' )->pluck( 'name', 'id' );
-            return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus' ) );
+            return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens' ) );
         } else {
             return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
         }
@@ -131,8 +133,56 @@ class MenuItemController extends Controller {
      * @param \App\menuItem $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, menuItem $menuItem ) {
-        //
+    public function update( Request $request, $id ) {
+        $this->validate( $request, [
+            'name'  => 'required',
+            'image' => 'image|nullable|max:16384',
+            'price' => [ new GermanPrice ]
+        ] );
+
+        $price = (double)str_replace( ',', '.', $request->input( 'price' ) );
+
+        // Handle File Upload
+//        if( $request->hasFile( 'image' ) ) {
+//            // Get filename with the extension
+//            $filenameWithExt = $request->file( 'image' )->getClientOriginalName();
+//            // Get just filename
+//            $filename = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
+//            // Get just ext
+//            $extension = $request->file( 'image' )->getClientOriginalExtension();
+//            // Filename to store
+//            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+//            // Upload Image
+//            //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+//
+//            $img_resize = Image::make( $request->file( 'image' )->getRealPath() );
+//            $img_resize->widen( 800 );
+//            $img_resize->save( public_path( 'storage\\images\\' . $fileNameToStore ) );
+//        } else {
+//            $fileNameToStore = '';
+//        }
+
+        $category_id = $request->input( 'category' )[ 0 ];
+        $allergens = $request->input( 'allergen' );
+
+        // Create MenuItem
+        $menuItem = MenuItem::find( $id );
+        if(isset($menuItem)) {
+            $menuItem->name = $request->input( 'name' );
+            $menuItem->description = $request->input( 'description' );
+            $menuItem->price = $price;
+            $menuItem->category_id = $category_id;
+//        $menuItem->sort = $sort;
+//        $menuItem->image = $fileNameToStore;
+            $menuItem->publication = $request->input( 'publication' );
+            $menuItem->expiration = $request->input( 'expiration' );
+            $menuItem->save();
+
+            return redirect( '/menuitem' )->with( 'success', 'Gericht aktualisiert' );
+        } else {
+            return redirect( '/menuitem' )->with( 'error', 'Gericht nicht gefunden' );
+        }
+
     }
 
     /**

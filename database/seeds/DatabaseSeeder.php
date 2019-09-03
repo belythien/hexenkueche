@@ -10,18 +10,15 @@ class DatabaseSeeder extends Seeder {
      */
     public function run() {
         $this->call( UserSeeder::class );
-
+        $this->call( AllergenSeeder::class );
         $this->call( CategorySeeder::class );
-
         $this->call( MenuItemSeeder::class );
-
+        $this->call( AllergenMenuItemSeeder::class );
         $this->call( OptionSeeder::class );
-		$this->call( HotboxSeeder::class );
-		$this->call( MenuSeeder::class );
-
+        $this->call( HotboxSeeder::class );
+        $this->call( MenuSeeder::class );
         $this->call( PageSeeder::class );
-
-		$this->call( MenuPageSeeder::class );
+        $this->call( MenuPageSeeder::class );
 
     }
 }

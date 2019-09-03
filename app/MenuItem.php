@@ -15,6 +15,10 @@ class MenuItem extends Model {
         return $this->hasMany( 'App\Option' );
     }
 
+    public function allergens() {
+        return $this->belongsToMany( 'App\Allergen' );
+    }
+
     public function isLive() {
         if( $this->status == 1 ) {
             if( $this->publication == '' || $this->publication <= date( 'Y-m-d' ) ) {

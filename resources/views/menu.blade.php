@@ -31,7 +31,9 @@
 
                                         @foreach($category->menuItems as $menuItem)
                                             <div class="mb-4">
-                                                <h3>{{ $menuItem->name }}</h3>
+                                                <h3>{{ $menuItem->name }}@foreach($menuItem->allergens as $allergen)<sup
+                                                        class="allergen" title="{{$allergen->name}}"
+                                                    >{{ $allergen->id }}</sup>@endforeach</h3>
                                                 <p>{!! $menuItem->description !!}</p>
                                                 @foreach($menuItem->options as $option)
                                                     <div class="container">
@@ -62,6 +64,13 @@
                                 @endif
                             @endforeach
                         </div>
+                    </div>
+                    <hr>
+                    <h5 id="allergens">{{ __('Allergene') }}</h5>
+                    <div class="row">
+                    @foreach($allergens as $allergen)
+                        <div class="col-lg-2 col-md-3 col-sm-6">{{ $allergen->id }}) {{ $allergen->name }}</div>
+                    @endforeach
                     </div>
                 </div>
             </div>
