@@ -41,33 +41,67 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                {{Form::label('image', 'Bild')}}
-                {{Form::file('image')}}
+            <div class="row">
+                @if( $menuItem->image )
+                    <div class="col-xl-4 col-lg-5">
+                        <img src="{{ asset('storage/img/' . $menuItem->image ) }}" alt=""
+                             class="img-thumbnail mr-2 float-left"
+                        />
+                    </div>
+                @else
+                    <div class="col-xl-4 col-lg-5">
+                        <img src="" alt="Noch kein Bild vorhanden" width="100"
+                             class="img-thumbnail mr-2 float-left"
+                        />
+                    </div>
+                @endif
+                <div class="col-xl-8 col-lg-7">
+                    <div class="form-group">
+                        {{Form::label('image', 'Bild')}}
+                        {{Form::file('image')}}
+                    </div>
+                </div>
             </div>
+
             <div class="mt-3">
                 {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
                 <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"
                     ></i> {{ __('Abbrechen') }}</a>
             </div>
             <h3 class="mt-5">Optionen</h3>
-            @for($i = 1; $i <= 10; $i++)
+            @foreach($menuItem->options as $option)
                 <hr class="strong-hr">
                 <div class="row my-3">
+                    {{Form::hidden('option_id[]', $option->id)}}
                     <div class="col-lg-6">
-                        {{Form::label('option_name', $i . ') Name')}}
-                        {{Form::text('option_name', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
+                        {{Form::label('option_name', 'Name')}}
+                        {{Form::text('option_name[]', $option->name, ['class' => 'form-control', 'placeholder' => 'Name'])}}
                     </div>
                     <div class="col-lg-3">
                         {{Form::label('option_amount', 'Menge')}}
-                        {{Form::text('option_amount', '', ['class' => 'form-control', 'placeholder' => 'Menge'])}}
+                        {{Form::text('option_amount[]', $option->amount, ['class' => 'form-control', 'placeholder' => 'Menge'])}}
                     </div>
                     <div class="col-lg-3">
                         {{Form::label('option_price', 'Preis')}}
-                        {{Form::text('option_price', '', ['class' => 'form-control', 'placeholder' => 'Preis'])}}
+                        {{Form::text('option_price[]', str_replace('.', ',', number_format($option->price, 2)), ['class' => 'form-control', 'placeholder' => 'Preis'])}}
                     </div>
                 </div>
-            @endfor
+            @endforeach
+            <hr class="strong-hr">
+            <div class="row my-3">
+                <div class="col-lg-6">
+                    {{Form::label('option_name_new', 'Name')}}
+                    {{Form::text('option_name_new', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
+                </div>
+                <div class="col-lg-3">
+                    {{Form::label('option_amount_new', 'Menge')}}
+                    {{Form::text('option_amount_new', '', ['class' => 'form-control', 'placeholder' => 'Menge'])}}
+                </div>
+                <div class="col-lg-3">
+                    {{Form::label('option_price_new', 'Preis')}}
+                    {{Form::text('option_price_new', '', ['class' => 'form-control', 'placeholder' => 'Preis'])}}
+                </div>
+            </div>
             <div class="mt-3">
                 {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
                 <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"

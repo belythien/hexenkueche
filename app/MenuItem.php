@@ -16,7 +16,7 @@ class MenuItem extends Model {
     }
 
     public function allergens() {
-        return $this->belongsToMany( 'App\Allergen' );
+        return $this->belongsToMany( 'App\Allergen' )->orderBy('id');
     }
 
     public function isLive() {

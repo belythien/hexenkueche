@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Allergen;
 use App\Category;
+use App\Option;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\MenuItem;
@@ -75,7 +76,7 @@ class MenuItemController extends Controller {
 
             $img_resize = Image::make( $request->file( 'image' )->getRealPath() );
             $img_resize->widen( 800 );
-            $img_resize->save( public_path( 'storage\\images\\' . $fileNameToStore ) );
+            $img_resize->save( public_path( 'storage\\img\\' . $fileNameToStore ) );
         } else {
             $fileNameToStore = '';
         }
@@ -143,40 +144,56 @@ class MenuItemController extends Controller {
         $price = (double)str_replace( ',', '.', $request->input( 'price' ) );
 
         // Handle File Upload
-//        if( $request->hasFile( 'image' ) ) {
-//            // Get filename with the extension
-//            $filenameWithExt = $request->file( 'image' )->getClientOriginalName();
-//            // Get just filename
-//            $filename = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
-//            // Get just ext
-//            $extension = $request->file( 'image' )->getClientOriginalExtension();
-//            // Filename to store
-//            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-//            // Upload Image
-//            //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
-//
-//            $img_resize = Image::make( $request->file( 'image' )->getRealPath() );
-//            $img_resize->widen( 800 );
-//            $img_resize->save( public_path( 'storage\\images\\' . $fileNameToStore ) );
-//        } else {
-//            $fileNameToStore = '';
-//        }
+        if( $request->hasFile( 'image' ) ) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file( 'image' )->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
+            // Get just ext
+            $extension = $request->file( 'image' )->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+
+            $img_resize = Image::make( $request->file( 'image' )->getRealPath() );
+            $img_resize->widen( 800 );
+            $img_resize->save( public_path( 'storage\\img\\' . $fileNameToStore ) );
+        }
 
         $category_id = $request->input( 'category' )[ 0 ];
         $allergens = $request->input( 'allergen' );
 
         // Create MenuItem
         $menuItem = MenuItem::find( $id );
-        if(isset($menuItem)) {
+        if( isset( $menuItem ) ) {
             $menuItem->name = $request->input( 'name' );
             $menuItem->description = $request->input( 'description' );
             $menuItem->price = $price;
             $menuItem->category_id = $category_id;
+            $menuItem->allergens()->sync( $allergens );
 //        $menuItem->sort = $sort;
-//        $menuItem->image = $fileNameToStore;
+            if( $request->hasFile( 'image' ) ) {
+                $menuItem->image = $fileNameToStore;
+            }
             $menuItem->publication = $request->input( 'publication' );
             $menuItem->expiration = $request->input( 'expiration' );
             $menuItem->save();
+
+            $options = $request->input( 'option_id' );
+            $i = 0;
+            foreach( $options as $oid ) {
+                $option = Option::find( $oid );
+                $option->name = $request->input( 'option_name' )[ $i ];
+                $option->amount = $request->input( 'option_amount' )[ $i ];
+
+                $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
+
+                $option->price = $price;
+                $option->save();
+                $i++;
+            }
+            // TODO Neue Option anlegen
 
             return redirect( '/menuitem' )->with( 'success', 'Gericht aktualisiert' );
         } else {

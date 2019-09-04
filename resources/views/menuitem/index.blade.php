@@ -70,7 +70,7 @@
                                 </td>
                                 <td>
                                     @if( $menuItem->image )
-                                        <img src="{{ asset('storage/images/' . $menuItem->image ) }}" alt="" width="100"
+                                        <img src="{{ asset('storage/img/' . $menuItem->image ) }}" alt="" width="100"
                                              class="img-thumbnail mr-2 float-left"
                                         />
                                     @endif
