@@ -16,7 +16,7 @@
                     @endif
 
                     <div class="card-body">
-                        {!! isset($page) ? $page->content : ''!!}
+                        @include('template.' . $page->template)
                         @auth
                             <a href="{{ route('page.edit', [ $page->id ]) }}" class="btn btn-danger btn-sm"><i class="fas fa-edit"></i> {{ __('Bearbeiten') }}</a>
                         @endauth

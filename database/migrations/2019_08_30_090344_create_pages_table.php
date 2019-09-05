@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration {
             $table->string( 'menu_title' )->nullable();
             $table->text( 'content' )->nullable();
             $table->boolean( 'status' )->default( 0 );
+            $table->string('template')->default('fullwidth');
             $table->integer( 'hotbox_id' )->nullable();
             $table->date( 'publication' )->nullable();
             $table->date( 'expiration' )->nullable();

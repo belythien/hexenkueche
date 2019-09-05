@@ -14,6 +14,7 @@ class PageSeeder extends Seeder {
             'slug'       => 'home',
             'title'      => 'Herzlich Willkommen in unserer Hexenküche in Idstein!',
             'menu_title' => 'Startseite',
+            'template'   => 'withrightcol',
             'content'    => '<h2>Über uns</h2>
                             <p>Wir haben unsere Leidenschaft für Essen nicht erst seit der Eröffnung dieses Lokals im März 2019 entdeckt. Die Hexenküche ist die “Heimat des Veggiemobil”, das die Gaumen von Menschen über die Grenzen Hessens hinaus verwöhnt und eine Bereicherung für jeden darstellt, der ehrliche und vollwertige Alternativen zu fleischlastigen und fettigen Fertiggerichten sucht.</p>
                             <h2>Speisen</h2>
