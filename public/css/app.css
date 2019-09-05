@@ -10914,3 +10914,8 @@ table td ol {
   color: #e2023e;
 }
 
+.fa,
+.fas {
+  min-width: 13px;
+}
+

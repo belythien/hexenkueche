@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Hotbox;
 use App\Menu;
+use App\Page;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller {
@@ -17,60 +18,22 @@ class MenuController extends Controller {
         return view( 'menu.index', compact( 'menus' ) );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create() {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store( Request $request ) {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show( $id ) {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit( $id ) {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update( Request $request, $id ) {
-        //
+    public function addPage( Request $request, $menu_id ) {
+        $menu = Menu::find( $menu_id );
+        $page = Page::find( $request->input( 'page' )[ 0 ] );
+        if( isset( $menu, $page ) ) {
+            $menu->pages()->save( $page );
+            $this->updateSort( $menu );
+            return redirect( '/menu' )->with( 'success', 'Eintrag entfernt' );
+        }
+        return redirect( '/menu' )->with( 'error', 'Eintrag nicht gefunden' );
     }
 
     public function removePage( $menu_id, $page_id ) {
         $menu = Menu::find( $menu_id );
         if( isset( $menu ) ) {
             $menu->pages()->detach( $page_id );
+            $this->updateSort( $menu );
             return redirect( '/menu' )->with( 'success', 'Eintrag entfernt' );
         }
         return redirect( '/menu' )->with( 'error', 'Eintrag nicht gefunden' );

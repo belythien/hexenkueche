@@ -12,6 +12,7 @@
                         <th scope="col" style="width: 20px">{{ __('ID') }}</th>
                         <th scope="col" style="width: 150px;">{{ __('Navi-Leiste') }}</th>
                         <th scope="col">{{ __('Seiten') }}</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,21 +28,29 @@
                             <td>
                                 @foreach($menu->pages as $page)
                                     <div>
-                                        {!!Form::open(['action' => ['MenuController@removePage', $menu->id, $page->id], 'method' => 'POST', 'class' => 'float-left'])!!}
-                                        {{Form::hidden('_method', 'DELETE')}}
-                                        {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-outline-danger btn-sm mr-2', 'type' => 'submit', 'onclick' => 'return confirm("Soll der Eintrag wirklich gelöscht werden?")'])}}
-                                        {!!Form::close()!!}
+                                        {!! Form::open(['action' => ['MenuController@removePage', $menu->id, $page->id], 'method' => 'POST', 'class' => 'float-left'])!!}
+                                        {{ Form::hidden('_method', 'DELETE')}}
+                                        {{ Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-outline-danger btn-sm mr-2', 'type' => 'submit', 'onclick' => 'return confirm("Soll der Eintrag wirklich gelöscht werden?")'])}}
+                                        {!! Form::close() !!}
 
                                         {!! Form::open(['action' => [ 'MenuController@moveUp', $menu->id, $page->id ], 'method' => 'POST', 'class' => 'float-left' ]) !!}
-                                        {{Form::submit('▲', [ 'class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach oben verschieben' ])}}
+                                        {{ Form::submit('▲', [ 'class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach oben verschieben' ])}}
                                         {!! Form::close() !!}
 
                                         {!! Form::open(['action' => [ 'MenuController@moveDown', $menu->id, $page->id ], 'method' => 'POST' ]) !!}
-                                        {{Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach unten verschieben'])}}
-                                        {{ $page->menu_title }} [{{$page->pivot->sort}}]
+                                        {{ Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach unten verschieben'])}}
+                                        {{ $page->menu_title }}
                                         {!! Form::close() !!}
                                     </div>
                                 @endforeach
+                            </td>
+                            <td>
+                                <div class="form-group form-inline">
+                                    {!! Form::open(['action' => ['MenuController@addPage', $menu->id ], 'method' => 'POST' ]) !!}
+                                    {{ Form::select('page[]', $menu->otherPages()->pluck('menu_title', 'id'), '', ['class' => 'form-control']) }}
+                                    {{ Form::button('<i class="fas fa-plus-circle"></i>', ['class' => 'btn btn-outline-success mr-2', 'title' => 'Seite hinzufügen', 'type' => 'submit'])}}
+                                    {!! Form::close() !!}
+                                </div>
                             </td>
                         </tr>
                     @endforeach

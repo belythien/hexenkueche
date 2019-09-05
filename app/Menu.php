@@ -10,4 +10,9 @@ class Menu extends Model {
     public function pages() {
         return $this->belongsToMany( 'App\Page' )->withPivot('sort')->orderBy('sort');
     }
+
+    public function otherPages() {
+        $otherPages = Page::whereNotIn( 'id', $this->pages()->pluck('page_id') );
+        return $otherPages;
+    }
 }

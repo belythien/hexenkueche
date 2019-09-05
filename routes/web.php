@@ -46,10 +46,11 @@ Route::group( [ 'middleware' => 'auth' ], function () {
 
     Route::resource( '/hotbox', 'HotboxController' );
 
-    Route::resource('/menu', 'MenuController');
+    Route::get('/menu', 'MenuController@index')->name('menu.index');
+    Route::delete( '/menu/{menu_id}/page/{page_id}', 'MenuController@removePage' )->name( 'menu_remove_page' );
+    Route::post( '/menu/{menu_id}/page', 'MenuController@addPage' )->name( 'menu_add_page' );
     Route::post( '/menu/{menu_id}/page/{page_id}/up', 'MenuController@moveUp' )->name( 'menu_page_up' );
     Route::post( '/menu/{menu_id}/page/{page_id}/down', 'MenuController@moveDown' )->name( 'menu_page_down' );
-    Route::delete( '/menu/{menu_id}/page/{page_id}', 'MenuController@removePage' )->name( 'menu_remove_page' );
 
 
     Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
