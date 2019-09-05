@@ -69,8 +69,8 @@ class MenuController extends Controller {
 
     public function removePage( $menu_id, $page_id ) {
         $menu = Menu::find( $menu_id );
-        if(isset($menu)) {
-            $menu->pages()->detach($page_id);
+        if( isset( $menu ) ) {
+            $menu->pages()->detach( $page_id );
             return redirect( '/menu' )->with( 'success', 'Eintrag entfernt' );
         }
         return redirect( '/menu' )->with( 'error', 'Eintrag nicht gefunden' );
@@ -78,32 +78,34 @@ class MenuController extends Controller {
 
     public function moveUp( $menu_id, $page_id ) {
         $menu = Menu::find( $menu_id );
-        $page = $menu->pages->where('id', $page_id)->first();
+        $page = $menu->pages->where( 'id', $page_id )->first();
+        $sort = $page->pivot->sort;
 
-        $menu->pages()->where('page_id', $page_id)->update(['sort' => $page->pivot->sort - 15]);
+        $menu->pages()->updateExistingPivot( $page_id, [ 'sort' => $sort - 15 ] );
 
-        $this->updateSort($menu);
+        $this->updateSort( $menu );
 
         return redirect( '/menu' )->with( 'success', 'Reihenfolge geändert' );
     }
 
     public function moveDown( $menu_id, $page_id ) {
         $menu = Menu::find( $menu_id );
-        $page = $menu->pages->where('id', $page_id)->first();
-        
-        $menu->pages()->where('page_id', $page_id)->update(['sort' => $page->pivot->sort + 15]);
+        $page = $menu->pages->where( 'id', $page_id )->first();
+        $sort = $page->pivot->sort;
 
-        $this->updateSort($menu);
+        $menu->pages()->updateExistingPivot( $page_id, [ 'sort' => $sort + 15 ] );
+
+        $this->updateSort( $menu );
 
         return redirect( '/menu' )->with( 'success', 'Reihenfolge geändert' );
     }
 
     private function updateSort( $menu ) {
-        $pages = $menu->pages()->orderBy('sort')->get();
-        
+        $pages = $menu->pages()->orderBy( 'sort' )->get();
+
         $i = 10;
         foreach( $pages as $page ) {
-            $menu->pages()->where('page_id', $page->id)->update(['sort' => $i]);
+            $menu->pages()->updateExistingPivot( $page->id, [ 'sort' => $i ] );
             $i += 10;
         }
     }

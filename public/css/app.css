@@ -10800,6 +10800,10 @@ a.footer-link-inactive,
   width: 300px;
 }
 
+.hotbox p {
+  margin-bottom: 0;
+}
+
 .hotbox a {
   color: #fff;
   text-decoration: none;

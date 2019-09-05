@@ -12,11 +12,11 @@ body {
 }
 
 main a {
-	color: $green;
+    color: $green;
 }
 
 main a:hover, main a:focus {
-	color: $red;
+    color: $red;
 }
 
 div.welcome {
@@ -58,27 +58,27 @@ div.bg2 {
     height: 60px; /* Set the fixed height of the footer here */
     line-height: 60px; /* Vertically center the text there */
     background-color: #f5f5f5;
-  }
+}
 
-  footer a {
-      color: $green;
-  }
+footer a {
+    color: $green;
+}
 
-  footer a:hover {
-      color: $red;
-      text-decoration: none;
-  }
+footer a:hover {
+    color: $red;
+    text-decoration: none;
+}
 
-  h2.category_name {
-      color: $green;
-      font-weight: bold;
-  }
+h2.category_name {
+    color: $green;
+    font-weight: bold;
+}
 
-  nav#navigation {
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.5) !important;
-  }
+nav#navigation {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5) !important;
+}
 
-  #navigation a.nav-link {
+#navigation a.nav-link {
     color: $red;
     padding: 0 25px;
     font-size: 18px;
@@ -86,24 +86,24 @@ div.bg2 {
     letter-spacing: .1rem;
     text-decoration: none;
     text-transform: uppercase;
-  }
+}
 
-  a.footer-link-inactive,
-  #navigation a.nav-link-inactive {
-      color: #999;
-  }
+a.footer-link-inactive,
+#navigation a.nav-link-inactive {
+    color: #999;
+}
 
-  .admin-menu a,
-  .admin-menu a:hover {
+.admin-menu a,
+.admin-menu a:hover {
     color: $green;
     font-size: 16px;
     text-decoration: none;
-  }
+}
 
 .card {
     background: #fff;
     border-radius: 0;
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
     padding: 2em;
 }
 
@@ -133,17 +133,21 @@ div.bg2 {
 .title .hotbox {
     background: $red;
     border: 1px dashed #fff;
-    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
     color: #fff;
     font-size: 18px;
     font-weight: bold;
     outline: 10px solid $red;
     padding: 10px;
     position: absolute;
-        bottom: -60px;
-        right: -65px;
+    bottom: -60px;
+    right: -65px;
     transform: rotate(-10deg);
     width: 300px;
+}
+
+.hotbox p {
+    margin-bottom: 0;
 }
 
 .hotbox a {
@@ -152,21 +156,21 @@ div.bg2 {
 }
 
 .hotbox a:hover {
-	color: #fff;
+    color: #fff;
 }
 
 #app .hotbox {
     background: $red;
     border: 1px dashed #fff;
-    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
     color: #fff;
     font-size: 18px;
     font-weight: bold;
     outline: 10px solid $red;
     padding: 10px 40px 10px 10px;
     position: fixed;
-        bottom: 120px;
-        right: -35px;
+    bottom: 120px;
+    right: -35px;
     transform: rotate(-10deg);
     text-align: center;
     width: 300px;
@@ -180,7 +184,7 @@ div.bg2 {
 .alert-success {
     color: #fff;
     background: $green;
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
     font-size: 20px;
     font-weight: bold;
 }
@@ -188,7 +192,7 @@ div.bg2 {
 .alert-danger {
     color: #fff;
     background: $red;
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
     font-size: 20px;
     font-weight: bold;
 }
@@ -200,29 +204,29 @@ div.bg2 {
 .page_inactive_box {
     border: 1px solid #fff;
     border-left: none;
-	border-radius: 0 10px 10px 0;
-	box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
-	color: #fff;
-	padding: 4px 8px;
-	position: fixed;
-	top: 160px;
-	left: 0;
-	z-index: 100;
-	background: $red;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 4px 8px;
+    position: fixed;
+    top: 160px;
+    left: 0;
+    z-index: 100;
+    background: $red;
 
 }
 
 input[type=radio], input[type=checkbox] {
-	cursor: pointer;
-	height: 20px;
-	position: relative;
-		top: 7px;
-	width: 20px;
+    cursor: pointer;
+    height: 20px;
+    position: relative;
+    top: 7px;
+    width: 20px;
 }
 
 .admin_info_text {
-	color: #999;
-	font-size: 80%;
+    color: #999;
+    font-size: 80%;
 }
 
 a.btn,

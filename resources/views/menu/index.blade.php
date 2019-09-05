@@ -38,7 +38,7 @@
 
                                         {!! Form::open(['action' => [ 'MenuController@moveDown', $menu->id, $page->id ], 'method' => 'POST' ]) !!}
                                         {{Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach unten verschieben'])}}
-                                        {{ $page->menu_title }}
+                                        {{ $page->menu_title }} [{{$page->pivot->sort}}]
                                         {!! Form::close() !!}
                                     </div>
                                 @endforeach

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Allergen;
 use App\Category;
+use App\Image;
+use App\Menu;
 use App\Option;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\MenuItem;
 use App\Rules\GermanPrice;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic as ImageMaker;
 
 class MenuItemController extends Controller {
     /**
@@ -27,7 +29,7 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $menus = \App\Menu::all();
+        $menus = Menu::all();
         $categories = Category::orderby( 'sort' )->get();
         return view( 'menuitem.index', compact( 'categories', 'menus' ) );
     }
@@ -38,9 +40,10 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $menus = \App\Menu::all();
+        $menus = Menu::all();
         $categories = Category::orderby( 'sort' )->get();
-        return view( 'menuitem.create', compact( 'categories', 'menus' ) );
+        $allergens = Allergen::all();
+        return view( 'menuitem.create', compact( 'categories', 'menus', 'allergens' ) );
     }
 
     /**
@@ -74,7 +77,7 @@ class MenuItemController extends Controller {
             // Upload Image
             //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
 
-            $img_resize = Image::make( $request->file( 'image' )->getRealPath() );
+            $img_resize = ImageMaker::make( $request->file( 'image' )->getRealPath() );
             $img_resize->widen( 800 );
             $img_resize->save( public_path( 'storage\\img\\' . $fileNameToStore ) );
         } else {
@@ -83,7 +86,6 @@ class MenuItemController extends Controller {
 
         $category_id = $request->input( 'category' )[ 0 ];
 
-        // Create MenuItem
         $menuItem = new MenuItem;
         $menuItem->name = $request->input( 'name' );
         $menuItem->description = $request->input( 'description' );
@@ -94,6 +96,12 @@ class MenuItemController extends Controller {
         $menuItem->publication = $request->input( 'publication' );
         $menuItem->expiration = $request->input( 'expiration' );
         $menuItem->save();
+
+        $image = new Image;
+        $image->path = 'storage/img/' . $fileNameToStore;
+        $image->name = 'test';
+        $image->save();
+        $menuItem->images()->save( $image );
 
         return redirect( '/menuitem' )->with( 'success', 'Speise angelegt' );
     }
@@ -156,7 +164,7 @@ class MenuItemController extends Controller {
             // Upload Image
             //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
 
-            $img_resize = Image::make( $request->file( 'image' )->getRealPath() );
+            $img_resize = ImageMaker::make( $request->file( 'image' )->getRealPath() );
             $img_resize->widen( 800 );
             $img_resize->save( public_path( 'storage\\img\\' . $fileNameToStore ) );
         }

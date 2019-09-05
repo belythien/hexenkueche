@@ -23,6 +23,18 @@
                 {{Form::textarea('description', '', ['id' => 'text-ckeditor', 'class' => 'form-control', 'placeholder' => 'Beschreibung'])}}
             </div>
 
+            <hr class="strong-hr">
+            <h5>Allergene</h5>
+            <div class="row">
+                @foreach($allergens as $allergen)
+                    <div class="col-xl-3 col-md-4 col-sm-6">
+                        {{Form::checkbox('allergen[]', $allergen->id, false ) }}
+                        {{Form::label('allergen', $allergen->name)}}
+                    </div>
+                @endforeach
+            </div>
+            <hr class="strong-hr">
+
             <div class="row">
                 <div class="form-group col-lg-6">
                     {{Form::label('publication', 'Anzeigen ab')}}
@@ -38,8 +50,13 @@
                 {{Form::label('image', 'Bild')}}
                 {{Form::file('image')}}
             </div>
+            <div class="mt-3">
+                {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+                <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"
+                    ></i> {{ __('Abbrechen') }}</a>
+            </div>
 
-            <h3>Optionen</h3>
+            <h3 class="mt-5">Optionen</h3>
             @for($i = 1; $i <= 10; $i++)
                 <hr class="strong-hr">
                 <div class="row my-3">

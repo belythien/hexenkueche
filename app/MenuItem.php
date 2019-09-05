@@ -19,6 +19,10 @@ class MenuItem extends Model {
         return $this->belongsToMany( 'App\Allergen' )->orderBy('id');
     }
 
+    public function images() {
+        return $this->morphToMany( 'App\Image', 'imageable' );
+    }
+
     public function isLive() {
         if( $this->status == 1 ) {
             if( $this->publication == '' || $this->publication <= date( 'Y-m-d' ) ) {
