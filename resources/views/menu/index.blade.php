@@ -27,9 +27,15 @@
                             <td>
                                 @foreach($menu->pages as $page)
                                     <div>
+                                        {!!Form::open(['action' => ['MenuController@removePage', $menu->id, $page->id], 'method' => 'POST', 'class' => 'float-left'])!!}
+                                        {{Form::hidden('_method', 'DELETE')}}
+                                        {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-outline-danger btn-sm mr-2', 'type' => 'submit', 'onclick' => 'return confirm("Soll der Eintrag wirklich gelöscht werden?")'])}}
+                                        {!!Form::close()!!}
+
                                         {!! Form::open(['action' => [ 'MenuController@moveUp', $menu->id, $page->id ], 'method' => 'POST', 'class' => 'float-left' ]) !!}
-                                        {{Form::submit('▲', ['class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach oben verschieben'])}}
+                                        {{Form::submit('▲', [ 'class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach oben verschieben' ])}}
                                         {!! Form::close() !!}
+
                                         {!! Form::open(['action' => [ 'MenuController@moveDown', $menu->id, $page->id ], 'method' => 'POST' ]) !!}
                                         {{Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach unten verschieben'])}}
                                         {{ $page->menu_title }}

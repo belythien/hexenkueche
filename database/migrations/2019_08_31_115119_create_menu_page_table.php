@@ -15,6 +15,7 @@ class CreateMenuPageTable extends Migration {
             $table->bigIncrements( 'id' );
             $table->integer( 'menu_id' );
             $table->integer( 'page_id' );
+            $table->integer( 'sort' )->default(0);
             $table->timestamps();
         } );
     }

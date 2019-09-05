@@ -67,28 +67,44 @@ class MenuController extends Controller {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy( $id ) {
-        //
+    public function removePage( $menu_id, $page_id ) {
+        $menu = Menu::find( $menu_id );
+        if(isset($menu)) {
+            $menu->pages()->detach($page_id);
+            return redirect( '/menu' )->with( 'success', 'Eintrag entfernt' );
+        }
+        return redirect( '/menu' )->with( 'error', 'Eintrag nicht gefunden' );
     }
 
     public function moveUp( $menu_id, $page_id ) {
         $menu = Menu::find( $menu_id );
-        $pages = $menu->pages;
+        $page = $menu->pages->where('id', $page_id)->first();
 
-        return redirect( '/menu' )->with( 'error', 'Habe keinen Schimmer, wie das gehen soll...' );
+        $menu->pages()->where('page_id', $page_id)->update(['sort' => $page->pivot->sort - 15]);
+
+        $this->updateSort($menu);
+
+        return redirect( '/menu' )->with( 'success', 'Reihenfolge geändert' );
     }
 
     public function moveDown( $menu_id, $page_id ) {
         $menu = Menu::find( $menu_id );
-        $pages = $menu->pages;
-        $pos = $pages->search( $page_id );
+        $page = $menu->pages->where('id', $page_id)->first();
+        
+        $menu->pages()->where('page_id', $page_id)->update(['sort' => $page->pivot->sort + 15]);
 
-        return redirect( '/menu' )->with( 'error', 'Habe keinen Schimmer, wie das gehen soll...' );
+        $this->updateSort($menu);
+
+        return redirect( '/menu' )->with( 'success', 'Reihenfolge geändert' );
+    }
+
+    private function updateSort( $menu ) {
+        $pages = $menu->pages()->orderBy('sort')->get();
+        
+        $i = 10;
+        foreach( $pages as $page ) {
+            $menu->pages()->where('page_id', $page->id)->update(['sort' => $i]);
+            $i += 10;
+        }
     }
 }
