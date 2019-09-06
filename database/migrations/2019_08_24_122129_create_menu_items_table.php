@@ -15,8 +15,6 @@ class CreateMenuItemsTable extends Migration {
             $table->bigIncrements( 'id' );
             $table->string( 'name' )->nullable();
             $table->text( 'description' )->nullable();
-            $table->string( 'image' )->nullable();
-            $table->double( 'price' )->nullable();
             $table->integer( 'sort' )->nullable();
             $table->integer( 'category_id' )->nullable();
             $table->date( 'publication' )->nullable();

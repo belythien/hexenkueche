@@ -51,6 +51,9 @@
                             <a class="dropdown-item" href="{{ route('page.index') }}" class="d-block"
                             ><i class="fas fa-file-alt"></i> {{ __('Seiten') }}</a>
 
+                            <a class="dropdown-item" href="{{ route('image.index') }}" class="d-block"
+                            ><i class="fas fa-images"></i> {{ __('Bilder') }}</a>
+
                             <a class="dropdown-item" href="{{ route('hotbox.index') }}" class="d-block"
                             ><i class="fas fa-certificate"></i> {{ __('Hotboxes') }}</a>
 

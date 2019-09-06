@@ -62,15 +62,15 @@
                 <div class="row my-3">
                     <div class="col-lg-6">
                         {{Form::label('option_name', $i . ') Name')}}
-                        {{Form::text('option_name', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
+                        {{Form::text('option_name[]', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
                     </div>
                     <div class="col-lg-3">
                         {{Form::label('option_amount', 'Menge')}}
-                        {{Form::text('option_amount', '', ['class' => 'form-control', 'placeholder' => 'Menge'])}}
+                        {{Form::text('option_amount[]', '', ['class' => 'form-control', 'placeholder' => 'Menge'])}}
                     </div>
                     <div class="col-lg-3">
                         {{Form::label('option_price', 'Preis')}}
-                        {{Form::text('option_price', '', ['class' => 'form-control', 'placeholder' => 'Preis'])}}
+                        {{Form::text('option_price[]', '', ['class' => 'form-control', 'placeholder' => 'Preis'])}}
                     </div>
                 </div>
             @endfor

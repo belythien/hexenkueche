@@ -34,11 +34,11 @@
                                         {!! Form::close() !!}
 
                                         {!! Form::open(['action' => [ 'MenuController@moveUp', $menu->id, $page->id ], 'method' => 'POST', 'class' => 'float-left' ]) !!}
-                                        {{ Form::submit('▲', [ 'class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach oben verschieben' ])}}
+                                        {{ Form::button('<i class="fas fa-arrow-up"></i>', [ 'class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach oben verschieben', 'type' => 'submit' ])}}
                                         {!! Form::close() !!}
 
                                         {!! Form::open(['action' => [ 'MenuController@moveDown', $menu->id, $page->id ], 'method' => 'POST' ]) !!}
-                                        {{ Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach unten verschieben'])}}
+                                        {{ Form::button('<i class="fas fa-arrow-down"></i>', ['class' => 'btn btn-outline-success btn-sm mr-2 mb-1', 'title' => 'nach unten verschieben', 'type' => 'submit'])}}
                                         {{ $page->menu_title }}
                                         {!! Form::close() !!}
                                     </div>

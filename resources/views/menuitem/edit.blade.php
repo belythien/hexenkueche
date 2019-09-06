@@ -42,19 +42,13 @@
             </div>
 
             <div class="row">
-                @if( $menuItem->image )
-                    <div class="col-xl-4 col-lg-5">
-                        <img src="{{ asset('storage/img/' . $menuItem->image ) }}" alt=""
+                @foreach( $menuItem->images as $image )
+                    <div class="col-xl-4 col-lg-5 edit_image">
+                        <img src="{{ asset('/storage/img/' . $image->filename ) }}" alt=""
                              class="img-thumbnail mr-2 float-left"
                         />
                     </div>
-                @else
-                    <div class="col-xl-4 col-lg-5">
-                        <img src="" alt="Noch kein Bild vorhanden" width="100"
-                             class="img-thumbnail mr-2 float-left"
-                        />
-                    </div>
-                @endif
+                @endforeach
                 <div class="col-xl-8 col-lg-7">
                     <div class="form-group">
                         {{Form::label('image', 'Bild')}}

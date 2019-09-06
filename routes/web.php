@@ -35,25 +35,31 @@ Route::get( '/speisekarte', function () {
 
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::resource( '/menuitem', 'MenuItemController' );
+    Route::post( '/menuitem/{id}/up', 'MenuItemController@moveUp' )->name( 'menuitem_up' );
+    Route::post( '/menuitem/{id}/down', 'MenuItemController@moveDown' )->name( 'menuitem_down' );
+    Route::delete( '/menuitem/{menuitem_id}/image/{image_id}', 'MenuItemController@removeImage' )->name( 'menuitem_remove_image' );
 
     Route::resource( '/category', 'CategoryController' );
     Route::post( '/category/{id}/up', 'CategoryController@moveUp' )->name( 'category_up' );
     Route::post( '/category/{id}/down', 'CategoryController@moveDown' )->name( 'category_down' );
 
+    Route::resource( '/image', 'ImageController' );
+
     Route::resource( '/option', 'OptionController' );
 
     Route::resource( '/page', 'PageController' );
+    Route::delete( '/page/{page_id}/image/{image_id}', 'PageController@removeImage' )->name( 'page_remove_image' );
 
     Route::resource( '/hotbox', 'HotboxController' );
 
-    Route::get('/menu', 'MenuController@index')->name('menu.index');
+    Route::get( '/menu', 'MenuController@index' )->name( 'menu.index' );
     Route::delete( '/menu/{menu_id}/page/{page_id}', 'MenuController@removePage' )->name( 'menu_remove_page' );
     Route::post( '/menu/{menu_id}/page', 'MenuController@addPage' )->name( 'menu_add_page' );
     Route::post( '/menu/{menu_id}/page/{page_id}/up', 'MenuController@moveUp' )->name( 'menu_page_up' );
     Route::post( '/menu/{menu_id}/page/{page_id}/down', 'MenuController@moveDown' )->name( 'menu_page_down' );
 
 
-    Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
+    Route::post( 'ckeditor/image_upload', 'CKEditorController@upload' )->name( 'upload' );
 } );
 
 Route::get( '/{slug}', function ( $slug ) {

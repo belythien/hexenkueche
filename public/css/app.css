@@ -10919,3 +10919,14 @@ table td ol {
   min-width: 13px;
 }
 
+.edit_image {
+  position: relative;
+}
+
+.edit_image button {
+  border-radius: 0 0 0 0.2rem;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+

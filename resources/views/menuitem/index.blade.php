@@ -39,10 +39,10 @@
                         @endif
                     </h2>
                     {!! Form::open(['action' => [ 'CategoryController@moveDown', $category->id ], 'method' => 'POST' ]) !!}
-                    {{Form::submit('▼', ['class' => 'btn btn-outline-success float-right'])}}
+                    {{Form::button('<i class="fas fa-arrow-down"></i>', ['class' => 'btn btn-outline-success float-right', 'type' => 'submit'])}}
                     {!! Form::close() !!}
                     {!! Form::open(['action' => [ 'CategoryController@moveUp', $category->id ], 'method' => 'POST' ]) !!}
-                    {{Form::submit('▲', ['class' => 'btn btn-outline-success float-right'])}}
+                    {{Form::button('<i class="fas fa-arrow-up"></i>', ['class' => 'btn btn-outline-success float-right', 'type' => 'submit'])}}
                     {!! Form::close() !!}
                     <a href="{{ route('category.edit', $category) }}" class="btn btn-success float-right ml-2 mr-2"><i
                             class="fas fa-list-alt"
@@ -69,11 +69,11 @@
                                     >{{ $allergen->id }}</sup>@endforeach
                                 </td>
                                 <td>
-                                    @if( $menuItem->image )
-                                        <img src="{{ asset('storage/img/' . $menuItem->image ) }}" alt="" width="100"
+                                    @foreach( $menuItem->images as $image )
+                                        <img src="{{ asset('storage/img/' . $image->filename ) }}" alt="" width="100"
                                              class="img-thumbnail mr-2 float-left"
                                         />
-                                    @endif
+                                    @endforeach
                                     {!! $menuItem->description !!}
                                 </td>
                                 <td class="admin_options_row">
@@ -95,11 +95,11 @@
                                     <a href="{{ route('menuitem.edit', [ $menuItem->id ]) }}"
                                        class="btn btn-sm btn-success mb-1"
                                     ><i class="fas fa-edit"></i></a>
-                                    {!! Form::open(['action' => [ 'CategoryController@moveUp', $category->id ], 'method' => 'POST' ]) !!}
-                                    {{Form::submit('▲', ['class' => 'btn btn-outline-success btn-sm float-right'])}}
+                                    {!! Form::open(['action' => [ 'MenuItemController@moveUp', $menuItem->id ], 'method' => 'POST' ]) !!}
+                                    {{Form::button('<i class="fas fa-arrow-up"></i>', ['class' => 'btn btn-outline-success btn-sm float-right', 'type' => 'submit'])}}
                                     {!! Form::close() !!}
-                                    {!! Form::open(['action' => [ 'CategoryController@moveDown', $category->id ], 'method' => 'POST' ]) !!}
-                                    {{Form::submit('▼', ['class' => 'btn btn-outline-success btn-sm float-right'])}}
+                                    {!! Form::open(['action' => [ 'MenuItemController@moveDown', $menuItem->id ], 'method' => 'POST' ]) !!}
+                                    {{Form::button('<i class="fas fa-arrow-down"></i>', ['class' => 'btn btn-outline-success btn-sm float-right', 'type' => 'submit'])}}
                                     {!! Form::close() !!}
                                 </td>
                             </tr>

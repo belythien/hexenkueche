@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Menu;
+use App\Page;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as ImageMaker;
 
-class ImageController extends Controller
-{
+class ImageController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $menus = Menu::all();
+        $images = Image::all();
+        $pages = Page::all();
+        return view( 'image.index', compact( 'images', 'menus', 'pages' ) );
     }
 
     /**
@@ -22,64 +26,58 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store( Request $request ) {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Image  $image
+     * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
-    {
+    public function show( Image $image ) {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Image  $image
+     * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
-    {
+    public function edit( Image $image ) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Image $image)
-    {
+    public function update( Request $request, Image $image ) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
+     * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
-    {
+    public function destroy( Image $image ) {
         //
     }
 }

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Hotbox;
+use App\Image;
+use App\Menu;
 use App\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManagerStatic as ImageMaker;
 
 class PageController extends Controller {
     /**
@@ -24,7 +27,7 @@ class PageController extends Controller {
      */
     public function index() {
         $pages = Page::orderby( 'menu_title' )->with( 'hotbox' )->get();
-        $menus = \App\Menu::all();
+        $menus = Menu::all();
         return view( 'page.index', compact( 'pages', 'menus' ) );
     }
 
@@ -34,7 +37,7 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $menus = \App\Menu::all();
+        $menus = Menu::all();
         $hotboxes = Hotbox::pluck( 'text', 'id' );
         return view( 'page.create', compact( 'hotboxes', 'menus' ) );
     }
@@ -48,7 +51,8 @@ class PageController extends Controller {
     public function store( Request $request ) {
         $this->validate( $request, [
             'menu_title' => 'required',
-            'slug'       => 'required|unique:pages'
+            'slug'       => 'required|unique:pages',
+            'image'      => 'image|nullable|max:16384'
         ] );
 
         $hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
@@ -64,8 +68,13 @@ class PageController extends Controller {
         $page->expiration = $request->input( 'expiration' );
         $page->save();
 
-        return redirect( route( 'page', [ $page->slug ] ) )->with( 'info', 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' );
+        if( $request->hasFile( 'image' ) ) {
+            $image = new Image;
+            $image->upload( $request );
+            $page->images()->save( $image );
+        }
 
+        return redirect( route( 'page', [ $page->slug ] ) )->with( 'info', 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' );
     }
 
     /**
@@ -85,7 +94,7 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Page $page ) {
-        $menus = \App\Menu::all();
+        $menus = Menu::all();
         $hotboxes = Hotbox::pluck( 'text', 'id' );
         return view( 'page.edit', compact( 'page', 'hotboxes', 'menus' ) );
     }
@@ -99,7 +108,8 @@ class PageController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'menu_title' => 'required'
+            'menu_title' => 'required',
+            'image'      => 'image|nullable|max:16384',
         ] );
 
         $hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
@@ -114,6 +124,12 @@ class PageController extends Controller {
             $page->publication = $request->input( 'publication' );
             $page->expiration = $request->input( 'expiration' );
             $page->save();
+
+            if( $request->hasFile( 'image' ) ) {
+                $image = new Image;
+                $image->upload( $request );
+                $page->images()->save( $image );
+            }
 
             return redirect( route( 'page', [ $page->slug ] ) )->with( 'success', 'Seite aktualisiert' );
         } else {
@@ -136,5 +152,17 @@ class PageController extends Controller {
 
         $page->delete();
         return redirect( '/page' )->with( 'success', 'Seite entfernt' );
+    }
+
+    public function removeImage( $page_id, $image_id ) {
+        $page = Page::find( $page_id );
+
+        if( !isset( $page ) ) {
+            return redirect( '/page' )->with( 'error', 'Seite nicht gefunden' );
+        }
+
+        $image = Image::find( $image_id );
+        $page->images()->detach( $image );
+        return redirect( route( 'page.edit', [ $page_id ] ) )->with( 'success', 'Bild entfernt' );
     }
 }

@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
 
-            {!! Form::open([ 'action' => 'PageController@store', 'method' => 'POST' ]) !!}
+            {!! Form::open([ 'action' => 'PageController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
             <div class="row">
                 <div class="form-group col-md-5">
                     {{Form::label('menu_title', 'Titel (kurz)')}}
@@ -42,6 +42,15 @@
                 <div class="form-group col-md-6">
                     {{Form::label('expiration', 'Anzeigen bis (optional)')}}
                     {{Form::date('expiration', '', ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <div>Es können beliebig viele Bilder hochgeladen werden, aber immer nur eins auf einmal.</div>
+                        {{Form::label('image', 'Bild')}}
+                        {{Form::file('image')}}
+                    </div>
                 </div>
             </div>
             {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}

@@ -49,6 +49,27 @@
                     {{Form::date('expiration', $page->expiration, ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <div>Es können beliebig viele Bilder hochgeladen werden, aber immer nur eins auf einmal.</div>
+                        {{Form::label('image', 'Bild')}}
+                        {{Form::file('image')}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach($page->images as $image)
+                    <div class="col-md-3 col-sm-2 edit_image">
+                        {!!Form::open(['action' => ['PageController@removeImage', $page->id, $image->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-danger btn-sm', 'type' => 'submit', 'onclick' => 'return confirm("Soll das Bild wirklich entfernt werden?")'])}}
+                        {!!Form::close()!!}
+                        <img src="{{ asset('/storage/img/' . $image->filename ) }}" class="img-thumbnail mb-3" />
+                    </div>
+                @endforeach
+            </div>
+
             {{Form::hidden('_method','PUT')}}
             {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
             <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"

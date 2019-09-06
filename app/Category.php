@@ -8,7 +8,7 @@ class Category extends Model {
     protected $fillable = [ 'name', 'description', 'publication', 'expiration' ];
 
     public function menuItems() {
-        return $this->hasMany( 'App\MenuItem' );
+        return $this->hasMany( 'App\MenuItem' )->orderby('sort');
     }
 
     public function isLive() {

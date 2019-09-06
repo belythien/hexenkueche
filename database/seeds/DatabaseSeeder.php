@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder {
         $this->call( UserSeeder::class );
         $this->call( AllergenSeeder::class );
         $this->call( CategorySeeder::class );
+        $this->call( ImageSeeder::class );
         $this->call( MenuItemSeeder::class );
         $this->call( AllergenMenuItemSeeder::class );
         $this->call( OptionSeeder::class );
@@ -19,6 +20,8 @@ class DatabaseSeeder extends Seeder {
         $this->call( MenuSeeder::class );
         $this->call( PageSeeder::class );
         $this->call( MenuPageSeeder::class );
+        $this->call( ImageableSeeder::class );
+
 
     }
 }

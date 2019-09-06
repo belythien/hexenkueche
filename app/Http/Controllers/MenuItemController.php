@@ -59,51 +59,44 @@ class MenuItemController extends Controller {
             'price' => [ new GermanPrice ]
         ] );
 
-        // get next sort
-        $sort = DB::table( 'menu_items' )->max( 'sort' ) + 10;
-
-        $price = (double)str_replace( ',', '.', $request->input( 'price' ) );
-
-        // Handle File Upload
-        if( $request->hasFile( 'image' ) ) {
-            // Get filename with the extension
-            $filenameWithExt = $request->file( 'image' )->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
-            // Get just ext
-            $extension = $request->file( 'image' )->getClientOriginalExtension();
-            // Filename to store
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            // Upload Image
-            //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
-
-            $img_resize = ImageMaker::make( $request->file( 'image' )->getRealPath() );
-            $img_resize->widen( 800 );
-            $img_resize->save( public_path( 'storage\\img\\' . $fileNameToStore ) );
-        } else {
-            $fileNameToStore = '';
-        }
-
         $category_id = $request->input( 'category' )[ 0 ];
+
+        // get next sort
+        $last_menu_item_of_this_category = Category::find( $category_id )->menuItems()->orderby( 'sort', 'desc' )->first();
+        $sort = $last_menu_item_of_this_category->sort + 5;
 
         $menuItem = new MenuItem;
         $menuItem->name = $request->input( 'name' );
         $menuItem->description = $request->input( 'description' );
-        $menuItem->price = $price;
         $menuItem->category_id = $category_id;
         $menuItem->sort = $sort;
-        $menuItem->image = $fileNameToStore;
         $menuItem->publication = $request->input( 'publication' );
         $menuItem->expiration = $request->input( 'expiration' );
         $menuItem->save();
 
-        $image = new Image;
-        $image->path = 'storage/img/' . $fileNameToStore;
-        $image->name = 'test';
-        $image->save();
-        $menuItem->images()->save( $image );
+        if( $request->hasFile( 'image' ) ) {
+            $image = new Image;
+            $image->upload( $request );
+            $menuItem->images()->save( $image );
+        }
 
-        return redirect( '/menuitem' )->with( 'success', 'Speise angelegt' );
+        for( $i = 0; $i < 10; $i++ ) {
+            if( isset( $request->input( 'option_name' )[ $i ] )
+                || isset( $request->input( 'option_amount' )[ $i ] )
+                || isset( $request->input( 'option_price' )[ $i ] ) ) {
+                $option = new Option;
+                $option->name = $request->input( 'option_name' )[ $i ];
+                $option->amount = $request->input( 'option_amount' )[ $i ];
+                $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
+                $option->price = $price;
+                $option->save();
+                $menuItem->options()->save( $option );
+            }
+        }
+
+        $this->updateSort();
+
+        return redirect( '/menuitem' )->with( 'success', 'Gericht/Getränk angelegt' );
     }
 
     /**
@@ -126,7 +119,7 @@ class MenuItemController extends Controller {
         $menuItem = MenuItem::find( $id );
         $allergens = Allergen::all();
         if( isset( $menuItem ) ) {
-            $menus = \App\Menu::all();
+            $menus = Menu::all();
             $categories = Category::orderby( 'sort' )->pluck( 'name', 'id' );
             return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens' ) );
         } else {
@@ -144,64 +137,62 @@ class MenuItemController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'name'  => 'required',
-            'image' => 'image|nullable|max:16384',
-            'price' => [ new GermanPrice ]
+            'name'             => 'required',
+            'image'            => 'image|nullable|max:16384',
+            'option_price[]]'  => [ new GermanPrice ],
+            'option_price_new' => [ new GermanPrice ]
         ] );
-
-        $price = (double)str_replace( ',', '.', $request->input( 'price' ) );
-
-        // Handle File Upload
-        if( $request->hasFile( 'image' ) ) {
-            // Get filename with the extension
-            $filenameWithExt = $request->file( 'image' )->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
-            // Get just ext
-            $extension = $request->file( 'image' )->getClientOriginalExtension();
-            // Filename to store
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            // Upload Image
-            //$path = $request->file('image')->storeAs('public/images', $fileNameToStore);
-
-            $img_resize = ImageMaker::make( $request->file( 'image' )->getRealPath() );
-            $img_resize->widen( 800 );
-            $img_resize->save( public_path( 'storage\\img\\' . $fileNameToStore ) );
-        }
 
         $category_id = $request->input( 'category' )[ 0 ];
         $allergens = $request->input( 'allergen' );
 
-        // Create MenuItem
         $menuItem = MenuItem::find( $id );
         if( isset( $menuItem ) ) {
             $menuItem->name = $request->input( 'name' );
             $menuItem->description = $request->input( 'description' );
-            $menuItem->price = $price;
             $menuItem->category_id = $category_id;
             $menuItem->allergens()->sync( $allergens );
-//        $menuItem->sort = $sort;
-            if( $request->hasFile( 'image' ) ) {
-                $menuItem->image = $fileNameToStore;
-            }
             $menuItem->publication = $request->input( 'publication' );
             $menuItem->expiration = $request->input( 'expiration' );
             $menuItem->save();
+
+            if( $request->hasFile( 'image' ) ) {
+                $image = new Image;
+                $image->upload( $request );
+                $menuItem->images()->save( $image );
+            }
 
             $options = $request->input( 'option_id' );
             $i = 0;
             foreach( $options as $oid ) {
                 $option = Option::find( $oid );
-                $option->name = $request->input( 'option_name' )[ $i ];
-                $option->amount = $request->input( 'option_amount' )[ $i ];
+                if( empty( $request->input( 'option_name' )[ $i ] )
+                    && empty( $request->input( 'option_amount' )[ $i ] )
+                    && empty( $request->input( 'option_price' )[ $i ] ) ) {
+                    $option->delete();
+                } else {
+                    $option->name = $request->input( 'option_name' )[ $i ];
+                    $option->amount = $request->input( 'option_amount' )[ $i ];
 
-                $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
+                    $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
 
-                $option->price = $price;
-                $option->save();
+                    $option->price = $price;
+                    $option->save();
+                }
                 $i++;
             }
-            // TODO Neue Option anlegen
+
+            if( !empty( $request->input( 'option_name_new' ) )
+                || !empty( $request->input( 'option_amount_new' ) )
+                || !empty( $request->input( 'option_price_new' ) ) ) {
+                $option = new Option;
+                $option->name = $request->input( 'option_name_new' );
+                $option->amount = $request->input( 'option_amount_new' );
+                $price = (double)str_replace( ',', '.', $request->input( 'option_price_new' ) );
+                $option->price = $price;
+                $option->save();
+                $menuItem->options()->save( $option );
+            }
 
             return redirect( '/menuitem' )->with( 'success', 'Gericht aktualisiert' );
         } else {
@@ -225,7 +216,77 @@ class MenuItemController extends Controller {
 
         $name = $menuItem->name;
         $menuItem->delete();
+        $this->updateSort();
         return redirect( '/menuitem' )->with( 'success', 'Eintrag ' . $name . ' entfernt' );
     }
 
+    public function moveUp( $id ) {
+        $menuitem = MenuItem::find( $id );
+
+        //Check if Category exists
+        if( !isset( $menuitem ) ) {
+            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+        }
+
+        // get min sort of this category
+        $first_menu_item_of_this_category = Category::find( $menuitem->category_id )->menuItems()->orderby( 'sort', 'asc' )->first();
+        $min_sort = $first_menu_item_of_this_category->sort;
+
+        if( $menuitem->sort > $min_sort ) {
+            $menuitem->sort -= 15;
+            $menuitem->save();
+            $this->updateSort();
+
+            return redirect( '/menuitem' )->with( 'success', '<strong>' . $menuitem->name . '</strong> nach oben verschoben' );
+        } else {
+            return redirect( '/menuitem' )->with( 'error', 'Weiter hoch geht\'s nicht...' );
+        }
+    }
+
+    public function moveDown( $id ) {
+        $menuitem = MenuItem::find( $id );
+
+        //Check if Category exists
+        if( !isset( $menuitem ) ) {
+            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+        }
+
+        // get max sort of this category
+        $category = Category::find( $menuitem->category_id );
+        $last_menu_item = $category->menuitems->last();
+        $max_sort = $last_menu_item->sort;
+
+        if( $menuitem->sort < $max_sort ) {
+            $menuitem->sort += 15;
+            $menuitem->save();
+            $this->updateSort();
+
+            return redirect( '/menuitem' )->with( 'success', '<strong>' . $menuitem->name . '</strong> nach unten verschoben' );
+        } else {
+            return redirect( '/menuitem' )->with( 'error', 'Weiter runter geht\'s nicht...' );
+        }
+    }
+
+    private function updateSort() {
+        $menuitems = MenuItem::orderby( 'sort' )->get();
+
+        $i = 10;
+        foreach( $menuitems as $menuitem ) {
+            $menuitem->sort = $i;
+            $menuitem->save();
+            $i += 10;
+        }
+    }
+
+    public function removeImage( $menuitem_id, $image_id ) {
+        $menuitem = MenuItem::find( $menuitem_id );
+
+        if( !isset( $menuitem ) ) {
+            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+        }
+
+        $image = Image::find( $image_id );
+        $menuitem->images()->detach( $image );
+        return redirect( route( 'menuitem.edit', [ $menuitem_id ] ) )->with( 'success', 'Bild entfernt' );
+    }
 }
