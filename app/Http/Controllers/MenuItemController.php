@@ -287,6 +287,6 @@ class MenuItemController extends Controller {
 
         $image = Image::find( $image_id );
         $menuitem->images()->detach( $image );
-        return redirect( route( 'menuitem.edit', [ $menuitem_id ] ) )->with( 'success', 'Bild entfernt' );
+        return redirect( '/menuitem' )->with( 'success', 'Bild entfernt' );
     }
 }

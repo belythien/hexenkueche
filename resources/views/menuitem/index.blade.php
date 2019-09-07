@@ -70,9 +70,16 @@
                                 </td>
                                 <td>
                                     @foreach( $menuItem->images as $image )
-                                        <img src="{{ asset('storage/img/' . $image->filename ) }}" alt="" width="100"
-                                             class="img-thumbnail mr-2 float-left"
-                                        />
+                                        <div class="edit_image menu_index float-left mr-2">
+                                            <img src="{{ asset('storage/img/' . $image->filename ) }}" alt=""
+                                                 style="height: 80px"
+                                                 class="img-thumbnail"
+                                            />
+                                            {!!Form::open(['action' => ['MenuItemController@removeImage', $menuItem->id, $image->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+                                            {{Form::hidden('_method', 'DELETE')}}
+                                            {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-danger btn-sm', 'type' => 'submit', 'onclick' => 'return confirm("Soll das Bild wirklich entfernt werden?")'])}}
+                                            {!!Form::close()!!}
+                                        </div>
                                     @endforeach
                                     {!! $menuItem->description !!}
                                 </td>

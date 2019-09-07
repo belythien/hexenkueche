@@ -273,3 +273,14 @@ table td ol {
         right: 20px;
     }
 }
+
+.edit_image.menu_index {
+    position: relative;
+
+    button {
+        border-radius: 0 0 0.2rem 0;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
+}
