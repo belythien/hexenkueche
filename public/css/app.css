@@ -10711,12 +10711,14 @@ div.bg2 {
   z-index: 1;
 }
 
+main {
+  margin-bottom: 180px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
-  /* Set the fixed height of the footer here */
   line-height: 60px;
   /* Vertically center the text there */
   background-color: #f5f5f5;
@@ -10795,7 +10797,7 @@ a.footer-link-inactive,
 .title .hotbox {
   background: #e2023e;
   border: 1px dashed #fff;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 14px 14px 10px rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 18px;
   font-weight: bold;
@@ -10947,5 +10949,10 @@ table td ol {
   position: absolute;
   top: 5px;
   left: 5px;
+}
+
+iframe,
+.img-thumbnail {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
