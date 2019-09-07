@@ -54,6 +54,18 @@ class ImageableSeeder extends Seeder {
             'imageable_type' => 'App\Page'
         ] );
 
+        DB::table( 'imageables' )->insert( [
+            'image_id'     => 19,
+            'imageable_id' => 4,
+            'imageable_type' => 'App\Page'
+        ] );
+
+        DB::table( 'imageables' )->insert( [
+            'image_id'     => 17,
+            'imageable_id' => 5,
+            'imageable_type' => 'App\Page'
+        ] );
+
         // MenuItems
         DB::table( 'imageables' )->insert( [
             'image_id'     => 1,
@@ -118,6 +130,18 @@ class ImageableSeeder extends Seeder {
         DB::table( 'imageables' )->insert( [
             'image_id'     => 15,
             'imageable_id' => 35,
+            'imageable_type' => 'App\MenuItem'
+        ] );
+
+        DB::table( 'imageables' )->insert( [
+            'image_id'     => 16,
+            'imageable_id' => 17,
+            'imageable_type' => 'App\MenuItem'
+        ] );
+
+        DB::table( 'imageables' )->insert( [
+            'image_id'     => 18,
+            'imageable_id' => 42,
             'imageable_type' => 'App\MenuItem'
         ] );
     }

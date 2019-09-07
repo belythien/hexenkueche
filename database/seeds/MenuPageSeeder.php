@@ -62,5 +62,17 @@ class MenuPageSeeder extends Seeder {
             'page_id' => 7,
             'sort' => 20
         ] );
+
+        DB::table( 'menu_page' )->insert( [
+            'menu_id' => 3,
+            'page_id' => 9,
+            'sort' => 30
+        ] );
+
+        DB::table( 'menu_page' )->insert( [
+            'menu_id' => 3,
+            'page_id' => 10,
+            'sort' => 40
+        ] );
     }
 }

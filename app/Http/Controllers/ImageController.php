@@ -6,6 +6,7 @@ use App\Image;
 use App\Menu;
 use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as ImageMaker;
 
 class ImageController extends Controller {
@@ -46,8 +47,13 @@ class ImageController extends Controller {
      * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function show( Image $image ) {
-        //
+    public function show( $id ) {
+        $menus = Menu::all();
+        $image = Image::find( $id );
+        if( isset( $image ) ) {
+            return view( 'image', compact( 'image', 'menus' ) );
+        }
+        return redirect( '/404' );
     }
 
     /**
@@ -77,7 +83,15 @@ class ImageController extends Controller {
      * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Image $image ) {
-        //
+    public function destroy( $id ) {
+        $image = Image::find( $id );
+
+        if( !isset( $image ) ) {
+            return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
+        }
+
+        Storage::delete( $image->filename );
+        $image->delete();
+        return redirect( '/image' )->with( 'success', 'Eintrag entfernt' );
     }
 }

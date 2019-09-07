@@ -33,6 +33,8 @@ Route::get( '/speisekarte', function () {
     return view( 'menu', compact( 'categories', 'page', 'hotbox', 'menus', 'allergens' ) );
 } )->name( 'speisekarte' );
 
+Route::get( '/image/{id}', 'ImageController@show' )->name('image.show');
+
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::resource( '/menuitem', 'MenuItemController' );
     Route::post( '/menuitem/{id}/up', 'MenuItemController@moveUp' )->name( 'menuitem_up' );

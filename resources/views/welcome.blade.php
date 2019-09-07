@@ -92,18 +92,31 @@
                 @if(isset($menus[0]))
                     @foreach($menus[0]->pages as $page)
                         @if($page->isLive() == 1)
-                            <a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                            @if(!empty($page->external_url))
+                                <a href="{{ $page->external_url }}" target="_blank">{{ $page->menu_title }}</a>
+                            @else
+                                <a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
+                            @endif
                         @else
                             @auth
-                                <a class="welcome-inactive-link" href="{{ route('page', [$page->slug]) }}"
-                                >{{ $page->menu_title }}</a>
+                                @if(!empty($page->external_url))
+                                    <a class="welcome-inactive-link" href="{{ $page->external_url }}" target="_blank"
+                                    >{{ $page->menu_title }}</a>
+                                @else
+                                    <a class="welcome-inactive-link" href="{{ route('page', [$page->slug]) }}"
+                                    >{{ $page->menu_title }}</a>
+                                @endif
                             @endauth
                         @endif
                     @endforeach
                 @endif
                 @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
                     <div class="hotbox">
-                        <a href="{{ route( 'page', [ $hotbox->url ]) }}">{!! $hotbox->text !!}</a>
+                        @if(!empty($hotbox->url))
+                            <a href="{{ route('page', [$hotbox->url]) }}">{!! $hotbox->text !!}</a>
+                        @else
+                            {!! $hotbox->text !!}
+                        @endif
                     </div>
                 @endif
             </div>

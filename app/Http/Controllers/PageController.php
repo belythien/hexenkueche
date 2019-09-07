@@ -50,9 +50,10 @@ class PageController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'menu_title' => 'required',
-            'slug'       => 'required|unique:pages',
-            'image'      => 'image|nullable|max:16384'
+            'menu_title'   => 'required',
+            'slug'         => 'required|unique:pages',
+            'image'        => 'image|nullable|max:16384',
+            'external_url' => 'nullable|url'
         ] );
 
         $hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
@@ -61,6 +62,7 @@ class PageController extends Controller {
         $page->title = $request->input( 'title' );
         $page->menu_title = $request->input( 'menu_title' );
         $page->content = $request->input( 'content' );
+        $page->external_url = $request->input( 'external_url' );
         $page->slug = $request->input( 'slug' );
         $page->status = 0;
         $page->hotbox_id = $hotbox_id;
@@ -74,6 +76,9 @@ class PageController extends Controller {
             $page->images()->save( $image );
         }
 
+        if( !empty( $page->external_url ) ) {
+            return redirect( '/page' )->with( 'info', 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' );
+        }
         return redirect( route( 'page', [ $page->slug ] ) )->with( 'info', 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' );
     }
 
@@ -108,8 +113,9 @@ class PageController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'menu_title' => 'required',
-            'image'      => 'image|nullable|max:16384',
+            'menu_title'   => 'required',
+            'image'        => 'image|nullable|max:16384',
+            'external_url' => 'nullable|url'
         ] );
 
         $hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
@@ -119,6 +125,7 @@ class PageController extends Controller {
             $page->title = $request->input( 'title' );
             $page->menu_title = $request->input( 'menu_title' );
             $page->content = $request->input( 'content' );
+            $page->external_url = $request->input( 'external_url' );
             $page->status = $request->input( 'status' );
             $page->hotbox_id = $hotbox_id;
             $page->publication = $request->input( 'publication' );
@@ -131,6 +138,9 @@ class PageController extends Controller {
                 $page->images()->save( $image );
             }
 
+            if( !empty( $page->external_url ) ) {
+                return redirect( '/page' )->with( 'success', 'Seite aktualisiert' );
+            }
             return redirect( route( 'page', [ $page->slug ] ) )->with( 'success', 'Seite aktualisiert' );
         } else {
             return redirect( '/page' )->with( 'danger', 'Ein Fehler ist aufgetreten' );

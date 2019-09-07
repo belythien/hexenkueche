@@ -10,7 +10,7 @@
                             <h1>{{ $page->title }}
                                 @auth
                                     <a href="{{ route('page.edit', [ $page->id ]) }}"
-                                    class="btn btn-danger float-right ml-3"
+                                       class="btn btn-danger float-right ml-3"
                                     ><i class="fas fa-edit"></i> {{ __('Text bearbeiten') }}</a>
                                     <a href="{{ route('menuitem.index') }}"
                                        class="btn btn-danger float-right ml-3"
@@ -62,10 +62,12 @@
                                                 @endforeach
 
                                                 @foreach( $menuItem->images as $image )
-                                                    <img
-                                                        src="{{ asset('storage/img/' . $image->filename ) }}"
-                                                        alt="" class="img-thumbnail my-2"
-                                                    />
+                                                    <a href="{{ route('image.show', [$image->id]) }}">
+                                                        <img
+                                                            src="{{ asset('storage/img/' . $image->filename ) }}"
+                                                            alt="" class="img-thumbnail my-2"
+                                                        />
+                                                    </a>
                                                 @endforeach
                                             </div>
                                         @endforeach

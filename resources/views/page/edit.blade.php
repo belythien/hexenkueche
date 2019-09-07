@@ -27,6 +27,11 @@
                 {{Form::textarea('content', $page->content, ['id' => 'text-ckeditor', 'class' => 'form-control', 'placeholder' => 'Inhalt'])}}
             </div>
             <div class="form-group">
+                {{Form::label('external_url', 'Weiterleitungs-URL')}}
+                {{Form::text('external_url', $page->external_url, ['class' => 'form-control', 'placeholder' => 'z.B. https://www.facebook.com/Hexenküche-2291286144436000/'])}}
+                <p>{{ __('Wenn hier eine URL eingetragen ist, leitet der Aufruf dieser Seite sofort dorthin weiter.') }}</p>
+            </div>
+            <div class="form-group">
                 <label for="status_active" class="badge badge-success">aktiv</label>
                 <input name="status" type="radio" value="1"
                        id="status_active" {{ $page->status == 1 ? 'checked="checked"' : '' }}>
@@ -58,6 +63,24 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                {{Form::hidden('_method','PUT')}}
+                <div class="col-sm-10">
+                    {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger mb-3', 'type' => 'submit'])}}
+                    <a href="{{ url()->previous() }}" class="btn btn-success mb-3"><i class="fas fa-times-circle"
+                        ></i> {{ __('Abbrechen') }}</a>
+                </div>
+                {!! Form::close() !!}
+                @if($page->slug != '404' && $page->slug != 'speisekarte' && $page->slug != 'home')
+                    <div class="col-sm-2">
+                        {!!Form::open(['action' => ['PageController@destroy', $page->id], 'method' => 'POST', 'class' => ''])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{Form::button('<i class="fas fa-trash-alt"></i> Löschen', ['class' => 'btn btn-outline-danger float-right', 'type' => 'submit', 'onclick' => 'return confirm("Soll der Eintrag ' . $page->menu_title . ' wirklich gelöscht werden?")'])}}
+                        {!!Form::close()!!}
+                    </div>
+                @endif
+            </div>
             <div class="row">
                 @foreach($page->images as $image)
                     <div class="col-md-3 col-sm-2 edit_image">
@@ -69,18 +92,6 @@
                     </div>
                 @endforeach
             </div>
-
-            {{Form::hidden('_method','PUT')}}
-            {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
-            <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"
-                ></i> {{ __('Abbrechen') }}</a>
-            {!! Form::close() !!}
-            @if($page->slug != '404' && $page->slug != 'speisekarte' && $page->slug != 'home')
-                {!!Form::open(['action' => ['PageController@destroy', $page->id], 'method' => 'POST', 'class' => 'float-right'])!!}
-                {{Form::hidden('_method', 'DELETE')}}
-                {{Form::button('<i class="fas fa-trash-alt"></i> Löschen', ['class' => 'btn btn-outline-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll der Eintrag ' . $page->menu_title . ' wirklich gelöscht werden?")'])}}
-                {!!Form::close()!!}
-            @endif
         </div>
     </div>
 @endsection

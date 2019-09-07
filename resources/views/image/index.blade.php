@@ -6,33 +6,46 @@
             <h1>{{ __('Bilder verwalten') }}</h1>
         </div>
         <div class="card-body">
-            <div class="text-right">
-                <a href="{{ route('image.create') }}" class="btn btn-danger"><i class="fas fa-upload"
-                    ></i> {{ __('Bild hochladen' ) }}</a>
-            </div>
+{{--            <div class="text-right">--}}
+{{--                <a href="{{ route('image.create') }}" class="btn btn-danger"><i class="fas fa-upload"--}}
+{{--                    ></i> {{ __('Bild hochladen' ) }}</a>--}}
+{{--            </div>--}}
             @if(sizeof($images) == 0)
                 <em>{{ __('Es sind noch keine Bilder angelegt') }}</em>
             @else
                 <table class="table table-striped mt-3">
                     <thead>
                         <tr>
-                            <th scope="col">{{ __('Bild') }}</th>
-                            @foreach($pages as $page)
-                                <th scope="col">{{ $page->menu_title }}</th>
-                            @endforeach
+                            <th scope="col" width="260">{{ __('Bild') }}</th>
+                            <th scope="col">Gerichte/Getränke</th>
+                            <th scope="col">Seiten</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($images as $image)
                             <tr>
-                                <td><h4>{{ $image->name }}</h4>
+                                <td>{{ $image->filename }}<br>
                                     <img src="storage/img/{{ $image->filename }}" class="img-thumbnail" width="200" />
                                 </td>
-                                @foreach($pages as $page)
-                                    <td>
-                                        {{Form::checkbox('image[]', $page->id, false) }}
-                                    </td>
-                                @endforeach
+                                <td>
+                                    @foreach($image->menuitems as $menuitem)
+                                        <div>{{ $menuitem->name }}</div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($image->pages as $page)
+                                        <div>
+                                            <a href="{{ '/' . $page->slug }}">{{ $page->menu_title }}</a>
+                                        </div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    {!!Form::open(['action' => ['ImageController@destroy', $image->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+                                    {{Form::hidden('_method', 'DELETE')}}
+                                    {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll das Bild wirklich gelöscht werden?")'])}}
+                                    {!!Form::close()!!}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -16,6 +16,7 @@ class CreatePagesTable extends Migration {
             $table->string( 'slug' );
             $table->string( 'title' )->nullable();
             $table->string( 'menu_title' )->nullable();
+            $table->string( 'external_url' )->nullable();
             $table->text( 'content' )->nullable();
             $table->boolean( 'status' )->default( 0 );
             $table->string('template')->default('fullwidth');

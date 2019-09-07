@@ -16,7 +16,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,21 +29,27 @@
 
         @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
             <div class="hotbox d-none d-md-block">
-                <a href="{{ route('page', [$hotbox->url]) }}">{!! $hotbox->text !!}</a>
+                @if(!empty($hotbox->url))
+                    <a href="{{ route('page', [$hotbox->url]) }}">{!! $hotbox->text !!}</a>
+                @else
+                    {!! $hotbox->text !!}
+                @endif
             </div>
         @endif
 
         @auth
-            @if( $page->isLive() != 1 )
-                <div class="page_inactive_box">
-                    {{ __('inaktiv') }}
-                    @if(isset($page->publication))
-                        <br>Sichtbar ab: {{ date('d.m.Y', strtotime($page->publication)) }}
-                    @endif
-                    @if(isset($page->expiration))
-                        <br>Sichtbar bis: {{ date('d.m.Y', strtotime($page->expiration)) }}
-                    @endif
-                </div>
+            @if(isset($page))
+                @if( $page->isLive() != 1 )
+                    <div class="page_inactive_box">
+                        {{ __('inaktiv') }}
+                        @if(isset($page->publication))
+                            <br>Sichtbar ab: {{ date('d.m.Y', strtotime($page->publication)) }}
+                        @endif
+                        @if(isset($page->expiration))
+                            <br>Sichtbar bis: {{ date('d.m.Y', strtotime($page->expiration)) }}
+                        @endif
+                    </div>
+                @endif
             @endif
         @endauth
 

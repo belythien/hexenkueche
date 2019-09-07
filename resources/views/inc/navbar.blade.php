@@ -1,4 +1,6 @@
-<nav id="navigation" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav id="navigation"
+     class="navbar {{ isset($menus) && sizeof($menus[1]->pages) <= 3 ? 'navbar-expand-lg' : 'navbar-expand-xl'  }} navbar-light bg-white shadow-sm"
+>
     <div class="container">
         <a class="navbar-brand" href="{{ route('page', ['home']) }}">
             <img src="{{ asset('img/hexenkueche_logo2.png') }}" height="80" />
@@ -21,14 +23,25 @@
                     @foreach($menus[1]->pages as $page)
                         @if($page->isLive() == 1)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('page', [$page->slug]) }}"
-                                >{{ $page->menu_title }}</a>
+                                @if(!empty($page->external_url))
+                                    <a class="nav-link" href="{{ $page->external_url }}" target="_blank"
+                                    >{{ $page->menu_title }}</a>
+                                @else
+                                    <a class="nav-link" href="{{ route('page', [$page->slug]) }}"
+                                    >{{ $page->menu_title }}</a>
+                                @endif
                             </li>
                         @else
                             @auth
                                 <li class="nav-item">
-                                    <a class="nav-link nav-link-inactive" href="{{ route('page', [$page->slug]) }}"
-                                    >{{ $page->menu_title }}</a>
+                                    @if(!empty($page->external_url))
+                                        <a class="nav-link nav-link-inactive" href="{{ $page->external_url }}"
+                                           target="_blank"
+                                        >{{ $page->menu_title }}</a>
+                                    @else
+                                        <a class="nav-link nav-link-inactive" href="{{ route('page', [$page->slug]) }}"
+                                        >{{ $page->menu_title }}</a>
+                                    @endif
                                 </li>
                             @endauth
                         @endif

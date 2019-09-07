@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito|Comfortaa);/*!
  * Font Awesome Free 5.10.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
@@ -10648,6 +10648,10 @@ a.text-dark:focus {
   }
 }
 
+* {
+  font-family: "Comfortaa", "Helvetica", "Arial", "Sans-Serif";
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -10671,6 +10675,10 @@ main a:focus {
   color: #e2023e;
 }
 
+main p {
+  font-size: 16px;
+}
+
 div.welcome {
   background: url("/img/welcome.png") no-repeat center center;
   background-size: cover;
@@ -10680,7 +10688,7 @@ div.welcome {
 }
 
 div.bg1 {
-  background: url("/img/bg1.jpg") no-repeat center center;
+  background: url("/img/power-burger.jpg") no-repeat left center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
@@ -10692,7 +10700,7 @@ div.bg1 {
 }
 
 div.bg2 {
-  background: url("/img/bg2.jpg") no-repeat center center;
+  background: url("/img/power-burger.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
@@ -10794,7 +10802,7 @@ a.footer-link-inactive,
   outline: 10px solid #e2023e;
   padding: 10px;
   position: absolute;
-  bottom: -60px;
+  top: 10px;
   right: -65px;
   transform: rotate(-10deg);
   width: 300px;

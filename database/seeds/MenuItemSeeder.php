@@ -60,7 +60,7 @@ class MenuItemSeeder extends Seeder {
         $sort += 10;
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Sweet-Chili-Cheeze-Fries',
-            'description' => 'Süßkartoffel-Pommes, Jalapenos, selbst gemachte Cheeze-Sauce',
+            'description' => 'Süßkartoffel-Pommes, Jalapeños, selbst gemachte Cheeze-Sauce',
             'sort'        => $sort,
             'category_id' => 2
         ] );
@@ -68,7 +68,7 @@ class MenuItemSeeder extends Seeder {
         // Nachos
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Chili-Cheeze',
-            'description' => 'mit Jalapenos und selbst gemachter Cheeze-Sauce',
+            'description' => 'mit Jalapeños und selbst gemachter Cheeze-Sauce',
             'sort'        => $sort,
             'category_id' => 3
         ] );
@@ -105,7 +105,7 @@ class MenuItemSeeder extends Seeder {
         $sort += 10;
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Power-Burger',
-            'description' => 'Bratling aus Süßkartoffeln und schwarzen Bohnen, dazu Avocado-Creme4, Sandwich-Gurken, Blattsalat, Tomaten, Nachos, Jalapenos, Tomaten-Chili-Sauce',
+            'description' => 'Bratling aus Süßkartoffeln und schwarzen Bohnen, dazu Avocado-Creme4, Sandwich-Gurken, Blattsalat, Tomaten, Nachos, Jalapeños, Tomaten-Chili-Sauce',
             'sort'        => $sort,
             'category_id' => 5
         ] );
@@ -127,7 +127,7 @@ class MenuItemSeeder extends Seeder {
         $sort += 10;
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Power-Wrap',
-            'description' => 'Avocado-Creme, Blattsalat, Sandwich-Gurken, Süßkartoffel, schwarze Bohnen, Jalapenos, Nachos, Tomaten-Chili-Sauce',
+            'description' => 'Avocado-Creme, Blattsalat, Sandwich-Gurken, Süßkartoffel, schwarze Bohnen, Jalapeños, Nachos, Tomaten-Chili-Sauce',
             'sort'        => $sort,
             'category_id' => 6
         ] );
@@ -193,7 +193,7 @@ class MenuItemSeeder extends Seeder {
         $sort += 10;
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Bio-Zisch Limonaden',
-            'description' => 'Zitrone-Naturtrüb, Orange, Cola, Rosenblüte, Mate, Tonic, Ginger Life, Matcha, Hanf, Nature Energy, Himbeer-Cassis',
+            'description' => 'Zitrone-Naturtrüb, Orange, Cola, Rosenblüte, Mate, Tonic, Ginger Life, Matcha, Hanf, Nature Energy oder Himbeer-Cassis',
             'sort'        => $sort,
             'category_id' => 9
         ] );
@@ -240,7 +240,7 @@ class MenuItemSeeder extends Seeder {
         $sort += 10;
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Kaffee (fair & bio)',
-            'description' => '',
+            'description' => 'Wahlweise mit Bio Soja-, Hafer- oder Kokosdrink',
             'sort'        => $sort,
             'category_id' => 10
         ] );
@@ -268,7 +268,7 @@ class MenuItemSeeder extends Seeder {
         $sort += 10;
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Rosé (bio)',
-            'description' => 'Amphorium Garnacha Rosé Romance*',
+            'description' => 'Amphorium Garnacha Rosé Romance',
             'sort'        => $sort,
             'category_id' => 11
         ] );

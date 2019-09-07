@@ -40,15 +40,16 @@ class OptionSeeder extends Seeder {
 
         // Kleiner Salat
         DB::table( 'options' )->insert( [
+            'name'         => 'Blattsalate, Gurke, Mais, Tomaten',
             'price'        => 4.5,
             'menu_item_id' => 3
         ] );
+
+        // Caprese
         DB::table( 'options' )->insert( [
             'price'        => 5.8,
             'menu_item_id' => 4
         ] );
-
-        // Caprese
 
         // Kartoffeliges
         // Süßkartoffel-Pommes
@@ -503,7 +504,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Grüner Veltliner*</em> trocken',
+            'name'         => '<em>Grüner Veltliner</em> trocken',
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 2,
@@ -511,7 +512,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Blütenmuskateller*</em> halbtrocken',
+            'name'         => '<em>Blütenmuskateller</em> halbtrocken',
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 3,
@@ -519,7 +520,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Gewürztraminer*</em> halbtrocken, kräftig',
+            'name'         => '<em>Gewürztraminer</em> halbtrocken, kräftig',
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 4,
@@ -527,7 +528,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Gemischter Satz*</em> lieblich',
+            'name'         => '<em>Gemischter Satz</em> lieblich',
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 5,
@@ -535,7 +536,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Chardonnay*</em> trocken',
+            'name'         => '<em>Chardonnay</em> trocken',
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 6,
@@ -544,7 +545,7 @@ class OptionSeeder extends Seeder {
 
         // Dessertwein (bio)
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Gewürztraminer*</em> lieblich',
+            'name'         => '<em>Gewürztraminer</em> lieblich',
             'amount'       => '0,10l',
             'price'        => 4.0,
             'sort'         => 1,
@@ -577,7 +578,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Blauer Zweigelt*</em> trocken',
+            'name'         => '<em>Blauer Zweigelt</em> trocken',
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 4,
@@ -585,7 +586,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Roesler*</em> trocken',
+            'name'         => '<em>Roesler</em> trocken',
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 5,
@@ -593,7 +594,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Red Romance*</em> lieblich',
+            'name'         => '<em>Red Romance</em> lieblich',
             'amount'       => '0,20l',
             'price'        => 4.5,
             'sort'         => 6,
@@ -602,7 +603,7 @@ class OptionSeeder extends Seeder {
 
         // Prosecco (bio)
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Prosecco*</em> Sparkling Pink',
+            'name'         => '<em>Prosecco</em> Sparkling Pink',
             'amount'       => '0,10l',
             'price'        => 3.0,
             'sort'         => 1,
@@ -610,7 +611,7 @@ class OptionSeeder extends Seeder {
         ] );
 
         DB::table( 'options' )->insert( [
-            'name'         => '<em>Prosecco* Slush</em> Mango-Limette oder Erdbeer-Minze',
+            'name'         => '<em>Prosecco Slush</em> Mango-Limette oder Erdbeer-Minze',
             'amount'       => '0,20l',
             'price'        => 5.0,
             'sort'         => 2,

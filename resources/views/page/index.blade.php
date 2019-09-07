@@ -28,13 +28,19 @@
                             <th scope="row">
                                 <a href="{{ route('page.edit', [$page->id]) }}">{{ $page->menu_title }}</a>
                             </th>
-                            <td>{{ str_limit(strip_tags($page->content), 50, '...') }}</td>
+                            <td>
+                                @if(!empty($page->external_url))
+                                    <a href="{{ $page->external_url }}" target="_blank">{{ $page->external_url }}</a>
+                                @else
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($page->content), 50, '...') }}
+                                @endif
+                            </td>
                             <td>
                                 @if(!empty($page->hotbox))
                                     <a href="{{ route('hotbox.edit', [ $page->hotbox_id ])}}"
                                        class="badge badge-danger"
                                     >{{ $page->hotbox_id }}</a>
-                                    {{ $page->hotbox->text }}
+                                    {!! $page->hotbox->text !!}
                                 @endif
                             </td>
                             <td>

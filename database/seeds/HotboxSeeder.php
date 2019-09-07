@@ -11,6 +11,12 @@ class HotboxSeeder extends Seeder {
      */
     public function run() {
         DB::table( 'hotboxes' )->insert( [
+            'text'   => '<p>&Ouml;ffnungszeiten<br />Di-Sa: 17 - 22 Uhr<br />So: 15 - 22 Uhr</p>',
+            'url'    => '',
+            'status' => 1
+        ] );
+
+        DB::table( 'hotboxes' )->insert( [
             'text'   => 'Reservierung per Telefon<br>06126-5049523',
             'url'    => 'reservierung',
             'status' => 1

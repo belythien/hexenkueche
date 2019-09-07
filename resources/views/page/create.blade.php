@@ -31,6 +31,11 @@
                 {{Form::textarea('content', '', ['id' => 'text-ckeditor', 'name' => 'text-ckeditor', 'class' => 'form-control', 'placeholder' => 'Inhalt'])}}
             </div>
             <div class="form-group">
+                {{Form::label('external_url', 'Weiterleitungs-URL')}}
+                {{Form::text('external_url', '', ['class' => 'form-control', 'placeholder' => 'z.B. https://www.facebook.com/Hexenküche-2291286144436000/'])}}
+                <p>{{ __('Wenn hier eine URL eingetragen ist, leitet der Aufruf dieser Seite sofort dorthin weiter.') }}</p>
+            </div>
+            <div class="form-group">
                 {{Form::label('hotbox_id', 'Hotbox')}}
                 {{Form::select('hotbox_id[]', [ null => '-----------------'] + $hotboxes->toArray(), '', ['class' => 'form-control'])}}
             </div>

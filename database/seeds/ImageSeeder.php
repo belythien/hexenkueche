@@ -51,7 +51,7 @@ class ImageSeeder extends Seeder {
         ] );
 
         DB::table( 'images' )->insert( [
-            'name'     => 'Flammkuchen',
+            'name'     => 'Flammkuchen Spezial',
             'filename' => 'flammkuchen.jpg'
         ] );
 
@@ -83,6 +83,26 @@ class ImageSeeder extends Seeder {
         DB::table( 'images' )->insert( [
             'name'     => 'Super-Food-Latte',
             'filename' => 'super-food-latte.jpg'
+        ] );
+
+        DB::table( 'images' )->insert( [
+            'name'     => 'Power-Wrap',
+            'filename' => 'power-wrap.jpg'
+        ] );
+
+        DB::table( 'images' )->insert( [
+            'name'     => 'Veggiemobil',
+            'filename' => 'veggiemobil.jpg'
+        ] );
+
+        DB::table( 'images' )->insert( [
+            'name'     => 'Bar',
+            'filename' => 'bar.jpg'
+        ] );
+
+        DB::table( 'images' )->insert( [
+            'name'     => 'Außen im Dunkeln',
+            'filename' => 'aussen.jpg'
         ] );
     }
 }
