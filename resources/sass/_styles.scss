@@ -17,6 +17,7 @@ body {
 
 main a {
     color: $green;
+    font-weight: bold;
 }
 
 main a:hover, main a:focus {
@@ -28,7 +29,7 @@ main p {
 }
 
 div.welcome {
-    background: url('/img/welcome.png') no-repeat center center;
+    background: url('/img/welcome2.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
@@ -92,7 +93,7 @@ nav#navigation {
 
 #navigation a.nav-link {
     color: $red;
-    padding: 0 25px;
+    padding: 0 15px;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: .1rem;

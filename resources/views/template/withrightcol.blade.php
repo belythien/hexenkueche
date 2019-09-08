@@ -5,7 +5,8 @@
     <div class="col-xl-3 col-lg-4">
         @foreach($page->images as $image)
             <a href="{{ route('image.show', [$image->id]) }}">
-                <img src="/storage/img/{{$image->filename}}" class="img-thumbnail mb-3" />
+                <img src="/storage/img/{{$image->filename}}" class="img-thumbnail mb-3" title="{{ $image->name  }}"
+                />
             </a>
         @endforeach
     </div>

@@ -66,6 +66,7 @@
                                                         <img
                                                             src="{{ asset('storage/img/' . $image->filename ) }}"
                                                             alt="" class="img-thumbnail my-2"
+                                                            title="{{ $image->name  }}"
                                                         />
                                                     </a>
                                                 @endforeach

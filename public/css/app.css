@@ -10668,6 +10668,7 @@ body {
 
 main a {
   color: #65b32c;
+  font-weight: bold;
 }
 
 main a:hover,
@@ -10680,7 +10681,7 @@ main p {
 }
 
 div.welcome {
-  background: url("/img/welcome.png") no-repeat center center;
+  background: url("/img/welcome2.png") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
@@ -10744,7 +10745,7 @@ nav#navigation {
 
 #navigation a.nav-link {
   color: #e2023e;
-  padding: 0 25px;
+  padding: 0 15px;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.1rem;

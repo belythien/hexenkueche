@@ -57,17 +57,17 @@ class ImageSeeder extends Seeder {
 
         DB::table( 'images' )->insert( [
             'name'     => 'Interieur',
-            'filename' => 'interieur_01.jpeg'
+            'filename' => 'interieur_01.jpg'
         ] );
 
         DB::table( 'images' )->insert( [
             'name'     => 'Interieur',
-            'filename' => 'interieur_02.jpeg'
+            'filename' => 'interieur_02.jpg'
         ] );
 
         DB::table( 'images' )->insert( [
             'name'     => 'Interieur',
-            'filename' => 'interieur_03.jpeg'
+            'filename' => 'interieur_03.jpg'
         ] );
 
         DB::table( 'images' )->insert( [

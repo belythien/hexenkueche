@@ -18,12 +18,12 @@ class PageSeeder extends Seeder {
             'content'    => '<h2>&Uuml;ber uns</h2>
 <p>Wir haben unsere Leidenschaft f&uuml;r Essen nicht erst seit der Er&ouml;ffnung dieses Lokals im M&auml;rz 2019 entdeckt. Die Hexenk&uuml;che ist die &ldquo;Heimat des Veggiemobil&rdquo;, das die Gaumen von Menschen &uuml;ber die Grenzen Hessens hinaus verw&ouml;hnt und eine Bereicherung f&uuml;r jeden darstellt, der ehrliche und vollwertige Alternativen zu fleischlastigen und fettigen Fertiggerichten sucht. Mit unserem Beitrag an pflanzlichen Leckereien wollen wir die Welt ein kleines bisschen besser machen.</p>
 <h2>Speisen</h2>
-<p>Auch wenn die Karte auf den ersten Blick nicht danach aussieht:<br />
+<p>Auch wenn die Karte auf den ersten Blick nicht danach aussieht:<br>
 Alle Saucen, Dips und Dressings sind frisch und selbst gemacht!! Dar&uuml;ber hinaus stammen auch unsere Patties unseres Champion- und Power-Burgers sowie die Falafel aus eigener Herstellung. Die Burgerbr&ouml;tchen, auch Buns genannt, stammen von einer befreundeten B&auml;ckerei, die diese exklusiv mit uns entwickelt hat und uns st&auml;ndig mit frischem Nachschub versorgt.</p>
 <h2>Einfach aber gut</h2>
 <p>Das bedeutet als Konsequenz f&uuml;r Sie, dass keine k&uuml;nstlichen Aromen oder Geschmacksverst&auml;rker enthalten und die Anzahl der Allergene auf ein Minimum reduziert sind. Jedoch kann es unter Umst&auml;nden mal etwas l&auml;nger dauern, da bei uns mit frischen Lebensmitteln gearbeitet wird! Wir bitten in diesem Fall um Ihr Verst&auml;ndnis!</p>
 <h2>Mehr als nur Trinken</h2>
-<p>Auch bei unseren Getr&auml;nken haben wir uns etwas einfallen lassen! So sind unsere Weine ausschlie&szlig;lich bio und vegan, d. h. mineralisch gekl&auml;rt. Die von uns ausgesuchten Weine kommen aus Spanien und &Ouml;sterreich und sind Bio und vegan. Die &ouml;sterreichischen Weine beziehen wir vom Weingut Gerald F&uuml;rnkranz aus dem &ouml;sterreichischen Weinviertel. Sie wurden mehrfach pr&auml;miert und besitzen einen Histamingehalt von unter 0,1 mg pro Liter.<br />
+<p>Auch bei unseren Getr&auml;nken haben wir uns etwas einfallen lassen! So sind unsere Weine ausschlie&szlig;lich bio und vegan, d. h. mineralisch gekl&auml;rt. Die von uns ausgesuchten Weine kommen aus Spanien und &Ouml;sterreich und sind Bio und vegan. Die &ouml;sterreichischen Weine beziehen wir vom Weingut Gerald F&uuml;rnkranz aus dem &ouml;sterreichischen Weinviertel. Sie wurden mehrfach pr&auml;miert und besitzen einen Histamingehalt von unter 0,1 mg pro Liter.<br>
 Auch bei unseren restlichen Getr&auml;nken haben wir darauf geachtet, Bio-Produkte zu verwenden, wenn m&ouml;glich aus fairem Anbau und in Glasflaschen statt in der &uuml;blichen PET.</p>
 <p>Wir freuen uns auf Ihren Besuch!</p>
 <p>Ihre Hexenk&uuml;che</p>
@@ -41,14 +41,27 @@ Auch bei unseren restlichen Getr&auml;nken haben wir darauf geachtet, Bio-Produk
         ] );
 
         DB::table( 'pages' )->insert( [
-            'slug'       => 'anfahrt',
-            'title'      => 'So finden Sie uns',
-            'menu_title' => 'Anfahrt',
-            'content'    => '<p>Besuchen Sie uns in der <br><strong>Goethestraße 2<br>
-                    65510 Idstein-Wörsdorf</strong>
-                    </p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.58894305102!2d8.253570615842166!3d50.24358381012987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bdb7d31032fd17%3A0x3391e97b21da569b!2sHexenk%C3%BCche!5e0!3m2!1sde!2sde!4v1566656329419!5m2!1sde!2sde" width="100%" height="550" frameborder="0" style="border:0;" allowfullscreen=""></iframe>',
-            'hotbox_id'  => 1,
+            'slug'       => 'lokal',
+            'title'      => 'Lokal',
+            'menu_title' => 'Lokal',
+            'content'    => '<div class="row">
+                              <div class="col-md-6">
+                               <h2>Öffnungszeiten</h2>
+                               <p>Di-Sa: 17 - 22 Uhr<br>
+                                  So: 15 - 22 Uhr<br>
+                                  Mo: <em>geschlossen</em>
+                               </p>
+                              </div>
+                              <div class="col-md-6">
+                               <h2>Anfahrt</h2>
+                               <p>Besuchen Sie uns in der <br>
+                                  <a href="https://goo.gl/maps/f38tBiEDKaeMk2GP6" target="_blank">Goethestraße 2<br>
+                                  65510 Idstein-Wörsdorf</a>
+                               </p>
+                              </div>
+                             </div>
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.58894305102!2d8.253570615842166!3d50.24358381012987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bdb7d31032fd17%3A0x3391e97b21da569b!2sHexenk%C3%BCche!5e0!3m2!1sde!2sde!4v1566656329419!5m2!1sde!2sde" width="100%" height="550" frameborder="0" style="border:0;" allowfullscreen=""></iframe>',
+            'hotbox_id'  => 2,
             'status'     => 1
         ] );
 
@@ -56,7 +69,7 @@ Auch bei unseren restlichen Getr&auml;nken haben wir darauf geachtet, Bio-Produk
             'slug'       => 'reservierung',
             'title'      => 'Gerne reservieren wir einen Tisch für Sie!',
             'menu_title' => 'Reservierung',
-            'content'    => '<p>Rufen Sie dazu einfach an unter <strong>06126 5049523</strong>.<br />
+            'content'    => '<p>Rufen Sie dazu einfach an unter <strong>06126 5049523</strong>.<br>
                             Reservierungen per Mail bekommen wir m&ouml;glicherweise zu sp&auml;t mit, weil wir viel zu sehr mit kochen besch&auml;ftigt sind :)</p>
                             <p>Unser Restaurant hat vier&nbsp;Bereiche: Bei gutem Wetter bietet sich der Au&szlig;enbereich mit unseren liebevoll gestalteten M&ouml;beln aus Euro-Paletten und Sonnenschirmen&nbsp;an. Innen bietet das Erdgeschoss&nbsp;Platz f&uuml;r etwa 15 Personen in der Sitzecke und 9 Sitze an der Theke. Im Obergeschoss haben wir zwei Ebenen, die teils individuell auf Ihre Bed&uuml;rnisse gestellt und abgetrennt werden k&ouml;nnen. Hier lassen sich auch gr&ouml;&szlig;ere Feiern oder geschlossene Gesellschaften, z. B. mit Buffet realisieren.</p>
                             <p>Bei uns ist Platz f&uuml;r die ganze Familie: Wir bieten eine Stillecke f&uuml;r frisch gebackene M&uuml;tter,&nbsp;Hochsitze f&uuml;r Kleinkinder und freuen uns auch &uuml;ber den Besuch von Hunden.</p>',
@@ -102,9 +115,9 @@ Auch bei unseren restlichen Getr&auml;nken haben wir darauf geachtet, Bio-Produk
             'title'      => 'Impressum',
             'menu_title' => 'Impressum',
             'content'    => '<p>Angaben gemäß § 5 TMG:</p>
-<p>Hexenküche<br />
-Birgit Jung
-Goethestraße 2<br />
+<p>Hexenküche<br>
+Birgit Jung<br>
+Goethestraße 2<br>
 65510 Idstein</p>
 <h3>Kontakt:</h3>
 <p>E-Mail: <a href="mailto:hexenkueche1@yahoo.com">hexenkueche1@yahoo.com</a></p>
@@ -170,11 +183,11 @@ Goethestraße 2<br />
 <h4>2. Name und Anschrift des für die Verarbeitung Verantwortlichen</h4>
 <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung, sonstiger in den Mitgliedstaaten der Europäischen Union geltenden Datenschutzgesetze und anderer Bestimmungen mit datenschutzrechtlichem Charakter ist die:</p>
 <p>Hexenküche</p>
-<p>Birgit Jung<br />
-Goethestraße 2<br />
-65510 Idstein<br />
-Deutschland<br />
-Tel.: 06126 5049523<br />
+<p>Birgit Jung<br>
+Goethestraße 2<br>
+65510 Idstein<br>
+Deutschland<br>
+Tel.: 06126 5049523<br>
 E-Mail: hexenkueche1@yahoo.com</p>
 <p>Website: hexenküche.org</p>
 <h4>3. Cookies</h4>
@@ -184,9 +197,9 @@ E-Mail: hexenkueche1@yahoo.com</p>
 <p>Mittels eines Cookies können die Informationen und Angebote auf unserer Internetseite im Sinne des Benutzers optimiert werden. Cookies ermöglichen uns, wie bereits erwähnt, die Benutzer unserer Internetseite wiederzuerkennen. Zweck dieser Wiedererkennung ist es, den Nutzern die Verwendung unserer Internetseite zu erleichtern. Der Benutzer einer Internetseite, die Cookies verwendet, muss beispielsweise nicht bei jedem Besuch der Internetseite erneut seine Zugangsdaten eingeben, weil dies von der Internetseite und dem auf dem Computersystem des Benutzers abgelegten Cookie übernommen wird. Ein weiteres Beispiel ist das Cookie eines Warenkorbes im Online-Shop. Der Online-Shop merkt sich die Artikel, die ein Kunde in den virtuellen Warenkorb gelegt hat, über ein Cookie.</p>
 <p>Die betroffene Person kann die Setzung von Cookies durch unsere Internetseite jederzeit mittels einer entsprechenden Einstellung des genutzten Internetbrowsers verhindern und damit der Setzung von Cookies dauerhaft widersprechen. Ferner können bereits gesetzte Cookies jederzeit über einen Internetbrowser oder andere Softwareprogramme gelöscht werden. Dies ist in allen gängigen Internetbrowsern möglich. Deaktiviert die betroffene Person die Setzung von Cookies in dem genutzten Internetbrowser, sind unter Umständen nicht alle Funktionen unserer Internetseite vollumfänglich nutzbar.</p>
 <p><strong>Verwendetete Cookies</strong></p>
-<p><em>hexenkuche_session</em><br />
+<p><em>hexenkuche_session</em><br>
 Dieses Cookie enthält die eindeutige ID der sog. <em>Session</em>. Es wird beim Schließen der Browser-Sitzung gelöscht.</p>
-<p><em>XSRF-Token</em><br />
+<p><em>XSRF-Token</em><br>
 XSRF (=Cross-Site-Request-Forgery). Durch dieses Token kann sichergestellt werden, dass ein Angreifer sich nicht der Session eines legitimen Nutzers bemächtigen kann, um schädliche HTTP-Anfragen auszuführen.</p>
 <h4>4. Erfassung von allgemeinen Daten und Informationen</h4>
 <p>Die Internetseite der Hexenküche erfasst mit jedem Aufruf der Internetseite durch eine betroffene Person oder ein automatisiertes System eine Reihe von allgemeinen Daten und Informationen. Diese allgemeinen Daten und Informationen werden in den Logfiles des Servers gespeichert. Erfasst werden können die (1) verwendeten Browsertypen und Versionen, (2) das vom zugreifenden System verwendete Betriebssystem, (3) die Internetseite, von welcher ein zugreifendes System auf unsere Internetseite gelangt (sogenannte Referrer), (4) die Unterwebseiten, welche über ein zugreifendes System auf unserer Internetseite angesteuert werden, (5) das Datum und die Uhrzeit eines Zugriffs auf die Internetseite, (6) eine Internet-Protokoll-Adresse (IP-Adresse), (7) der Internet-Service-Provider des zugreifenden Systems und (8) sonstige ähnliche Daten und Informationen, die der Gefahrenabwehr im Falle von Angriffen auf unsere informationstechnologischen Systeme dienen.</p>
@@ -266,15 +279,15 @@ XSRF (=Cross-Site-Request-Forgery). Durch dieses Token kann sichergestellt werde
 <p>Möchte die betroffene Person ihr Recht auf Widerruf einer Einwilligung geltend machen, kann sie sich hierzu jederzeit an einen Mitarbeiter des für die Verarbeitung Verantwortlichen wenden.</li>
 </ul>
 <h4>8. Rechtsgrundlage der Verarbeitung</h4>
-<p>Art. 6 I lit. a DS-GVO dient unserem Restaurant als Rechtsgrundlage für Verarbeitungsvorgänge, bei denen wir eine Einwilligung für einen bestimmten Verarbeitungszweck einholen. Ist die Verarbeitung personenbezogener Daten zur Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, erforderlich, wie dies beispielsweise bei Verarbeitungsvorgängen der Fall ist, die für eine Lieferung von Waren oder die Erbringung einer sonstigen Leistung oder Gegenleistung notwendig sind, so beruht die Verarbeitung auf Art. 6 I lit. b DS-GVO. Gleiches gilt für solche Verarbeitungsvorgänge die zur Durchführung vorvertraglicher Maßnahmen erforderlich sind, etwa in Fällen von Anfragen zur unseren Produkten oder Leistungen. Unterliegt unser Restaurant einer rechtlichen Verpflichtung durch welche eine Verarbeitung von personenbezogenen Daten erforderlich wird, wie beispielsweise zur Erfüllung steuerlicher Pflichten, so basiert die Verarbeitung auf Art. 6 I lit. c DS-GVO. In seltenen Fällen könnte die Verarbeitung von personenbezogenen Daten erforderlich werden, um lebenswichtige Interessen der betroffenen Person oder einer anderen natürlichen Person zu schützen. Dies wäre beispielsweise der Fall, wenn ein Besucher in unserem Betrieb verletzt werden würde und daraufhin sein Name, sein Alter, seine Krankenkassendaten oder sonstige lebenswichtige Informationen an einen Arzt, ein Krankenhaus oder sonstige Dritte weitergegeben werden müssten. Dann würde die Verarbeitung auf Art. 6 I lit. d DS-GVO beruhen.<br />
+<p>Art. 6 I lit. a DS-GVO dient unserem Restaurant als Rechtsgrundlage für Verarbeitungsvorgänge, bei denen wir eine Einwilligung für einen bestimmten Verarbeitungszweck einholen. Ist die Verarbeitung personenbezogener Daten zur Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, erforderlich, wie dies beispielsweise bei Verarbeitungsvorgängen der Fall ist, die für eine Lieferung von Waren oder die Erbringung einer sonstigen Leistung oder Gegenleistung notwendig sind, so beruht die Verarbeitung auf Art. 6 I lit. b DS-GVO. Gleiches gilt für solche Verarbeitungsvorgänge die zur Durchführung vorvertraglicher Maßnahmen erforderlich sind, etwa in Fällen von Anfragen zur unseren Produkten oder Leistungen. Unterliegt unser Restaurant einer rechtlichen Verpflichtung durch welche eine Verarbeitung von personenbezogenen Daten erforderlich wird, wie beispielsweise zur Erfüllung steuerlicher Pflichten, so basiert die Verarbeitung auf Art. 6 I lit. c DS-GVO. In seltenen Fällen könnte die Verarbeitung von personenbezogenen Daten erforderlich werden, um lebenswichtige Interessen der betroffenen Person oder einer anderen natürlichen Person zu schützen. Dies wäre beispielsweise der Fall, wenn ein Besucher in unserem Betrieb verletzt werden würde und daraufhin sein Name, sein Alter, seine Krankenkassendaten oder sonstige lebenswichtige Informationen an einen Arzt, ein Krankenhaus oder sonstige Dritte weitergegeben werden müssten. Dann würde die Verarbeitung auf Art. 6 I lit. d DS-GVO beruhen.<br>
 Letztlich könnten Verarbeitungsvorgänge auf Art. 6 I lit. f DS-GVO beruhen. Auf dieser Rechtsgrundlage basieren Verarbeitungsvorgänge, die von keiner der vorgenannten Rechtsgrundlagen erfasst werden, wenn die Verarbeitung zur Wahrung eines berechtigten Interesses unseres Restaurants oder eines Dritten erforderlich ist, sofern die Interessen, Grundrechte und Grundfreiheiten des Betroffenen nicht überwiegen. Solche Verarbeitungsvorgänge sind uns insbesondere deshalb gestattet, weil sie durch den Europäischen Gesetzgeber besonders erwähnt wurden. Er vertrat insoweit die Auffassung, dass ein berechtigtes Interesse anzunehmen sein könnte, wenn die betroffene Person ein Kunde des Verantwortlichen ist (Erwägungsgrund 47 Satz 2 DS-GVO).</p>
 <h4>9. Berechtigte Interessen an der Verarbeitung, die von dem Verantwortlichen oder einem Dritten verfolgt werden</h4>
 <p>Basiert die Verarbeitung personenbezogener Daten auf Artikel 6 I lit. f DS-GVO ist unser berechtigtes Interesse die Durchführung unserer Geschäftstätigkeit zugunsten des Wohlergehens all unserer Mitarbeiter und unserer Anteilseigner.</p>
 <h4>10. Dauer, für die die personenbezogenen Daten gespeichert werden</h4>
 <p>Das Kriterium für die Dauer der Speicherung von personenbezogenen Daten ist die jeweilige gesetzliche Aufbewahrungsfrist. Nach Ablauf der Frist werden die entsprechenden Daten routinemäßig gelöscht, sofern sie nicht mehr zur Vertragserfüllung oder Vertragsanbahnung erforderlich sind.</p>
 <h4>11. Gesetzliche oder vertragliche Vorschriften zur Bereitstellung der personenbezogenen Daten; Erforderlichkeit für den Vertragsabschluss; Verpflichtung der betroffenen Person, die personenbezogenen Daten bereitzustellen; mögliche Folgen der Nichtbereitstellung</h4>
-<p>Wir klären Sie darüber auf, dass die Bereitstellung personenbezogener Daten zum Teil gesetzlich vorgeschrieben ist (z.B. Steuervorschriften) oder sich auch aus vertraglichen Regelungen (z.B. Angaben zum Vertragspartner) ergeben kann.<br />
-Mitunter kann es zu einem Vertragsschluss erforderlich sein, dass eine betroffene Person uns personenbezogene Daten zur Verfügung stellt, die in der Folge durch uns verarbeitet werden müssen. Die betroffene Person ist beispielsweise verpflichtet uns personenbezogene Daten bereitzustellen, wenn unser Restaurant mit ihr einen Vertrag abschließt. Eine Nichtbereitstellung der personenbezogenen Daten hätte zur Folge, dass der Vertrag mit dem Betroffenen nicht geschlossen werden könnte.<br />
+<p>Wir klären Sie darüber auf, dass die Bereitstellung personenbezogener Daten zum Teil gesetzlich vorgeschrieben ist (z.B. Steuervorschriften) oder sich auch aus vertraglichen Regelungen (z.B. Angaben zum Vertragspartner) ergeben kann.<br>
+Mitunter kann es zu einem Vertragsschluss erforderlich sein, dass eine betroffene Person uns personenbezogene Daten zur Verfügung stellt, die in der Folge durch uns verarbeitet werden müssen. Die betroffene Person ist beispielsweise verpflichtet uns personenbezogene Daten bereitzustellen, wenn unser Restaurant mit ihr einen Vertrag abschließt. Eine Nichtbereitstellung der personenbezogenen Daten hätte zur Folge, dass der Vertrag mit dem Betroffenen nicht geschlossen werden könnte.<br>
 Vor einer Bereitstellung personenbezogener Daten durch den Betroffenen muss sich der Betroffene an einen unserer Mitarbeiter wenden. Unser Mitarbeiter klärt den Betroffenen einzelfallbezogen darüber auf, ob die Bereitstellung der personenbezogenen Daten gesetzlich oder vertraglich vorgeschrieben oder für den Vertragsabschluss erforderlich ist, ob eine Verpflichtung besteht, die personenbezogenen Daten bereitzustellen, und welche Folgen die Nichtbereitstellung der personenbezogenen Daten hätte.</p>
 <h4>12. Bestehen einer automatisierten Entscheidungsfindung</h4>
 <p>Als verantwortungsbewusstes Restaurant verzichten wir auf eine automatische Entscheidungsfindung oder ein Profiling.</p>
