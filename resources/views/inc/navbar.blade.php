@@ -79,7 +79,7 @@
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                             >
-                                {{ __('Logout') }}
+                                <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

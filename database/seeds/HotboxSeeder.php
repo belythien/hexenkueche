@@ -12,7 +12,7 @@ class HotboxSeeder extends Seeder {
     public function run() {
         DB::table( 'hotboxes' )->insert( [
             'text'   => '<p>&Ouml;ffnungszeiten<br />Di-Sa: 17 - 22 Uhr<br />So: 15 - 22 Uhr</p>',
-            'url'    => '',
+            'url'    => 'lokal',
             'status' => 1
         ] );
 

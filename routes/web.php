@@ -22,7 +22,7 @@ Route::get( '/', function () {
     return view( 'welcome', compact( 'menus', 'hotbox' ) );
 } );
 
-Auth::routes();
+Auth::routes( [ 'register' => false ] );
 
 Route::get( '/speisekarte', function () {
     $page = Page::where( 'slug', 'speisekarte' )->first();
@@ -33,7 +33,7 @@ Route::get( '/speisekarte', function () {
     return view( 'menu', compact( 'categories', 'page', 'hotbox', 'menus', 'allergens' ) );
 } )->name( 'speisekarte' );
 
-Route::get( '/image/{id}', 'ImageController@show' )->name('image.show');
+Route::get( '/image/{id}', 'ImageController@show' )->name( 'image.show' );
 
 Route::group( [ 'middleware' => 'auth' ], function () {
     Route::resource( '/menuitem', 'MenuItemController' );
