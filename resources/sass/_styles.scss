@@ -29,7 +29,9 @@ main p {
 }
 
 div.welcome {
-    background: url('/img/welcome2.png') no-repeat center center;
+    //background: url('/img/welcome2.png') no-repeat center center;
+    //background: url('/img/x.svg') no-repeat center center;
+    background: url('/img/x.svg') no-repeat center center, url('/img/welcome2.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;

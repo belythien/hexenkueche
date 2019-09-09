@@ -79,7 +79,6 @@
 <div class="bg1"></div>
 <div class="bg2"></div>
 <div class="welcome flex-center position-ref full-height">
-
     <div class="content">
 
         <div class="title m-b-md">
