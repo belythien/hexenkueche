@@ -144,5 +144,11 @@ class ImageableSeeder extends Seeder {
             'imageable_id' => 43,
             'imageable_type' => 'App\MenuItem'
         ] );
+
+        DB::table( 'imageables' )->insert( [
+            'image_id'     => 20,
+            'imageable_id' => 10,
+            'imageable_type' => 'App\MenuItem'
+        ] );
     }
 }
