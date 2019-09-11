@@ -15,13 +15,19 @@ class UserSeeder extends Seeder {
         DB::table( 'users' )->insert( [
             'name'     => 'Basti',
             'email'    => 's.hoewer@gmail.com',
-            'password' => '$2y$10$Aq0wn/T/JIiqASO8HtLK/e8vpyI5hSjvHRYCnqCyXdYJyXlZwui8y',
+            'password' => bcrypt( '9O35cBEFTJ4p'),
         ] );
 
         DB::table( 'users' )->insert( [
             'name'     => 'Tastibasti',
             'email'    => 'tastibasti@gmail.com',
-            'password' => '$2y$10$Aq0wn/T/JIiqASO8HtLK/e8vpyI5hSjvHRYCnqCyXdYJyXlZwui8y',
+            'password' => bcrypt( 'b8h4WOFz9Bt5'),
+        ] );
+
+        DB::table( 'users' )->insert( [
+            'name'     => 'Birgit',
+            'email'    => 'hexenkueche1@yahoo.com',
+            'password' => bcrypt( 'IyS1EJ87AGa2'),
         ] );
     }
 }

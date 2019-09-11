@@ -120,7 +120,7 @@ class MenuItemSeeder extends Seeder {
         // Wraps
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Laxx-Wrap',
-            'description' => 'grüne Sauce, Blattsalat, Laxx, Mais, Möhren, rote Zwiebeln',
+            'description' => 'Senf-Dill-Sauce, Blattsalat, Laxx, Mais, Möhren, rote Zwiebeln',
             'sort'        => $sort,
             'category_id' => 6
         ] );
@@ -135,6 +135,13 @@ class MenuItemSeeder extends Seeder {
         DB::table( 'menu_items' )->insert( [
             'name'        => 'Falafel-Wrap',
             'description' => 'selbst gemachter Falafel, Mais, Tomaten, Gurken, Blattsalat, Hummus, Möhren, Tomaten-Chili-Sauce',
+            'sort'        => $sort,
+            'category_id' => 6
+        ] );
+        $sort += 10;
+        DB::table( 'menu_items' )->insert( [
+            'name'        => 'Jack-Wrap',
+            'description' => 'Pulled Jack in Barbecue-Sauce geschmort mit frischem Krautsalat, Salat, Aioli und Salatbeilage (Essig-Öl-Dressing)',
             'sort'        => $sort,
             'category_id' => 6
         ] );

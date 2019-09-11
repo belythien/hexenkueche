@@ -83,42 +83,60 @@ class AllergenMenuItemSeeder extends Seeder {
             'menu_item_id' => 18
         ] );
 
-        // Classic
+        // Jack-Wrap
         DB::table( 'allergen_menu_item' )->insert( [
             'allergen_id' => 1,
             'menu_item_id' => 19
         ] );
+        DB::table( 'allergen_menu_item' )->insert( [
+            'allergen_id' => 2,
+            'menu_item_id' => 19
+        ] );
+        DB::table( 'allergen_menu_item' )->insert( [
+            'allergen_id' => 6,
+            'menu_item_id' => 19
+        ] );
+        DB::table( 'allergen_menu_item' )->insert( [
+            'allergen_id' => 7,
+            'menu_item_id' => 19
+        ] );
 
-        // Italian
+        // Classic
         DB::table( 'allergen_menu_item' )->insert( [
             'allergen_id' => 1,
             'menu_item_id' => 20
         ] );
 
-        // Spezial
+        // Italian
         DB::table( 'allergen_menu_item' )->insert( [
             'allergen_id' => 1,
             'menu_item_id' => 21
         ] );
 
-        // Baklava
+        // Spezial
         DB::table( 'allergen_menu_item' )->insert( [
             'allergen_id' => 1,
             'menu_item_id' => 22
         ] );
+
+        // Baklava
+        DB::table( 'allergen_menu_item' )->insert( [
+            'allergen_id' => 1,
+            'menu_item_id' => 23
+        ] );
         DB::table( 'allergen_menu_item' )->insert( [
             'allergen_id' => 10,
-            'menu_item_id' => 22
+            'menu_item_id' => 23
         ] );
 
         // Bananen-Tiramisu
         DB::table( 'allergen_menu_item' )->insert( [
             'allergen_id' => 1,
-            'menu_item_id' => 23
+            'menu_item_id' => 24
         ] );
         DB::table( 'allergen_menu_item' )->insert( [
             'allergen_id' => 2,
-            'menu_item_id' => 23
+            'menu_item_id' => 24
         ] );
     }
 }
