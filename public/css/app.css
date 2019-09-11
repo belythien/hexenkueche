@@ -10999,3 +10999,8 @@ iframe,
   z-index: 10000;
 }
 
+.specials {
+  background: #d2efbc;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+

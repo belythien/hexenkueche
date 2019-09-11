@@ -63,7 +63,7 @@ class MenuItemController extends Controller {
 
         // get next sort
         $last_menu_item_of_this_category = Category::find( $category_id )->menuItems()->orderby( 'sort', 'desc' )->first();
-        $sort = $last_menu_item_of_this_category->sort + 5;
+        $sort = isset($last_menu_item_of_this_category) ? $last_menu_item_of_this_category->sort + 5 : 9999;
 
         $menuItem = new MenuItem;
         $menuItem->name = $request->input( 'name' );

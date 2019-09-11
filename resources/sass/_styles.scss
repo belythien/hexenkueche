@@ -347,3 +347,8 @@ iframe,
     transform: rotate(-10deg);
     z-index: 10000;
 }
+
+.specials {
+    background: lighten($green, 40%);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
