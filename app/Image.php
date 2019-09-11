@@ -25,7 +25,7 @@ class Image extends Model {
 
         $img_resize = ImageMaker::make( $request->file( 'image' )->getRealPath() );
         $img_resize->heighten( 1000 );
-        $img_resize->save( public_path( 'storage\\img\\' . $filenameWithExt ) );
+        $img_resize->save( public_path( 'storage/img/' . $filenameWithExt ) );
 
         $this->filename = $filenameWithExt;
         $this->name = '';
