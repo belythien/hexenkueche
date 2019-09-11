@@ -49,6 +49,7 @@
             background: #fff;
             box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
             padding: 3em;
+            position: relative;
         }
 
         .title img {
@@ -109,17 +110,16 @@
                         @endif
                     @endforeach
                 @endif
-                @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
-                    <div class="hotbox">
-                        @if(!empty($hotbox->url))
-                            <a href="{{ route('page', [$hotbox->url]) }}">{!! $hotbox->text !!}</a>
-                        @else
-                            {!! $hotbox->text !!}
-                        @endif
-                    </div>
-                @endif
             </div>
-
+            @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
+                <div class="hotbox">
+                    @if(!empty($hotbox->url))
+                        <a href="{{ route('page', [$hotbox->url]) }}">{!! $hotbox->text !!}</a>
+                    @else
+                        {!! $hotbox->text !!}
+                    @endif
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -10790,9 +10790,11 @@ a.footer-link-inactive,
   margin-left: 15px;
 }
 
-.title .links.with-hotbox {
-  padding-right: 230px;
-  position: relative;
+@media only screen and (min-width: 1200px) {
+  .title .links.with-hotbox {
+    padding-right: 230px;
+    position: relative;
+  }
 }
 
 .title .hotbox {
@@ -10805,10 +10807,31 @@ a.footer-link-inactive,
   outline: 10px solid #e2023e;
   padding: 10px;
   position: absolute;
-  top: 10px;
+  top: 180px;
   right: -65px;
   transform: rotate(-10deg);
   width: 300px;
+}
+
+@media only screen and (max-width: 1199px) {
+  ul.navbar-nav.ml-auto {
+    margin-top: 1em;
+  }
+
+  .welcome .hotbox {
+    position: static;
+    transform: none;
+    margin-top: 2em;
+    width: 100%;
+  }
+
+  .card-header {
+    padding: 0;
+  }
+
+  .card-body {
+    padding: 1.25rem 0;
+  }
 }
 
 .hotbox p {
