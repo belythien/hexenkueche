@@ -33,7 +33,14 @@
                             @foreach($categories as $category)
                                 @if($category->isLive() == 1)
                                     <div class="col-md-6">
-                                        <h2 class="category_name mt-2">{{ $category->name }}</h2>
+                                        <h2 class="category_name mt-2">
+                                            @auth
+                                                <a href="{{ route('category.edit', [ $category->id ]) }}"
+                                                   class="btn btn-success mr-1"
+                                                ><i class="fas fa-edit"></i></a>
+                                            @endauth
+                                            {{ $category->name }}
+                                        </h2>
                                         @if(isset($category->description))
                                             <p>{!! $category->description !!}</p>
                                         @endif
@@ -41,7 +48,13 @@
                                         @foreach($category->menuItems as $menuItem)
                                             @if($menuItem->isLive())
                                                 <div class="mb-4">
-                                                    <h3>{{ $menuItem->name }}@foreach($menuItem->allergens as $allergen)
+                                                    <h3>
+                                                        @auth
+                                                            <a href="{{ route('menuitem.edit', [ $menuItem->id ]) }}"
+                                                               class="btn btn-danger btn-sm mr-1"
+                                                            ><i class="fas fa-edit"></i></a>
+                                                        @endauth
+                                                        {{ $menuItem->name }}@foreach($menuItem->allergens as $allergen)
                                                             <sup
                                                                 class="allergen" title="{{$allergen->name}}"
                                                             >{{ $allergen->id }}</sup>@endforeach
