@@ -36,7 +36,7 @@
                                         <h2 class="category_name mt-2">
                                             @auth
                                                 <a href="{{ route('category.edit', [ $category->id ]) }}"
-                                                   class="btn btn-success mr-1"
+                                                   class="btn btn-success btn-sm mr-1"
                                                 ><i class="fas fa-edit"></i></a>
                                             @endauth
                                             {{ $category->name }}

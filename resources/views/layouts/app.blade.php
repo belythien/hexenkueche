@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} @if(isset($page) && $page->menu_title > '') » {{ $page->menu_title }}@endif</title>
 
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
 
