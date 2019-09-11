@@ -104,5 +104,10 @@ class ImageSeeder extends Seeder {
             'name'     => 'Außen im Dunkeln',
             'filename' => 'aussen.jpg'
         ] );
+
+        DB::table( 'images' )->insert( [
+            'name'     => 'Nacho-Trio',
+            'filename' => 'nacho-trio.jpg'
+        ] );
     }
 }
