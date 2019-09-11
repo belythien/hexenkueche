@@ -10980,3 +10980,22 @@ iframe,
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
+.menu_item_description {
+  position: relative;
+}
+
+.menu_item_not_available {
+  background: #e2023e;
+  border: 1px dashed #fff;
+  box-shadow: 14px 14px 10px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 14px;
+  outline: 5px solid #e2023e;
+  padding: 5px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  transform: rotate(-10deg);
+  z-index: 10000;
+}
+

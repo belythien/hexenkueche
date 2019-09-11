@@ -34,7 +34,14 @@
                 @endforeach
             </div>
             <hr class="strong-hr">
-
+            <div class="form-group">
+                <label for="status_active" class="badge badge-success">aktiv</label>
+                <input name="status" type="radio" value="1" id="status_active" checked="checked">
+                <label for="status_inactive" class="badge badge-danger">inaktiv</label>
+                <input name="status" type="radio" value="0" id="status_inactive">
+                <label for="status_not_available" class="badge badge-warning">zur Zeit nicht erhältlich</label>
+                <input name="status" type="radio" value="2" id="status_not_available">
+            </div>
             <div class="row">
                 <div class="form-group col-lg-6">
                     {{Form::label('publication', 'Anzeigen ab')}}

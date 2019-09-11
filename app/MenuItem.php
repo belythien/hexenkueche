@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model {
-    protected $fillable = [ 'name', 'description', 'category_id', 'sort', 'publication', 'expiration' ];
+    protected $fillable = [ 'name', 'description', 'category_id', 'sort', 'status', 'publication', 'expiration' ];
 
     public function category() {
         return $this->belongsTo( 'App\Category' );
@@ -24,7 +24,7 @@ class MenuItem extends Model {
     }
 
     public function isLive() {
-        if( $this->status == 1 ) {
+        if( $this->status >= 1 ) {
             if( $this->publication == '' || $this->publication <= date( 'Y-m-d' ) ) {
                 if( $this->expiration == '' || $this->expiration > date( 'Y-m-d' ) ) {
                     return 1;

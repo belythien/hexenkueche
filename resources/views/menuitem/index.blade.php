@@ -67,6 +67,11 @@
                                     {{ $menuItem->name }}@foreach($menuItem->allergens as $allergen)<sup
                                         class="allergen" title="{{$allergen->name}}"
                                     >{{ $allergen->id }}</sup>@endforeach
+                                    @if(!$menuItem->isLive())
+                                        <span class="badge badge-sm badge-danger">Inaktiv</span>
+                                    @elseif($menuItem->status == 2)
+                                        <span class="badge badge-sm badge-warning">Zur Zeit nicht erhältlich</span>
+                                    @endif
                                 </td>
                                 <td>
                                     @foreach( $menuItem->images as $image )

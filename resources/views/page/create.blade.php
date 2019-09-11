@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 {{Form::label('content', 'Inhalt')}}
-                {{Form::textarea('content', '', ['id' => 'text-ckeditor', 'name' => 'text-ckeditor', 'class' => 'form-control', 'placeholder' => 'Inhalt'])}}
+                {{Form::textarea('content', '', ['id' => 'text-ckeditor', 'class' => 'form-control', 'placeholder' => 'Inhalt'])}}
             </div>
             <div class="form-group">
                 {{Form::label('external_url', 'Weiterleitungs-URL')}}

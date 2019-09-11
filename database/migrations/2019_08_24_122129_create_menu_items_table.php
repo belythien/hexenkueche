@@ -17,6 +17,7 @@ class CreateMenuItemsTable extends Migration {
             $table->text( 'description' )->nullable();
             $table->integer( 'sort' )->nullable();
             $table->integer( 'category_id' )->nullable();
+            $table->integer('status')->default(1);
             $table->date( 'publication' )->nullable();
             $table->date( 'expiration' )->nullable();
             $table->timestamps();

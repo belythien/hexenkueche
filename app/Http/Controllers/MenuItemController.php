@@ -70,6 +70,7 @@ class MenuItemController extends Controller {
         $menuItem->description = $request->input( 'description' );
         $menuItem->category_id = $category_id;
         $menuItem->sort = $sort;
+        $menuItem->status = $request->input( 'status' );
         $menuItem->publication = $request->input( 'publication' );
         $menuItem->expiration = $request->input( 'expiration' );
         $menuItem->save();
@@ -151,6 +152,7 @@ class MenuItemController extends Controller {
             $menuItem->name = $request->input( 'name' );
             $menuItem->description = $request->input( 'description' );
             $menuItem->category_id = $category_id;
+            $menuItem->status = $request->input( 'status' );
             $menuItem->allergens()->sync( $allergens );
             $menuItem->publication = $request->input( 'publication' );
             $menuItem->expiration = $request->input( 'expiration' );
