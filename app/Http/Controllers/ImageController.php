@@ -62,8 +62,14 @@ class ImageController extends Controller {
      * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function edit( Image $image ) {
-        //
+    public function edit( $id ) {
+        $image = Image::find( $id );
+        if( !empty( $image ) ) {
+            $menus = Menu::all();
+            return view( 'image.edit', compact( 'image', 'menus' ) );
+        } else {
+            return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
+        }
     }
 
     /**
@@ -73,8 +79,20 @@ class ImageController extends Controller {
      * @param \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, Image $image ) {
-        //
+    public function update( Request $request, $id ) {
+        $image = Image::find( $id );
+        if( !empty( $image ) ) {
+            $this->validate( $request, [
+                'name' => 'required'
+            ] );
+
+            $image->name = $request->input( 'name' );
+            $image->save();
+
+            return redirect( '/image' )->with( 'success', 'Bilddaten bearbeitet' );
+        } else {
+            return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
+        }
     }
 
     /**

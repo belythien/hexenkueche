@@ -25,7 +25,8 @@
                     <tbody>
                         @foreach($images as $image)
                             <tr>
-                                <td>{{ $image->filename }}<br>
+                                <td><strong>{{ $image->name }}</strong><br>
+                                    {{ $image->filename }}<br>
                                     <img src="storage/img/{{ $image->filename }}" class="img-thumbnail" width="200" />
                                 </td>
                                 <td>
@@ -45,6 +46,9 @@
                                     {{Form::hidden('_method', 'DELETE')}}
                                     {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll das Bild wirklich gelöscht werden?")'])}}
                                     {!!Form::close()!!}
+                                    <a class="btn btn-sm btn-success float-right"
+                                       href="{{ route('image.edit', [$image->id]) }}"
+                                    ><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach
