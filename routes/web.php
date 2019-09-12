@@ -45,6 +45,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::post( '/category/{id}/up', 'CategoryController@moveUp' )->name( 'category_up' );
     Route::post( '/category/{id}/down', 'CategoryController@moveDown' )->name( 'category_down' );
 
+    Route::resource( '/allergen', 'AllergenController' );
+
     Route::resource( '/image', 'ImageController' );
 
     Route::resource( '/option', 'OptionController' );
