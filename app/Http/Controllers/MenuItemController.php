@@ -62,18 +62,19 @@ class MenuItemController extends Controller {
         $category_id = $request->input( 'category' )[ 0 ];
 
         // get next sort
-        $last_menu_item_of_this_category = Category::find( $category_id )->menuItems()->orderby( 'sort', 'desc' )->first();
-        $sort = isset($last_menu_item_of_this_category) ? $last_menu_item_of_this_category->sort + 5 : 9999;
+        $allergens = $request->input( 'allergen' );
 
         $menuItem = new MenuItem;
         $menuItem->name = $request->input( 'name' );
         $menuItem->description = $request->input( 'description' );
         $menuItem->category_id = $category_id;
-        $menuItem->sort = $sort;
+        $menuItem->sort = 99999;
         $menuItem->status = $request->input( 'status' );
         $menuItem->publication = $request->input( 'publication' );
         $menuItem->expiration = $request->input( 'expiration' );
         $menuItem->save();
+
+        $menuItem->allergens()->sync( $allergens );
 
         if( $request->hasFile( 'image' ) ) {
             $image = new Image;
@@ -165,23 +166,25 @@ class MenuItemController extends Controller {
             }
 
             $options = $request->input( 'option_id' );
-            $i = 0;
-            foreach( $options as $oid ) {
-                $option = Option::find( $oid );
-                if( empty( $request->input( 'option_name' )[ $i ] )
-                    && empty( $request->input( 'option_amount' )[ $i ] )
-                    && empty( $request->input( 'option_price' )[ $i ] ) ) {
-                    $option->delete();
-                } else {
-                    $option->name = $request->input( 'option_name' )[ $i ];
-                    $option->amount = $request->input( 'option_amount' )[ $i ];
+            if( !empty( $options ) ) {
+                $i = 0;
+                foreach( $options as $oid ) {
+                    $option = Option::find( $oid );
+                    if( empty( $request->input( 'option_name' )[ $i ] )
+                        && empty( $request->input( 'option_amount' )[ $i ] )
+                        && empty( $request->input( 'option_price' )[ $i ] ) ) {
+                        $option->delete();
+                    } else {
+                        $option->name = $request->input( 'option_name' )[ $i ];
+                        $option->amount = $request->input( 'option_amount' )[ $i ];
 
-                    $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
+                        $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
 
-                    $option->price = $price;
-                    $option->save();
+                        $option->price = $price;
+                        $option->save();
+                    }
+                    $i++;
                 }
-                $i++;
             }
 
             if( !empty( $request->input( 'option_name_new' ) )
@@ -195,7 +198,7 @@ class MenuItemController extends Controller {
                 $option->save();
                 $menuItem->options()->save( $option );
             }
-
+            $this->updateSort();
             return redirect( '/menuitem' )->with( 'success', 'Gericht aktualisiert' );
         } else {
             return redirect( '/menuitem' )->with( 'error', 'Gericht nicht gefunden' );
@@ -270,13 +273,14 @@ class MenuItemController extends Controller {
     }
 
     private function updateSort() {
-        $menuitems = MenuItem::orderby( 'sort' )->get();
-
-        $i = 10;
-        foreach( $menuitems as $menuitem ) {
-            $menuitem->sort = $i;
-            $menuitem->save();
-            $i += 10;
+        $categories = Category::orderby( 'sort' )->get();
+        foreach( $categories as $category ) {
+            $i = 10;
+            foreach( $category->menuitems as $menuitem ) {
+                $menuitem->sort = $category->sort * 100 + $i;
+                $menuitem->save();
+                $i += 10;
+            }
         }
     }
 

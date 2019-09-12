@@ -6,11 +6,16 @@
             <h1>{{ __('Kategorie bearbeiten') }}</h1>
         </div>
         <div class="card-body">
-
             {!! Form::open(['action' => [ 'CategoryController@update', $category->id ], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-            <div class="form-group">
-                {{Form::label('name', 'Name')}}
-                {{Form::text('name', $category->name, ['class' => 'form-control', 'placeholder' => 'Name'])}}
+            <div class="row form-group">
+                <div class="col-md-2 col-sm-3">
+                    {{Form::label('sort', 'Sortierwert')}}
+                    {{Form::text('sort', $category->sort, ['class' => 'form-control', 'placeholder' => 'Sortierwert'])}}
+                </div>
+                <div class="col-md-10 col-sm-9">
+                    {{Form::label('name', 'Name')}}
+                    {{Form::text('name', $category->name, ['class' => 'form-control', 'placeholder' => 'Name'])}}
+                </div>
             </div>
             <div class="form-group">
                 {{Form::label('description', 'Beschreibung')}}

@@ -8,9 +8,15 @@
         <div class="card-body">
 
             {!! Form::open([ 'action' => 'CategoryController@store', 'method' => 'POST' ]) !!}
-            <div class="form-group">
-                {{Form::label('name', 'Name')}}
-                {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
+            <div class="form-group row">
+                <div class="col-md-2 col-sm-3">
+                    {{Form::label('sort', 'Sortierwert')}}
+                    {{Form::text('sort', '', ['class' => 'form-control', 'placeholder' => 'Sortierwert'])}}
+                </div>
+                <div class="col-md-10 col-sm-9">
+                    {{Form::label('name', 'Name')}}
+                    {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
+                </div>
             </div>
             <div class="form-group">
                 {{Form::label('description', 'Beschreibung')}}

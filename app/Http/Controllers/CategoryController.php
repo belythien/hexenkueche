@@ -44,11 +44,15 @@ class CategoryController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'name' => 'required'
+            'name' => 'required',
+            'sort' => 'integer|nullable'
         ] );
 
-        // get next sort
-        $sort = DB::table( 'categories' )->max( 'sort' ) + 10;
+        if( empty( $request->input( 'sort' ) ) ) {
+            $sort = DB::table( 'categories' )->max( 'sort' ) + 10;
+        } else {
+            $sort = $request->input( 'sort' );
+        }
 
         // Create Category
         $category = new Category;
@@ -60,6 +64,8 @@ class CategoryController extends Controller {
         $category->expiration = $request->input( 'expiration' );
         //$category->user_id = auth()->user()->id;
         $category->save();
+
+        $this->updateSort();
 
         return redirect( '/menuitem' )->with( 'success', 'Kategorie angelegt' );
     }
@@ -94,16 +100,20 @@ class CategoryController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'name' => 'required'
+            'name' => 'required',
+            'sort' => 'integer'
         ] );
 
         $category = Category::find( $id );
         $category->name = $request->input( 'name' );
+        $category->sort = $request->input( 'sort' );
         $category->description = $request->input( 'description' );
         $category->status = $request->input( 'status' );
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
         $category->save();
+
+        $this->updateSort();
 
         return redirect( '/menuitem' )->with( 'success', 'Kategorie ' . $category->name . ' aktualisiert' );
     }
@@ -123,8 +133,12 @@ class CategoryController extends Controller {
         }
 
         $name = $category->name;
+        foreach( $category->menuitems as $menuitem ) {
+            $menuitem->delete();
+        }
 
         $category->delete();
+        $this->updateSort();
         return redirect( '/menuitem' )->with( 'success', 'Kategorie ' . $name . ' entfernt' );
     }
 
