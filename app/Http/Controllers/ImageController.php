@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Image;
 use App\Menu;
 use App\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as ImageMaker;
 
 class ImageController extends Controller {
     /**
@@ -64,9 +64,11 @@ class ImageController extends Controller {
      */
     public function edit( $id ) {
         $image = Image::find( $id );
+        $pages = Page::orderby( 'menu_title' )->get();
+        $categories = Category::orderby( 'sort' )->get();
         if( !empty( $image ) ) {
             $menus = Menu::all();
-            return view( 'image.edit', compact( 'image', 'menus' ) );
+            return view( 'image.edit', compact( 'image', 'pages', 'categories', 'menus' ) );
         } else {
             return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
         }
@@ -86,7 +88,12 @@ class ImageController extends Controller {
                 'name' => 'required'
             ] );
 
+            $pages = $request->input( 'page' );
+            $menuitems = $request->input( 'menuitem' );
+
             $image->name = $request->input( 'name' );
+            $image->pages()->sync( $pages );
+            $image->menuitems()->sync( $menuitems );
             $image->save();
 
             return redirect( '/image' )->with( 'success', 'Bilddaten bearbeitet' );
