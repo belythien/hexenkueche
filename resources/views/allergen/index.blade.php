@@ -19,7 +19,7 @@
                             <th scope="col">{{ __('ID') }}</th>
                             <th scope="col">{{ __('Name') }}</th>
                             <th scope="col">{{ __('Enthalten in') }}</th>
-                            <th scope="col"></th>
+                            <th scope="col" style="width:100px"></th>
                         </tr>
                     </thead>
                     <tbody>
