@@ -16,37 +16,48 @@
                         {{Form::label('name', 'Name')}}
                         {{Form::text('name', $image->name, ['class' => 'form-control', 'placeholder' => 'Name'])}}
                     </div>
-                    <h2>Seiten</h2>
-                    <div class="form-group row">
-                        @foreach($pages as $page)
-                            <div class="col-md-4">
-                                {{Form::checkbox('page[]', $page->id, (in_array($page->id, $image->pages->pluck('id')->toArray()) ? true : false )) }}
-                                {{Form::label('page', $page->menu_title)}}
-                            </div>
-                        @endforeach
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="form-group">
+                        {{Form::label('copyright', 'Copyright')}}
+                        {{Form::textarea('copyright', $image->copyright, ['class' => 'form-control', 'id' => 'text-ckeditor'])}}
                     </div>
                 </div>
             </div>
+            {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+            <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"
+                ></i> {{ __('Abbrechen') }}</a>
+            <hr class="strong-hr">
+            <h2>Seiten</h2>
+            <div class="form-group row">
+                @foreach($pages as $page)
+                    <div class="col-md-4">
+                        {{Form::checkbox('page[]', $page->id, (in_array($page->id, $image->pages->pluck('id')->toArray()) ? true : false )) }}
+                        {{Form::label('page', $page->menu_title)}}
+                    </div>
+                @endforeach
+            </div>
+            <hr class="strong-hr">
             <h2>Events</h2>
             <div class="form-group row">
                 @foreach($events as $event)
                     <div class="col-md-6">
                         {{Form::checkbox('event[]', $event->id, (in_array($event->id, $image->events->pluck('id')->toArray()) ? true : false )) }}
-                        {{Form::label('event', date('d.m.Y', strtotime($event->date)) . ' ' . $event->name)}}
+                        @if(!empty($event->date))
+                            {{Form::label('event', date('d.m.Y', strtotime($event->date)) . ' ' . $event->name)}}
+                        @else
+                            {{Form::label('event', $event->name)}}
+                        @endif
                     </div>
                 @endforeach
             </div>
-            <div class="row mb-4">
-                <div class="col-12">
-                    {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
-                    <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"
-                        ></i> {{ __('Abbrechen') }}</a>
-                </div>
-            </div>
+            <hr class="strong-hr">
             <h2>Gerichte/Getränke</h2>
             <div class="form-group">
                 @foreach($categories as $category)
-                    <h3>{{ $category->name }}</h3>
+                    <h3 class="mt-2">{{ $category->name }}</h3>
                     <div class="row">
                         @foreach($category->menuitems as $menuitem)
                             <div class="col-md-6">

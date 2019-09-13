@@ -6,10 +6,10 @@
             <h1>{{ __('Bilder verwalten') }}</h1>
         </div>
         <div class="card-body">
-{{--            <div class="text-right">--}}
-{{--                <a href="{{ route('image.create') }}" class="btn btn-danger"><i class="fas fa-upload"--}}
-{{--                    ></i> {{ __('Bild hochladen' ) }}</a>--}}
-{{--            </div>--}}
+            {{--            <div class="text-right">--}}
+            {{--                <a href="{{ route('image.create') }}" class="btn btn-danger"><i class="fas fa-upload"--}}
+            {{--                    ></i> {{ __('Bild hochladen' ) }}</a>--}}
+            {{--            </div>--}}
             @if(sizeof($images) == 0)
                 <em>{{ __('Es sind noch keine Bilder angelegt') }}</em>
             @else
@@ -28,7 +28,10 @@
                             <tr>
                                 <td><strong>{{ $image->name }}</strong><br>
                                     {{ $image->filename }}<br>
-                                    <img src="storage/img/{{ $image->filename }}" class="img-thumbnail" width="200" />
+                                    <img src="storage/img/{{ $image->filename }}" class="img-thumbnail mb-3" width="200" />
+                                    @if(!empty($image->copyright))
+                                        {!! $image->copyright !!}
+                                    @endif
                                 </td>
                                 <td>
                                     @foreach($image->menuitems as $menuitem)

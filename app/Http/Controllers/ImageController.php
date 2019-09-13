@@ -95,6 +95,7 @@ class ImageController extends Controller {
             $menuitems = $request->input( 'menuitem' );
 
             $image->name = $request->input( 'name' );
+            $image->copyright = $request->input( 'copyright' );
             $image->pages()->sync( $pages );
             $image->events()->sync( $events );
             $image->menuitems()->sync( $menuitems );
