@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h1>{{ __('Allergene bearbeiten') }}</h1>
+            <h1>{{ __('Allergene') }}</h1>
         </div>
         <div class="card-body">
             <div class="text-right">
@@ -41,7 +41,7 @@
                                     ><i class="fas fa-edit"></i></a>
                                     {!!Form::open(['action' => ['AllergenController@destroy', $allergen->id], 'method' => 'POST', 'class' => 'float-right'])!!}
                                     {{Form::hidden('_method', 'DELETE')}}
-                                    {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll ' . $allergen->name . ' wirklich gelöscht werden?")'])}}
+                                    {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("' . __('remove.allergen', ['allergen'=> $allergen->name]) . '")'])}}
                                     {!!Form::close()!!}
                                 </td>
                             </tr>

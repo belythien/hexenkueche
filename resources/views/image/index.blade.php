@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h1>{{ __('Bilder verwalten') }}</h1>
+            <h1>{{ __('Bilder') }}</h1>
         </div>
         <div class="card-body">
             {{--            <div class="text-right">--}}
@@ -17,9 +17,9 @@
                     <thead>
                         <tr>
                             <th scope="col" width="260">{{ __('Bild') }}</th>
-                            <th scope="col">Gerichte/Getränke</th>
-                            <th scope="col">Seiten</th>
-                            <th scope="col">Events</th>
+                            <th scope="col">{{__('Gerichte/Getränke')}}</th>
+                            <th scope="col">{{__('Seiten')}}</th>
+                            <th scope="col">{{__('Events')}}</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>

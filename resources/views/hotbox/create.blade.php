@@ -25,14 +25,14 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     {{Form::label('publication', 'Anzeigen ab (optional)')}}
-                    {{Form::date('publication', '', ['class' => 'form-control', 'placeholder' => 'Anzeigen ab'])}}
+                    {{Form::date('publication', '', ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group col-md-6">
                     {{Form::label('expiration', 'Anzeigen bis (optional)')}}
-                    {{Form::date('expiration', '', ['class' => 'form-control', 'placeholder' => 'Anzeigen bis'])}}
+                    {{Form::date('expiration', '', ['class' => 'form-control'])}}
                 </div>
             </div>
-            {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}
+            {{Form::button('<i class="fas fa-save"></i> ' . __('Speichern'), ['class'=>'btn btn-danger', 'type' => 'submit'])}}
             <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"
                 ></i> {{ __('Abbrechen') }}</a>
             {!! Form::close() !!}

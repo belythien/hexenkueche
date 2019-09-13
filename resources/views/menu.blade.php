@@ -64,7 +64,7 @@
                                                         </h3>
                                                         <p class="menu_item_description">
                                                             @if($menuItem->status == 2)
-                                                                <span class="menu_item_not_available">Zur Zeit leider nicht erhältlich</span>
+                                                                <span class="menu_item_not_available">{{ __('Zur Zeit leider nicht erhältlich') }}</span>
                                                             @endif
                                                             {!! $menuItem->description !!}
                                                         </p>

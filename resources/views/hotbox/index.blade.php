@@ -72,8 +72,8 @@
                                 </td>
                                 <td>
                                     {!!Form::open(['action' => ['HotboxController@destroy', $hotbox->id], 'method' => 'POST', 'class' => 'float-right'])!!}
-                                       {{Form::hidden('_method', 'DELETE')}}
-                                        {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll Hotbox ' . $hotbox->id . ' wirklich gelöscht werden?")'])}}
+                                    {{Form::hidden('_method', 'DELETE')}}
+                                    {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("' . __('remove.hotbox', ['hotbox' => $hotbox->id]) . '")'])}}
                                     {!!Form::close()!!}
                                     <a class="btn btn-sm btn-success float-right"
                                        href="{{ route('hotbox.edit', [$hotbox->id]) }}"

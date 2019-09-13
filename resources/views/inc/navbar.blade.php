@@ -47,8 +47,19 @@
                         @endif
                     @endforeach
                 @endif
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                        >
+                            {!! language()->flag() !!} <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    @foreach (language()->allowed() as $code => $name)
+                        <a class="dropdown-item" href="{{ language()->back($code) }}">{{ $name }}</a>
+                    @endforeach
+                        </div>
+                    </li>
             <!-- Authentication Links -->
-
                 @auth
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

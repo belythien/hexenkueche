@@ -18,7 +18,7 @@
                     <h2 class="float-left">
                         {{ $category->sort / 10 }}) {{ $category->name }}
                         @if( $category->status == 0 )
-                            <span class="badge badge-danger">{{ __('Inaktiv') }}</span>
+                            <span class="badge badge-danger">{{ __('inaktiv') }}</span>
                         @else
                             @if( $category->publication && $category->expiration )
                                 <span
@@ -68,9 +68,9 @@
                                         class="allergen" title="{{$allergen->name}}"
                                     >{{ $allergen->id }}</sup>@endforeach
                                     @if(!$menuItem->isLive())
-                                        <span class="badge badge-sm badge-danger">Inaktiv</span>
+                                        <span class="badge badge-sm badge-danger">{{ __('inaktiv') }}</span>
                                     @elseif($menuItem->status == 2)
-                                        <span class="badge badge-sm badge-warning">Zur Zeit nicht erhältlich</span>
+                                        <span class="badge badge-sm badge-warning">{{ __('Zur Zeit nicht erhältlich') }}</span>
                                     @endif
                                 </td>
                                 <td>
@@ -82,7 +82,7 @@
                                             />
                                             {!!Form::open(['action' => ['MenuItemController@removeImage', $menuItem->id, $image->id], 'method' => 'POST', 'class' => 'float-right'])!!}
                                             {{Form::hidden('_method', 'DELETE')}}
-                                            {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-danger btn-sm', 'type' => 'submit', 'onclick' => 'return confirm("Soll das Bild wirklich entfernt werden?")'])}}
+                                            {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-danger btn-sm', 'type' => 'submit', 'onclick' => 'return confirm("' . __('Soll das Bild wirklich entfernt werden?') . '")'])}}
                                             {!!Form::close()!!}
                                         </div>
                                     @endforeach
