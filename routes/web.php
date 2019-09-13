@@ -12,6 +12,7 @@
 */
 
 use App\Allergen;
+use App\Event;
 use App\Hotbox;
 use App\Menu;
 use App\Page;
@@ -33,6 +34,13 @@ Route::get( '/speisekarte', function () {
     return view( 'menu', compact( 'categories', 'page', 'hotbox', 'menus', 'allergens' ) );
 } )->name( 'speisekarte' );
 
+Route::get( '/events', function () {
+    $page = Page::where( 'slug', 'events' )->first();
+    $events = Event::orderby( 'date', 'desc' )->get();
+    $menus = Menu::all();
+    return view( 'events', compact( 'page', 'events', 'menus' ) );
+} )->name( 'events' );
+
 Route::get( '/image/{id}', 'ImageController@show' )->name( 'image.show' );
 
 Route::group( [ 'middleware' => 'auth' ], function () {
@@ -44,6 +52,8 @@ Route::group( [ 'middleware' => 'auth' ], function () {
     Route::resource( '/category', 'CategoryController' );
     Route::post( '/category/{id}/up', 'CategoryController@moveUp' )->name( 'category_up' );
     Route::post( '/category/{id}/down', 'CategoryController@moveDown' )->name( 'category_down' );
+
+    Route::resource( '/event', 'EventController' );
 
     Route::resource( '/allergen', 'AllergenController' );
 

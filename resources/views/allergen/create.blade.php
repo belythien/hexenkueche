@@ -6,7 +6,6 @@
             <h1>{{ __('Allergen anlegen') }}</h1>
         </div>
         <div class="card-body">
-
             {!! Form::open([ 'action' => 'AllergenController@store', 'method' => 'POST' ]) !!}
             <div class="form-group">
                 {{Form::label('name', 'Name')}}

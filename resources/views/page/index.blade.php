@@ -19,7 +19,7 @@
                         <th scope="col">{{ __('Status') }}</th>
                         <th scope="col">{{ __('Anzeigen ab') }}</th>
                         <th scope="col">{{ __('Anzeigen bis') }}</th>
-                        <th scope="col"></th>
+                        <th scope="col" style="width:100px;"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,6 +80,10 @@
                                 <a class="btn btn-sm btn-success float-right"
                                    href="{{ route('page.edit', [$page->id]) }}"
                                 ><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-sm btn-outline-success float-right"
+                                   href="{{ route('page', [$page->slug]) }}"
+                                ><i class="fas fa-eye"></i></a>
+
                             </td>
                         </tr>
                     @endforeach

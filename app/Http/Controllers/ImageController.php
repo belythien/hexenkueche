@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Event;
 use App\Image;
 use App\Menu;
 use App\Page;
@@ -65,10 +66,11 @@ class ImageController extends Controller {
     public function edit( $id ) {
         $image = Image::find( $id );
         $pages = Page::orderby( 'menu_title' )->get();
+        $events = Event::orderby( 'date', 'desc' )->get();
         $categories = Category::orderby( 'sort' )->get();
         if( !empty( $image ) ) {
             $menus = Menu::all();
-            return view( 'image.edit', compact( 'image', 'pages', 'categories', 'menus' ) );
+            return view( 'image.edit', compact( 'image', 'pages', 'categories', 'events', 'menus' ) );
         } else {
             return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
         }
@@ -89,10 +91,12 @@ class ImageController extends Controller {
             ] );
 
             $pages = $request->input( 'page' );
+            $events = $request->input( 'event' );
             $menuitems = $request->input( 'menuitem' );
 
             $image->name = $request->input( 'name' );
             $image->pages()->sync( $pages );
+            $image->events()->sync( $events );
             $image->menuitems()->sync( $menuitems );
             $image->save();
 

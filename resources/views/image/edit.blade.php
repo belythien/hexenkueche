@@ -27,6 +27,15 @@
                     </div>
                 </div>
             </div>
+            <h2>Events</h2>
+            <div class="form-group row">
+                @foreach($events as $event)
+                    <div class="col-md-6">
+                        {{Form::checkbox('event[]', $event->id, (in_array($event->id, $image->events->pluck('id')->toArray()) ? true : false )) }}
+                        {{Form::label('event', date('d.m.Y', strtotime($event->date)) . ' ' . $event->name)}}
+                    </div>
+                @endforeach
+            </div>
             <div class="row mb-4">
                 <div class="col-12">
                     {{Form::button('<i class="fas fa-save"></i> Speichern', ['class'=>'btn btn-danger', 'type' => 'submit'])}}

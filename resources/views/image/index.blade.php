@@ -19,6 +19,7 @@
                             <th scope="col" width="260">{{ __('Bild') }}</th>
                             <th scope="col">Gerichte/Getränke</th>
                             <th scope="col">Seiten</th>
+                            <th scope="col">Events</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -38,6 +39,13 @@
                                     @foreach($image->pages as $page)
                                         <div>
                                             <a href="{{ '/' . $page->slug }}">{{ $page->menu_title }}</a>
+                                        </div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($image->events as $event)
+                                        <div>
+                                            <div>{{ $event->name }}</div>
                                         </div>
                                     @endforeach
                                 </td>

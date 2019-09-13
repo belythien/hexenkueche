@@ -64,6 +64,9 @@
                             <a class="dropdown-item" href="{{ route('page.index') }}" class="d-block"
                             ><i class="fas fa-file-alt"></i> {{ __('Seiten') }}</a>
 
+                            <a class="dropdown-item" href="{{ route('event.index') }}" class="d-block"
+                            ><i class="far fa-calendar-alt"></i> {{ __('Events') }}</a>
+
                             <a class="dropdown-item" href="{{ route('allergen.index') }}" class="d-block"
                             ><i class="fas fa-allergies"></i> {{ __('Allergene') }}</a>
 

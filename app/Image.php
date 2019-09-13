@@ -17,6 +17,10 @@ class Image extends Model {
         return $this->morphedByMany( 'App\MenuItem', 'imageable' );
     }
 
+    public function events() {
+        return $this->morphedByMany( 'App\Event', 'imageable' );
+    }
+
     public function upload( Request $request ) {
         $filenameWithExt = $request->file( 'image' )->getClientOriginalName();
 //        $filename = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
