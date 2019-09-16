@@ -2,11 +2,16 @@
 
 namespace App;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model {
 
-    protected $fillable = [ 'path', 'title', 'content', 'status', 'hotbox_id', 'template', 'publication', 'expiration' ];
+    use Translatable;
+
+    public    $translatedAttributes = [ 'title', 'menu_title', 'content' ];
+    protected $fillable             = [ 'slug', 'status', 'hotbox_id', 'template', 'publication', 'expiration' ];
 
     public function menu() {
         return $this->belongsToMany( 'App\Menu' );

@@ -6,29 +6,31 @@
             <h1>{{ __('Seite anlegen') }}</h1>
         </div>
         <div class="card-body">
-
             {!! Form::open([ 'action' => 'PageController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
-            <div class="row">
-                <div class="form-group col-md-5">
-                    {{Form::label('menu_title', __('Titel (kurz)'))}}
-                    {{Form::text('menu_title', '', ['class' => 'form-control', 'placeholder' => __('Titel (kurz)')])}}
-                    <p class="my-1 admin_info_text">{{__('Für Anzeige in der Navigation')}}</p>
-                </div>
-                <div class="form-group col-md-7">
-                    {{Form::label('slug', 'Slug')}}
-                    {{Form::text('slug', '', ['class' => 'form-control', 'placeholder' => 'slug'])}}
-                    <p class="my-1 admin_info_text">{{__('Kurzform des Titels für die URL. Nur Kleinbuchstaben. Kann nachträglich nicht mehr geändert werden.')}}</p>
-                </div>
-            </div>
             <div class="form-group">
-                {{Form::label('title', __('Titel'))}}
-                {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => __('Titel')])}}
-                <p class="my-1 admin_info_text">{{__('Für Anzeige auf der Seite')}}</p>
+                {{Form::label('slug', 'Slug')}}
+                {{Form::text('slug', '', ['class' => 'form-control', 'placeholder' => 'slug'])}}
+                <p class="my-1 admin_info_text">{{__('Kurzform des Titels für die URL. Nur Kleinbuchstaben. Kann nachträglich nicht mehr geändert werden.')}}</p>
             </div>
-            <div class="form-group">
-                {{Form::label('content', __('Inhalt'))}}
-                {{Form::textarea('content', '', ['id' => 'text-ckeditor', 'class' => 'form-control'])}}
-            </div>
+            @foreach(language()->allowed() as $code => $language)
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        {{Form::label('menu_title[' . $code . ']', __('Titel (kurz)') . ' ' . __($language))}}
+                        {{Form::text('menu_title[' . $code . ']', '', ['class' => 'form-control', 'placeholder' => __('Titel (kurz)') . ' ' . __($language)])}}
+                        <p class="my-1 admin_info_text">{{__('Für Anzeige in der Navigation')}}</p>
+                    </div>
+                    <div class="form-group col-md-8">
+                        {{Form::label('title[' . $code . ']', __('Titel') . ' ' . __($language))}}
+                        {{Form::text('title[' . $code . ']', '', ['class' => 'form-control', 'placeholder' => __('Titel') . ' ' . __($language)])}}
+                        <p class="my-1 admin_info_text">{{__('Für Anzeige auf der Seite')}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{Form::label('content[' . $code . ']', __('Inhalt') . ' ' . __($language))}}
+                    {{Form::textarea('content[' . $code . ']', '', ['class' => 'text-ckeditor form-control'])}}
+                </div>
+            @endforeach
+
             <div class="form-group">
                 {{Form::label('external_url', __('Weiterleitungs-URL'))}}
                 {{Form::text('external_url', '', ['class' => 'form-control', 'placeholder' => __('z.B.') . ' https://www.facebook.com/Hexenküche-2291286144436000/'])}}

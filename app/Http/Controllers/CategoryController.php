@@ -44,8 +44,8 @@ class CategoryController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'name' => 'required',
-            'sort' => 'integer|nullable'
+            'name.de' => 'required',
+            'sort'    => 'integer|nullable'
         ] );
 
         if( empty( $request->input( 'sort' ) ) ) {
@@ -56,8 +56,12 @@ class CategoryController extends Controller {
 
         // Create Category
         $category = new Category;
-        $category->name = $request->input( 'name' );
-        $category->description = $request->input( 'description' );
+        foreach( $request->input( 'name' ) as $locale => $name ) {
+            $category->translateOrNew( $locale )->name = $name;
+        }
+        foreach( $request->input( 'description' ) as $locale => $description ) {
+            $category->translateOrNew( $locale )->description = $description;
+        }
         $category->sort = $sort;
         $category->status = $request->input( 'status' );
         $category->publication = $request->input( 'publication' );
@@ -67,7 +71,7 @@ class CategoryController extends Controller {
 
         $this->updateSort();
 
-        return redirect( '/menuitem' )->with( 'success', 'Kategorie angelegt' );
+        return redirect( '/menuitem' )->with( 'success', __( 'Kategorie angelegt' ) );
     }
 
     /**
@@ -100,14 +104,18 @@ class CategoryController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'name' => 'required',
-            'sort' => 'integer'
+            'name.de' => 'required',
+            'sort'    => 'integer'
         ] );
 
         $category = Category::find( $id );
-        $category->name = $request->input( 'name' );
+        foreach( $request->input( 'name' ) as $locale => $name ) {
+            $category->translateOrNew( $locale )->name = $name;
+        }
+        foreach( $request->input( 'description' ) as $locale => $description ) {
+            $category->translateOrNew( $locale )->description = $description;
+        }
         $category->sort = $request->input( 'sort' );
-        $category->description = $request->input( 'description' );
         $category->status = $request->input( 'status' );
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
@@ -115,7 +123,7 @@ class CategoryController extends Controller {
 
         $this->updateSort();
 
-        return redirect( '/menuitem' )->with( 'success', 'Kategorie ' . $category->name . ' aktualisiert' );
+        return redirect( '/menuitem' )->with( 'success', __( 'Kategorie aktualisiert' ) );
     }
 
     /**
@@ -129,7 +137,7 @@ class CategoryController extends Controller {
 
         //Check if post exists before deleting
         if( !isset( $category ) ) {
-            return redirect( '/menuitem' )->with( 'error', 'Kategorie nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Kategorie nicht gefunden' ) );
         }
 
         $name = $category->name;
@@ -139,7 +147,7 @@ class CategoryController extends Controller {
 
         $category->delete();
         $this->updateSort();
-        return redirect( '/menuitem' )->with( 'success', 'Kategorie ' . $name . ' entfernt' );
+        return redirect( '/menuitem' )->with( 'success', __( 'Kategorie :category entfernt', [ 'category' => $name ] ) );
     }
 
     public function moveUp( $id ) {
@@ -147,7 +155,7 @@ class CategoryController extends Controller {
 
         //Check if Category exists
         if( !isset( $category ) ) {
-            return redirect( '/menuitem' )->with( 'error', 'Kategorie nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Kategorie nicht gefunden' ) );
         }
 
         if( $category->sort > 10 ) {
@@ -155,9 +163,9 @@ class CategoryController extends Controller {
             $category->save();
             $this->updateSort();
 
-            return redirect( '/menuitem' )->with( 'success', 'Kategorie <strong>' . $category->name . '</strong> nach oben verschoben' );
+            return redirect( '/menuitem' )->with( 'success', __( 'Kategorie :category nach oben verschoben', [ 'category' => $category->name ] ) );
         } else {
-            return redirect( '/menuitem' )->with( 'error', 'Weiter hoch geht\'s nicht...' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Weiter hoch geht\'s nicht...' ) );
         }
     }
 
@@ -166,7 +174,7 @@ class CategoryController extends Controller {
 
         //Check if Category exists
         if( !isset( $category ) ) {
-            return redirect( '/menuitem' )->with( 'error', 'Kategorie nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Kategorie nicht gefunden' ) );
         }
 
         $max_sort = DB::table( 'categories' )->max( 'sort' );
@@ -176,9 +184,9 @@ class CategoryController extends Controller {
             $category->save();
             $this->updateSort();
 
-            return redirect( '/menuitem' )->with( 'success', 'Kategorie <strong>' . $category->name . '</strong> nach unten verschoben' );
+            return redirect( '/menuitem' )->with( 'success', __( 'Kategorie :category nach unten verschoben', [ 'category' => $category->name ] ) );
         } else {
-            return redirect( '/menuitem' )->with( 'error', 'Weiter runter geht\'s nicht...' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Weiter runter geht\'s nicht...' ) );
         }
     }
 

@@ -24,9 +24,9 @@ class MenuController extends Controller {
         if( isset( $menu, $page ) ) {
             $menu->pages()->save( $page );
             $this->updateSort( $menu );
-            return redirect( '/menu' )->with( 'success', 'Eintrag entfernt' );
+            return redirect( '/menu' )->with( 'success', __('Eintrag entfernt') );
         }
-        return redirect( '/menu' )->with( 'error', 'Eintrag nicht gefunden' );
+        return redirect( '/menu' )->with( 'error', __('Eintrag nicht gefunden') );
     }
 
     public function removePage( $menu_id, $page_id ) {
@@ -34,9 +34,9 @@ class MenuController extends Controller {
         if( isset( $menu ) ) {
             $menu->pages()->detach( $page_id );
             $this->updateSort( $menu );
-            return redirect( '/menu' )->with( 'success', 'Eintrag entfernt' );
+            return redirect( '/menu' )->with( 'success', __('Eintrag entfernt') );
         }
-        return redirect( '/menu' )->with( 'error', 'Eintrag nicht gefunden' );
+        return redirect( '/menu' )->with( 'error', __('Eintrag nicht gefunden') );
     }
 
     public function moveUp( $menu_id, $page_id ) {
@@ -48,7 +48,7 @@ class MenuController extends Controller {
 
         $this->updateSort( $menu );
 
-        return redirect( '/menu' )->with( 'success', 'Reihenfolge geändert' );
+        return redirect( '/menu' )->with( 'success', __('Reihenfolge geändert') );
     }
 
     public function moveDown( $menu_id, $page_id ) {
@@ -60,7 +60,7 @@ class MenuController extends Controller {
 
         $this->updateSort( $menu );
 
-        return redirect( '/menu' )->with( 'success', 'Reihenfolge geändert' );
+        return redirect( '/menu' )->with( 'success', __('Reihenfolge geändert') );
     }
 
     private function updateSort( $menu ) {

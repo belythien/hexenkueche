@@ -5,19 +5,25 @@
         <div class="card-header"><h1>{{ __('Gericht/Getränk bearbeiten') }}</h1></div>
         <div class="card-body">
             {!! Form::open([ 'action' => [ 'MenuItemController@update', $menuItem->id ], 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
-            <div class="row">
-                <div class="form-group col-lg-6">
-                    {{Form::label('name', __('Name'))}}
-                    {{Form::text('name', $menuItem->name, ['class' => 'form-control', 'placeholder' => __('Name')])}}
-                </div>
-                <div class="form-group col-lg-6">
-                    {{Form::label('category', __('Kategorie'))}}
-                    {{Form::select('category[]', $categories, $menuItem->category_id, ['class' => 'form-control'])}}
-                </div>
-            </div>
             <div class="form-group">
-                {{Form::label('description', __('Beschreibung'))}}
-                {{Form::textarea('description', $menuItem->description, ['id' => 'text-ckeditor', 'class' => 'form-control'])}}
+                {{Form::label('category', __('Kategorie'))}}
+                {{Form::select('category[]', $categories, $menuItem->category_id, ['class' => 'form-control'])}}
+            </div>
+            <div class="row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="form-group col-lg-6">
+                        {{Form::label('name[' . $code . ']', __('Name') . ' ' . __($language))}}
+                        {{Form::text('name[' . $code . ']', $menuItem->translate($code)->name, ['class' => 'form-control'])}}
+                    </div>
+                @endforeach
+            </div>
+            <div class="row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="form-group col-xl-6">
+                        {{Form::label('description[' . $code . ']', __('Beschreibung') . ' ' . __($language))}}
+                        {{Form::textarea('description[' . $code . ']', $menuItem->translate($code)->description, ['class' => 'text-ckeditor form-control'])}}
+                    </div>
+                @endforeach
             </div>
             <hr class="strong-hr">
             <h5>{{__('Allergene')}}</h5>
@@ -37,7 +43,8 @@
                 <label for="status_inactive" class="badge badge-danger">{{__('inaktiv')}}</label>
                 <input name="status" type="radio" value="0"
                        id="status_inactive" {{ $menuItem->status == 0 ? 'checked="checked"' : '' }}>
-                <label for="status_not_available" class="badge badge-warning">{{__('Zur Zeit nicht erhältlich')}}</label>
+                <label for="status_not_available" class="badge badge-warning"
+                >{{__('Zur Zeit nicht erhältlich')}}</label>
                 <input name="status" type="radio" value="2"
                        id="status_not_available" {{ $menuItem->status == 2 ? 'checked="checked"' : '' }}>
             </div>
@@ -78,33 +85,46 @@
                 <hr class="strong-hr">
                 <div class="row my-3">
                     {{Form::hidden('option_id[]', $option->id)}}
-                    <div class="col-lg-6">
-                        {{Form::label('option_name', __('Name'))}}
-                        {{Form::text('option_name[]', $option->name, ['class' => 'form-control', 'placeholder' => __('Name')])}}
-                    </div>
-                    <div class="col-lg-3">
-                        {{Form::label('option_amount', __('Menge'))}}
-                        {{Form::text('option_amount[]', $option->amount, ['class' => 'form-control', 'placeholder' => __('Menge')])}}
-                    </div>
-                    <div class="col-lg-3">
+                    @foreach(language()->allowed() as $code => $language)
+                        <div class="col-md-4">
+                            {{Form::label('option_name[' . $code . ']', __('Name') . ' ' . __($language))}}
+                            {{Form::text('option_name[' . $code . '][]', $option->translate($code, true)->name, ['class' => 'form-control'])}}
+                        </div>
+                    @endforeach
+                </div>
+                <div class="row">
+                    @foreach(language()->allowed() as $code => $language)
+                        <div class="col-lg-4">
+                            {{ App::setLocale($code) }}
+                            {{Form::label('option_amount[' . $code . ']', __('Menge') . ' ' . __($language))}}
+                            {{Form::text('option_amount[' . $code . '][]', $option->translate($code, true)->amount, ['class' => 'form-control'])}}
+                        </div>
+                    @endforeach
+                    <div class="col-lg-4">
                         {{Form::label('option_price', __('Preis'))}}
-                        {{Form::text('option_price[]', str_replace('.', ',', number_format($option->price, 2)), ['class' => 'form-control', 'placeholder' => __('Preis')])}}
+                        {{Form::text('option_price[]', str_replace('.', ',', number_format($option->price, 2)), ['class' => 'form-control'])}}
                     </div>
                 </div>
             @endforeach
             <hr class="strong-hr">
             <div class="row my-3">
-                <div class="col-lg-6">
-                    {{Form::label('option_name_new', __('Name'))}}
-                    {{Form::text('option_name_new', '', ['class' => 'form-control', 'placeholder' => __('Name')])}}
-                </div>
-                <div class="col-lg-3">
-                    {{Form::label('option_amount_new', __('Menge'))}}
-                    {{Form::text('option_amount_new', '', ['class' => 'form-control', 'placeholder' => __('Menge')])}}
-                </div>
-                <div class="col-lg-3">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-md-4">
+                        {{Form::label('option_name_new[' . $code . ']', __('Name') . ' ' . __($language))}}
+                        {{Form::text('option_name_new[' . $code . ']', '', ['class' => 'form-control'])}}
+                    </div>
+                @endforeach
+            </div>
+            <div class="row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-lg-4">
+                        {{Form::label('option_amount_new[' . $code . ']', __('Menge') . ' ' . __($language))}}
+                        {{Form::text('option_amount_new[' . $code . ']', '', ['class' => 'form-control'])}}
+                    </div>
+                @endforeach
+                <div class="col-lg-4">
                     {{Form::label('option_price_new', __('Preis'))}}
-                    {{Form::text('option_price_new', '', ['class' => 'form-control', 'placeholder' => __('Preis')])}}
+                    {{Form::text('option_price_new', '', ['class' => 'form-control'])}}
                 </div>
             </div>
             <div class="mt-3">

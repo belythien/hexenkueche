@@ -2,10 +2,15 @@
 
 namespace App;
 
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Hotbox extends Model {
-    protected $fillable = [ 'text', 'url', 'status', 'publication', 'expiration' ];
+
+    use Translatable;
+
+    public    $translatedAttributes = [ 'text' ];
+    protected $fillable             = [ 'url', 'status', 'publication', 'expiration' ];
 
     public function pages() {
         return $this->hasMany( 'App\Page' );

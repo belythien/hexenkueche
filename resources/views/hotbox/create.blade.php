@@ -6,15 +6,18 @@
             <h1>{{ __('Hotbox anlegen') }}</h1>
         </div>
         <div class="card-body">
-
             {!! Form::open([ 'action' => 'HotboxController@store', 'method' => 'POST' ]) !!}
-            <div class="form-group">
-                {{Form::label('text', 'Text')}}
-                {{Form::textarea('text', '', ['class' => 'form-control', 'id' => 'text-ckeditor', 'placeholder' => 'Text'])}}
+            <div class="form-group row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-lg-6">
+                        {{Form::label('text[' . $code . ']', __('Text') . ' ' . __($language))}}
+                        {{Form::textarea('text[' . $code . ']', '', ['class' => 'text-ckeditor form-control'])}}
+                    </div>
+                @endforeach
             </div>
             <div class="form-group">
-                {{Form::label('url', 'Slug der Ziel-Seite (optional)')}}
-                {{Form::text('url', '', ['class' => 'form-control', 'placeholder' => 'Slug der Ziel-Seite (optional)'])}}
+                {{Form::label('url', __('Slug der Ziel-Seite'))}}
+                {{Form::text('url', '', ['class' => 'form-control'])}}
             </div>
             <div class="form-group">
                 <label for="status_active" class="badge badge-success">{{ __('aktiv') }}</label>
@@ -24,11 +27,11 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    {{Form::label('publication', 'Anzeigen ab (optional)')}}
+                    {{Form::label('publication', __('Anzeigen ab'))}}
                     {{Form::date('publication', '', ['class' => 'form-control'])}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{Form::label('expiration', 'Anzeigen bis (optional)')}}
+                    {{Form::label('expiration', __('Anzeigen bis'))}}
                     {{Form::date('expiration', '', ['class' => 'form-control'])}}
                 </div>
             </div>

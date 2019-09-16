@@ -39,22 +39,25 @@
 </div>
 @include('inc.footer')
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/adapters/jquery.js') }}"></script>
+
 <script>
-CKEDITOR.replace('text-ckeditor', {
-  filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
-  filebrowserUploadMethod: 'form',
-  on: {
-    instanceReady: function() {
-      this.dataProcessor.htmlFilter.addRules( {
-        elements: {
-          img: function( el ) {
-            el.addClass( 'img-thumbnail' );
-          }
-        }
-      } );
-    }
-  }
-})
+$('.text-ckeditor').ckeditor(); // if class is prefered.
+{{--CKEDITOR.replace('text-ckeditor', {--}}
+{{--  filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",--}}
+{{--  filebrowserUploadMethod: 'form',--}}
+{{--  on: {--}}
+{{--    instanceReady: function() {--}}
+{{--      this.dataProcessor.htmlFilter.addRules( {--}}
+{{--        elements: {--}}
+{{--          img: function( el ) {--}}
+{{--            el.addClass( 'img-thumbnail' );--}}
+{{--          }--}}
+{{--        }--}}
+{{--      } );--}}
+{{--    }--}}
+{{--  }--}}
+{{--})--}}
 </script>
 </body>
 </html>

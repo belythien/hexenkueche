@@ -6,26 +6,27 @@
             <h1>{{ __('Seite bearbeiten') }}</h1>
         </div>
         <div class="card-body">
-
             {!! Form::open(['action' => [ 'PageController@update', $page->id ], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-            <div class="row">
-                <div class="form-group col-md-6">
-                    {{Form::label('menu_title', __('Titel (kurz)'))}}
-                    {{Form::text('menu_title', $page->menu_title, ['class' => 'form-control', 'placeholder' => __('Titel (kurz)')])}}
-                </div>
-                <div class="form-group col-md-6">
-                    {{Form::label('slug', 'Slug')}}
-                    {{Form::text('slug', $page->slug, ['disabled' => 'true', 'class' => 'form-control', 'placeholder' => 'Slug'])}}
-                </div>
-            </div>
             <div class="form-group">
-                {{Form::label('title', __('Titel'))}}
-                {{Form::text('title', $page->title, ['class' => 'form-control', 'placeholder' => __('Titel')])}}
+                {{Form::label('slug', 'Slug')}}
+                {{Form::text('slug', $page->slug, ['disabled' => 'true', 'class' => 'form-control', 'placeholder' => 'Slug'])}}
             </div>
-            <div class="form-group">
-                {{Form::label('content', __('Inhalt'))}}
-                {{Form::textarea('content', $page->content, ['id' => 'text-ckeditor', 'class' => 'form-control'])}}
-            </div>
+            @foreach(language()->allowed() as $code => $language)
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        {{Form::label('menu_title[' . $code . ']', __('Titel (kurz)') . ' ' . __($language))}}
+                        {{Form::text('menu_title[' . $code . ']', $page->translate($code)->menu_title, ['class' => 'form-control', 'placeholder' => __('Titel (kurz)') . ' ' . __($language)])}}
+                    </div>
+                    <div class="form-group col-md-8">
+                        {{Form::label('title[' . $code . ']', __('Titel') . ' ' . __($language))}}
+                        {{Form::text('title[' . $code . ']', $page->translate($code)->title, ['class' => 'form-control', 'placeholder' => __('Titel') . ' ' . __($language)])}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{Form::label('content[' . $code . ']', __('Inhalt') . ' ' . __($language))}}
+                    {{Form::textarea('content[' . $code . ']', $page->translate($code)->content, ['class' => 'text-ckeditor form-control'])}}
+                </div>
+            @endforeach
             <div class="form-group">
                 {{Form::label('external_url', __('Weiterleitungs-URL'))}}
                 {{Form::text('external_url', $page->external_url, ['class' => 'form-control', 'placeholder' => 'z.B. https://www.facebook.com/Hexenküche-2291286144436000/'])}}

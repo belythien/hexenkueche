@@ -2,10 +2,16 @@
 
 namespace App;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model {
-    protected $fillable = [ 'name', 'description', 'category_id', 'sort', 'status', 'publication', 'expiration' ];
+
+    use Translatable;
+
+    public    $translatedAttributes = [ 'name', 'description' ];
+    protected $fillable = [ 'category_id', 'sort', 'status', 'publication', 'expiration' ];
 
     public function category() {
         return $this->belongsTo( 'App\Category' );

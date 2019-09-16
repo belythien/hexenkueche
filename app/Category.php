@@ -2,13 +2,19 @@
 
 namespace App;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model {
-    protected $fillable = [ 'name', 'description', 'publication', 'expiration' ];
+
+    use Translatable;
+
+    public    $translatedAttributes = [ 'name', 'description' ];
+    protected $fillable             = [ 'publication', 'expiration' ];
 
     public function menuItems() {
-        return $this->hasMany( 'App\MenuItem' )->orderby('sort');
+        return $this->hasMany( 'App\MenuItem' )->orderby( 'sort' );
     }
 
     public function isLive() {

@@ -10,6 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }} @if(isset($page) && $page->menu_title > '') » {{ $page->menu_title }}@endif</title>
 
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/icon_200x200.jpg') }}">
+    <link rel="shortcut icon" href="{{ asset('img/icon_196x196.jpg') }}" sizes="196x196">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

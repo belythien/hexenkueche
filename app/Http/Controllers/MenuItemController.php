@@ -54,9 +54,9 @@ class MenuItemController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'name'  => 'required',
-            'image' => 'image|nullable|max:16384',
-            'price' => [ new GermanPrice ]
+            'name.de' => 'required',
+            'image'   => 'image|nullable|max:16384',
+            'price'   => [ new GermanPrice ]
         ] );
 
         $category_id = $request->input( 'category' )[ 0 ];
@@ -65,8 +65,12 @@ class MenuItemController extends Controller {
         $allergens = $request->input( 'allergen' );
 
         $menuItem = new MenuItem;
-        $menuItem->name = $request->input( 'name' );
-        $menuItem->description = $request->input( 'description' );
+        foreach( $request->input( 'name' ) as $locale => $name ) {
+            $menuItem->translateOrNew( $locale )->name = $name;
+        }
+        foreach( $request->input( 'description' ) as $locale => $description ) {
+            $menuItem->translateOrNew( $locale )->description = $description;
+        }
         $menuItem->category_id = $category_id;
         $menuItem->sort = 99999;
         $menuItem->status = $request->input( 'status' );
@@ -83,13 +87,19 @@ class MenuItemController extends Controller {
         }
 
         for( $i = 0; $i < 10; $i++ ) {
-            if( isset( $request->input( 'option_name' )[ $i ] )
-                || isset( $request->input( 'option_amount' )[ $i ] )
+            if( isset( $request->input( 'option_name.de' )[ $i ] )
+                || isset( $request->input( 'option_amount.de' )[ $i ] )
                 || isset( $request->input( 'option_price' )[ $i ] ) ) {
                 $option = new Option;
-                $option->name = $request->input( 'option_name' )[ $i ];
-                $option->amount = $request->input( 'option_amount' )[ $i ];
+                foreach( $request->input( 'option_name' ) as $locale => $option_name ) {
+                    $option->translateOrNew( $locale )->name = $option_name[ $i ];
+                }
+                foreach( $request->input( 'option_amount' ) as $locale => $option_amount ) {
+                    $option->translateOrNew( $locale )->amount = $option_amount[ $i ];
+                }
+
                 $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
+
                 $option->price = $price;
                 $option->save();
                 $menuItem->options()->save( $option );
@@ -98,7 +108,7 @@ class MenuItemController extends Controller {
 
         $this->updateSort();
 
-        return redirect( '/menuitem' )->with( 'success', 'Gericht/Getränk angelegt' );
+        return redirect( '/menuitem' )->with( 'success', __('Gericht/Getränk angelegt') );
     }
 
     /**
@@ -125,7 +135,7 @@ class MenuItemController extends Controller {
             $categories = Category::orderby( 'sort' )->pluck( 'name', 'id' );
             return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens' ) );
         } else {
-            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __('Gericht/Getränk nicht gefunden') );
         }
 
     }
@@ -139,19 +149,22 @@ class MenuItemController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'name'             => 'required',
-            'image'            => 'image|nullable|max:16384',
-            'option_price[]]'  => [ new GermanPrice ],
-            'option_price_new' => [ new GermanPrice ]
+            'name.de'            => 'required',
+            'image'              => 'image|nullable|max:16384',
+            'option_price.*.*'   => [ new GermanPrice ],
+            'option_price_new.*' => [ new GermanPrice ]
         ] );
-
         $category_id = $request->input( 'category' )[ 0 ];
         $allergens = $request->input( 'allergen' );
 
         $menuItem = MenuItem::find( $id );
         if( isset( $menuItem ) ) {
-            $menuItem->name = $request->input( 'name' );
-            $menuItem->description = $request->input( 'description' );
+            foreach( $request->input( 'name' ) as $locale => $name ) {
+                $menuItem->translateOrNew( $locale )->name = $name;
+            }
+            foreach( $request->input( 'description' ) as $locale => $description ) {
+                $menuItem->translateOrNew( $locale )->description = $description;
+            }
             $menuItem->category_id = $category_id;
             $menuItem->status = $request->input( 'status' );
             $menuItem->allergens()->sync( $allergens );
@@ -170,13 +183,17 @@ class MenuItemController extends Controller {
                 $i = 0;
                 foreach( $options as $oid ) {
                     $option = Option::find( $oid );
-                    if( empty( $request->input( 'option_name' )[ $i ] )
-                        && empty( $request->input( 'option_amount' )[ $i ] )
+                    if( empty( $request->input( 'option_name.de' )[ $i ] )
+                        && empty( $request->input( 'option_amount.de' )[ $i ] )
                         && empty( $request->input( 'option_price' )[ $i ] ) ) {
                         $option->delete();
                     } else {
-                        $option->name = $request->input( 'option_name' )[ $i ];
-                        $option->amount = $request->input( 'option_amount' )[ $i ];
+                        foreach( $request->input( 'option_name' ) as $locale => $option_name ) {
+                            $option->translateOrNew( $locale )->name = $option_name[ $i ];
+                        }
+                        foreach( $request->input( 'option_amount' ) as $locale => $option_amount ) {
+                            $option->translateOrNew( $locale )->amount = $option_amount[ $i ];
+                        }
 
                         $price = (double)str_replace( ',', '.', $request->input( 'option_price' )[ $i ] );
 
@@ -187,21 +204,28 @@ class MenuItemController extends Controller {
                 }
             }
 
-            if( !empty( $request->input( 'option_name_new' ) )
-                || !empty( $request->input( 'option_amount_new' ) )
+            if( !empty( $request->input( 'option_name_new.de' ) )
+                || !empty( $request->input( 'option_amount_new.de' ) )
                 || !empty( $request->input( 'option_price_new' ) ) ) {
                 $option = new Option;
-                $option->name = $request->input( 'option_name_new' );
-                $option->amount = $request->input( 'option_amount_new' );
+
+                foreach( $request->input( 'option_name_new' ) as $locale => $option_name ) {
+                    $option->translateOrNew( $locale )->name = $option_name;
+                }
+                foreach( $request->input( 'option_amount_new' ) as $locale => $option_amount ) {
+                    $option->translateOrNew( $locale )->amount = $option_amount;
+                }
                 $price = (double)str_replace( ',', '.', $request->input( 'option_price_new' ) );
                 $option->price = $price;
                 $option->save();
+
                 $menuItem->options()->save( $option );
             }
+
             $this->updateSort();
-            return redirect( '/menuitem' )->with( 'success', 'Gericht aktualisiert' );
+            return redirect( '/menuitem' )->with( 'success', __( 'Gericht/Getränk aktualisiert' ) );
         } else {
-            return redirect( '/menuitem' )->with( 'error', 'Gericht nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
         }
 
     }
@@ -216,13 +240,16 @@ class MenuItemController extends Controller {
         $menuItem = MenuItem::find( $id );
 
         if( !isset( $menuItem ) ) {
-            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
         }
 
         $name = $menuItem->name;
+        foreach( $menuItem->options as $option ) {
+            $option->delete();
+        }
         $menuItem->delete();
         $this->updateSort();
-        return redirect( '/menuitem' )->with( 'success', 'Eintrag ' . $name . ' entfernt' );
+        return redirect( '/menuitem' )->with( 'success', __( 'Gericht/Getränk entfernt' ) );
     }
 
     public function moveUp( $id ) {
@@ -230,7 +257,7 @@ class MenuItemController extends Controller {
 
         //Check if Category exists
         if( !isset( $menuitem ) ) {
-            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
         }
 
         // get min sort of this category
@@ -244,7 +271,7 @@ class MenuItemController extends Controller {
 
             return redirect( '/menuitem' )->with( 'success', '<strong>' . $menuitem->name . '</strong> nach oben verschoben' );
         } else {
-            return redirect( '/menuitem' )->with( 'error', 'Weiter hoch geht\'s nicht...' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Weiter hoch geht\'s nicht...' ) );
         }
     }
 
@@ -253,7 +280,7 @@ class MenuItemController extends Controller {
 
         //Check if Category exists
         if( !isset( $menuitem ) ) {
-            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
         }
 
         // get max sort of this category
@@ -268,7 +295,7 @@ class MenuItemController extends Controller {
 
             return redirect( '/menuitem' )->with( 'success', '<strong>' . $menuitem->name . '</strong> nach unten verschoben' );
         } else {
-            return redirect( '/menuitem' )->with( 'error', 'Weiter runter geht\'s nicht...' );
+            return redirect( '/menuitem' )->with( 'error', __('Weiter runter geht\'s nicht...') );
         }
     }
 
@@ -288,11 +315,11 @@ class MenuItemController extends Controller {
         $menuitem = MenuItem::find( $menuitem_id );
 
         if( !isset( $menuitem ) ) {
-            return redirect( '/menuitem' )->with( 'error', 'Eintrag nicht gefunden' );
+            return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
         }
 
         $image = Image::find( $image_id );
         $menuitem->images()->detach( $image );
-        return redirect( '/menuitem' )->with( 'success', 'Bild entfernt' );
+        return redirect( '/menuitem' )->with( 'success', __('Bild entfernt') );
     }
 }

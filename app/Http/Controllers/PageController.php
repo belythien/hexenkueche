@@ -50,18 +50,24 @@ class PageController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'menu_title'   => 'required',
-            'slug'         => 'required|unique:pages',
-            'image'        => 'image|nullable|max:16384',
-            'external_url' => 'nullable|url'
+            'menu_title.de' => 'required',
+            'slug'          => 'required|unique:pages',
+            'image'         => 'image|nullable|max:16384',
+            'external_url'  => 'nullable|url'
         ] );
 
         $hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
 
         $page = new Page();
-        $page->title = $request->input( 'title' );
-        $page->menu_title = $request->input( 'menu_title' );
-        $page->content = $request->input( 'content' );
+        foreach( $request->input( 'title' ) as $locale => $title ) {
+            $page->translateOrNew( $locale )->title = $title;
+        }
+        foreach( $request->input( 'menu_title' ) as $locale => $menu_title ) {
+            $page->translateOrNew( $locale )->menu_title = $menu_title;
+        }
+        foreach( $request->input( 'content' ) as $locale => $content ) {
+            $page->translateOrNew( $locale )->content = $content;
+        }
         $page->external_url = $request->input( 'external_url' );
         $page->slug = $request->input( 'slug' );
         $page->status = 0;
@@ -77,9 +83,9 @@ class PageController extends Controller {
         }
 
         if( !empty( $page->external_url ) ) {
-            return redirect( '/page' )->with( 'info', 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' );
+            return redirect( '/page' )->with( 'info', __( 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' ) );
         }
-        return redirect( route( 'page', [ $page->slug ] ) )->with( 'info', 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' );
+        return redirect( route( 'page', [ $page->slug ] ) )->with( 'info', __( 'Die Seite wurde erstellt, ist aber noch nicht aktiviert. Bitte prüfen und dann aktivieren.' ) );
     }
 
     /**
@@ -113,18 +119,24 @@ class PageController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'menu_title'   => 'required',
-            'image'        => 'image|nullable|max:16384',
-            'external_url' => 'nullable|url'
+            'menu_title.de' => 'required',
+            'image'         => 'image|nullable|max:16384',
+            'external_url'  => 'nullable|url'
         ] );
 
         $hotbox_id = $request->input( 'hotbox_id' )[ 0 ];
 
         $page = Page::find( $id );
         if( isset( $page ) ) {
-            $page->title = $request->input( 'title' );
-            $page->menu_title = $request->input( 'menu_title' );
-            $page->content = $request->input( 'content' );
+            foreach( $request->input( 'title' ) as $locale => $title ) {
+                $page->translateOrNew( $locale )->title = $title;
+            }
+            foreach( $request->input( 'menu_title' ) as $locale => $menu_title ) {
+                $page->translateOrNew( $locale )->menu_title = $menu_title;
+            }
+            foreach( $request->input( 'content' ) as $locale => $content ) {
+                $page->translateOrNew( $locale )->content = $content;
+            }
             $page->external_url = $request->input( 'external_url' );
             $page->status = $request->input( 'status' );
             $page->hotbox_id = $hotbox_id;
@@ -139,11 +151,11 @@ class PageController extends Controller {
             }
 
             if( !empty( $page->external_url ) ) {
-                return redirect( '/page' )->with( 'success', 'Seite aktualisiert' );
+                return redirect( '/page' )->with( 'success', __( 'Seite aktualisiert' ) );
             }
-            return redirect( route( 'page', [ $page->slug ] ) )->with( 'success', 'Seite aktualisiert' );
+            return redirect( route( 'page', [ $page->slug ] ) )->with( 'success', __( 'Seite aktualisiert' ) );
         } else {
-            return redirect( '/page' )->with( 'danger', 'Ein Fehler ist aufgetreten' );
+            return redirect( '/page' )->with( 'danger', __( 'Seite nicht gefunden' ) );
         }
     }
 
@@ -157,22 +169,22 @@ class PageController extends Controller {
         $page = Page::find( $id );
 
         if( !isset( $page ) ) {
-            return redirect( '/page' )->with( 'error', 'Seite nicht gefunden' );
+            return redirect( '/page' )->with( 'error', __( 'Seite nicht gefunden' ) );
         }
 
         $page->delete();
-        return redirect( '/page' )->with( 'success', 'Seite entfernt' );
+        return redirect( '/page' )->with( 'success', __( 'Seite entfernt' ) );
     }
 
     public function removeImage( $page_id, $image_id ) {
         $page = Page::find( $page_id );
 
         if( !isset( $page ) ) {
-            return redirect( '/page' )->with( 'error', 'Seite nicht gefunden' );
+            return redirect( '/page' )->with( 'error', __( 'Seite nicht gefunden' ) );
         }
 
         $image = Image::find( $image_id );
         $page->images()->detach( $image );
-        return redirect( route( 'page.edit', [ $page_id ] ) )->with( 'success', 'Bild entfernt' );
+        return redirect( route( 'page.edit', [ $page_id ] ) )->with( 'success', __( 'Bild entfernt' ) );
     }
 }

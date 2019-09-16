@@ -40,14 +40,16 @@ class HotboxController extends Controller {
         ] );
 
         $hotbox = new Hotbox();
-        $hotbox->text = $request->input( 'text' );
+        foreach( $request->input( 'text' ) as $locale => $text ) {
+            $hotbox->translateOrNew( $locale )->text = $text;
+        }
         $hotbox->url = $request->input( 'url' );
         $hotbox->status = $request->input( 'status' );
         $hotbox->publication = $request->input( 'publication' );
         $hotbox->expiration = $request->input( 'expiration' );
         $hotbox->save();
 
-        return redirect( route( 'hotbox.index' ) )->with( 'success', 'Hotbox angelegt' );
+        return redirect( route( 'hotbox.index' ) )->with( 'success', __('Hotbox angelegt') );
     }
 
     /**
@@ -72,7 +74,7 @@ class HotboxController extends Controller {
         if( isset( $hotbox ) ) {
             return view( 'hotbox.edit', compact( 'hotbox', 'menus' ) );
         } else {
-            return redirect( 'hotbox.index' )->with( 'danger', 'Hotbox nicht gefunden' );
+            return redirect( 'hotbox.index' )->with( 'danger', __('Hotbox nicht gefunden') );
         }
     }
 
@@ -89,17 +91,19 @@ class HotboxController extends Controller {
         ] );
 
         $hotbox = Hotbox::find( $id );
-        if( isset( $hotbox ) ) {
-            $hotbox->text = $request->input( 'text' );
+        if( !empty( $hotbox ) ) {
+            foreach( $request->input( 'text' ) as $locale => $text ) {
+                $hotbox->translateOrNew( $locale )->text = $text;
+            }
             $hotbox->url = $request->input( 'url' );
             $hotbox->status = $request->input( 'status' );
             $hotbox->publication = $request->input( 'publication' );
             $hotbox->expiration = $request->input( 'expiration' );
             $hotbox->save();
 
-            return redirect( route( 'hotbox.index' ) )->with( 'success', 'Hotbox aktualisiert' );
+            return redirect( route( 'hotbox.index' ) )->with( 'success', __('Hotbox aktualisiert') );
         } else {
-            return redirect( route( 'hotbox.index' ) )->with( 'danger', 'Ein Fehler ist aufgetreten' );
+            return redirect( route( 'hotbox.index' ) )->with( 'danger', __('Hotbox nicht gefunden') );
         }
     }
 
@@ -114,10 +118,10 @@ class HotboxController extends Controller {
 
         //Check if post exists before deleting
         if( !isset( $hotbox ) ) {
-            return redirect( '/hotbox' )->with( 'error', 'Hotbox nicht gefunden' );
+            return redirect( '/hotbox' )->with( 'error', __('Hotbox nicht gefunden') );
         }
 
         $hotbox->delete();
-        return redirect( '/hotbox' )->with( 'success', 'Hotbox entfernt' );
+        return redirect( '/hotbox' )->with( 'success', __('Hotbox gelöscht') );
     }
 }

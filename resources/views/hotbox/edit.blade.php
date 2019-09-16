@@ -6,15 +6,18 @@
             <h1>{{ __('Hotbox bearbeiten') }}</h1>
         </div>
         <div class="card-body">
-
             {!! Form::open(['action' => [ 'HotboxController@update', $hotbox->id ], 'method' => 'POST' ]) !!}
-            <div class="form-group">
-                {{Form::label('text', 'Text')}}
-                {{Form::textarea('text', $hotbox->text, ['class' => 'form-control', 'id' => 'text-ckeditor', 'placeholder' => 'Text'])}}
+            <div class="form-group row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-lg-6">
+                        {{Form::label('text[' . $code . ']', __('Text') . ' ' . __($language))}}
+                        {{Form::textarea('text[' . $code . ']', $hotbox->translate($code)->text, ['class' => 'text-ckeditor form-control'])}}
+                    </div>
+                @endforeach
             </div>
             <div class="form-group">
                 {{Form::label('url', __('Slug der Ziel-Seite'))}}
-                {{Form::text('url', $hotbox->url, ['class' => 'form-control', 'placeholder' => __('Slug der Ziel-Seite')])}}
+                {{Form::text('url', $hotbox->url, ['class' => 'form-control'])}}
             </div>
             <div class="form-group">
                 <label for="status_active" class="badge badge-success">{{__('aktiv')}}</label>

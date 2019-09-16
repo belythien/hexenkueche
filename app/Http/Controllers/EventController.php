@@ -56,7 +56,7 @@ class EventController extends Controller {
             $event->images()->save( $image );
         }
 
-        return redirect( '/event' )->with( 'success', 'Event angelegt' );
+        return redirect( '/event' )->with( 'success', __('Event angelegt') );
     }
 
     /**
@@ -81,7 +81,7 @@ class EventController extends Controller {
             $menus = Menu::all();
             return view( 'event.edit', compact( 'event', 'menus' ) );
         } else {
-            return redirect( '/event' )->with( 'error', 'Event nicht gefunden' );
+            return redirect( '/event' )->with( 'error', __('Event nicht gefunden') );
         }
     }
 
@@ -115,9 +115,9 @@ class EventController extends Controller {
                 $event->images()->save( $image );
             }
 
-            return redirect( '/event' )->with( 'success', 'Event aktualisiert' );
+            return redirect( '/event' )->with( 'success', __('Event aktualisiert') );
         } else {
-            return redirect( '/event' )->with( 'error', 'Event nicht gefunden' );
+            return redirect( '/event' )->with( 'error', __('Event nicht gefunden') );
         }
     }
 
@@ -131,10 +131,10 @@ class EventController extends Controller {
         $event = Event::find( $id );
 
         if( !isset( $event ) ) {
-            return redirect( '/event' )->with( 'error', 'Event nicht gefunden' );
+            return redirect( '/event' )->with( 'error', __('Event nicht gefunden') );
         }
 
         $event->delete();
-        return redirect( '/event' )->with( 'success', 'Event entfernt' );
+        return redirect( '/event' )->with( 'success', __('Event gelöscht') );
     }
 }

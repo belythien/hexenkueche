@@ -8,19 +8,25 @@
         <div class="card-body">
 
             {!! Form::open([ 'action' => 'CategoryController@store', 'method' => 'POST' ]) !!}
-            <div class="form-group row">
-                <div class="col-md-2 col-sm-3">
-                    {{Form::label('sort', __('Sortierwert'))}}
-                    {{Form::text('sort', '', ['class' => 'form-control', 'placeholder' => __('Sortierwert')])}}
-                </div>
-                <div class="col-md-10 col-sm-9">
-                    {{Form::label('name', __('Name'))}}
-                    {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => __('Name')])}}
-                </div>
-            </div>
             <div class="form-group">
-                {{Form::label('description', __('Beschreibung'))}}
-                {{Form::textarea('description', '', ['id' => 'text-ckeditor', 'class' => 'form-control'])}}
+                {{Form::label('sort', __('Sortierwert'))}}
+                {{Form::text('sort', '', ['class' => 'form-control', 'placeholder' => __('Sortierwert')])}}
+            </div>
+            <div class="row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="form-group col-md-6">
+                        {{Form::label('name[' . $code . ']', __('Name') . ' ' . __($language))}}
+                        {{Form::text('name[' . $code . ']', '', ['class' => 'form-control', 'placeholder' => __('Name') . ' ' . __($language)])}}
+                    </div>
+                @endforeach
+            </div>
+            <div class="row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="form-group col-xl-6">
+                        {{Form::label('description[' . $code . ']', __('Beschreibung') . ' ' . __($language))}}
+                        {{Form::textarea('description[' . $code . ']', '', ['class' => 'text-ckeditor form-control'])}}
+                    </div>
+                @endforeach
             </div>
             <div class="form-group">
                 <label for="status_active" class="badge badge-success">{{ __('aktiv') }}</label>
@@ -28,13 +34,15 @@
                 <label for="status_inactive" class="badge badge-danger">{{ __('inaktiv') }}</label>
                 <input name="status" type="radio" value="0" id="status_inactive" checked="checked">
             </div>
-            <div class="form-group">
-                {{Form::label('publication', __('Anzeigen ab'))}}
-                {{Form::date('publication', '', ['class' => 'form-control'])}}
-            </div>
-            <div class="form-group">
-                {{Form::label('expiration', __('Anzeigen bis'))}}
-                {{Form::date('expiration', '', ['class' => 'form-control'])}}
+            <div class="row">
+                <div class="form-group col-md-6">
+                    {{Form::label('publication', __('Anzeigen ab'))}}
+                    {{Form::date('publication', '', ['class' => 'form-control'])}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{Form::label('expiration', __('Anzeigen bis'))}}
+                    {{Form::date('expiration', '', ['class' => 'form-control'])}}
+                </div>
             </div>
             {{Form::button('<i class="fas fa-save"></i> ' . __('Speichern'), ['class'=>'btn btn-danger', 'type' => 'submit'])}}
             <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"

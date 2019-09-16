@@ -11008,3 +11008,8 @@ iframe,
   margin-right: 6px;
 }
 
+label {
+  color: #65b32c;
+  font-weight: bold;
+}
+

@@ -72,7 +72,7 @@ class ImageController extends Controller {
             $menus = Menu::all();
             return view( 'image.edit', compact( 'image', 'pages', 'categories', 'events', 'menus' ) );
         } else {
-            return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
+            return redirect( '/image' )->with( 'error', __('Bild nicht gefunden') );
         }
     }
 
@@ -101,9 +101,9 @@ class ImageController extends Controller {
             $image->menuitems()->sync( $menuitems );
             $image->save();
 
-            return redirect( '/image' )->with( 'success', 'Bilddaten bearbeitet' );
+            return redirect( '/image' )->with( 'success', __('Bilddaten bearbeitet') );
         } else {
-            return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
+            return redirect( '/image' )->with( 'error', __('Bild nicht gefunden') );
         }
     }
 
@@ -117,11 +117,11 @@ class ImageController extends Controller {
         $image = Image::find( $id );
 
         if( !isset( $image ) ) {
-            return redirect( '/image' )->with( 'error', 'Bild nicht gefunden' );
+            return redirect( '/image' )->with( 'error', __('Bild nicht gefunden') );
         }
 
         Storage::delete( $image->filename );
         $image->delete();
-        return redirect( '/image' )->with( 'success', 'Eintrag entfernt' );
+        return redirect( '/image' )->with( 'success', __('Bild entfernt') );
     }
 }
