@@ -7,9 +7,13 @@
         </div>
         <div class="card-body">
             {!! Form::open([ 'action' => 'EventController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
-            <div class="form-group">
-                {{Form::label('name', __('Name'))}}
-                {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => __('Name')])}}
+            <div class="form-group row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-md-6">
+                        {{Form::label('name[' . $code . ']', __('Name') . ' ' . __($language))}}
+                        {{Form::text('name[' . $code . ']', '', ['class' => 'form-control'])}}
+                    </div>
+                @endforeach
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
@@ -25,9 +29,13 @@
                     {{Form::label('periodically', __('Regelmäßig'))}}
                 </div>
             </div>
-            <div class="form-group">
-                {{Form::label('description', __('Beschreibung'))}}
-                {{Form::textarea('description', '', ['id' => 'text-ckeditor', 'class' => 'form-control'])}}
+            <div class="form-group row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-xl-6">
+                        {{Form::label('description[' . $code . ']', __('Beschreibung') . ' ' . __($language))}}
+                        {{Form::textarea('description[' . $code . ']', '', ['class' => 'text-ckeditor form-control'])}}
+                    </div>
+                @endforeach
             </div>
             <div class="form-group">
                 <label for="status_active" class="badge badge-success">{{ __('aktiv') }}</label>

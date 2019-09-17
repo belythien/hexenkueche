@@ -35,10 +35,20 @@
                                         <h2>
                                             {{ $event->name }}
                                             @if(!empty($event->date))
-                                                • <span class="">{{ date('d.m.Y', strtotime($event->date)) }}</span>
+                                                @if(app()->getLocale() == "en")
+                                                    • <span class="">{{ date('Y-m-d', strtotime($event->date)) }}</span>
+                                                @else
+                                                    • <span class="">{{ date('d.m.Y', strtotime($event->date)) }}</span>
+                                                @endif
                                             @endif
                                             @if(!empty($event->time))
-                                                • <span class="">{{ date('H:i', strtotime($event->time)) }} Uhr</span>
+                                                @if(app()->getLocale() == "en")
+                                                    • <span class=""
+                                                    >{{ date('h.i a', strtotime($event->time)) }}</span>
+                                                @else
+                                                    • <span class=""
+                                                    >{{ date('H:i', strtotime($event->time)) }} Uhr</span>
+                                                @endif
                                             @endif
                                         </h2>
                                         {!! $event->description !!}

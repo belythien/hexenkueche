@@ -25,7 +25,8 @@ class EventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view( 'event.create' );
+        $menus = Menu::all();
+        return view( 'event.create', compact('menus') );
     }
 
     /**
@@ -36,14 +37,18 @@ class EventController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'name' => 'required'
+            'name.de' => 'required'
         ] );
 
         $periodically = $request->input( 'periodically' );
 
         $event = new Event;
-        $event->name = $request->input( 'name' );
-        $event->description = $request->input( 'description' );
+        foreach( $request->input( 'name' ) as $locale => $name ) {
+            $event->translateOrNew( $locale )->name = $name;
+        }
+        foreach( $request->input( 'description' ) as $locale => $description ) {
+            $event->translateOrNew( $locale )->description = $description;
+        }
         $event->date = $request->input( 'date' );
         $event->time = $request->input( 'time' );
         $event->periodically = isset( $periodically ) ? 1 : 0;
@@ -96,13 +101,17 @@ class EventController extends Controller {
         $event = Event::find( $id );
         if( !empty( $event ) ) {
             $this->validate( $request, [
-                'name' => 'required'
+                'name.de' => 'required'
             ] );
 
             $periodically = $request->input( 'periodically' );
 
-            $event->name = $request->input( 'name' );
-            $event->description = $request->input( 'description' );
+            foreach( $request->input( 'name' ) as $locale => $name ) {
+                $event->translateOrNew( $locale )->name = $name;
+            }
+            foreach( $request->input( 'description' ) as $locale => $description ) {
+                $event->translateOrNew( $locale )->description = $description;
+            }
             $event->date = $request->input( 'date' );
             $event->time = $request->input( 'time' );
             $event->periodically = isset( $periodically ) ? 1 : 0;

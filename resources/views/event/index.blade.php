@@ -38,13 +38,23 @@
                                 </td>
                                 <td>
                                     @if(!empty($event->date))
-                                        {{ date( 'd.m.y', strtotime( $event->date ) ) }}<br>
+                                        @if(app()->getLocale() == "en")
+                                            <span class="">{{ date('Y-m-d', strtotime($event->date)) }}</span>
+                                        @else
+                                            <span class="">{{ date('d.m.Y', strtotime($event->date)) }}</span>
+                                        @endif
                                     @endif
                                     @if(!empty($event->time))
-                                        {{ date('H:i', strtotime( $event->time ) ) }}
+                                            @if(app()->getLocale() == "en")
+                                                <span class=""
+                                                >{{ date('h.i a', strtotime($event->time)) }}</span>
+                                            @else
+                                                <span class=""
+                                                >{{ date('H:i', strtotime($event->time)) }} Uhr</span>
+                                            @endif
                                     @endif
                                     @if($event->periodically == 1)
-                                        <br>regelmäßig
+                                        <br>{{__('Regelmäßig')}}
                                     @endif
                                 </td>
                                 <td>
