@@ -22,12 +22,7 @@
             </div>
             <div class="form-group">
                 {{Form::label('template', __('Template'))}}
-                {{Form::select('template[]', [
-                'default' => 'Default',
-                'specials_01' => 'Specials #1',
-                'specials_02' => 'Specials #2',
-                'specials_03' => 'Specials #3'
-                ], 'default', ['class' => 'form-control'])}}
+                {{Form::select('template[]', App\Category::getTemplates(), 'default', ['class' => 'form-control'])}}
             </div>
             <div class="row">
                 @foreach(language()->allowed() as $code => $language)

@@ -32,7 +32,11 @@
                         <div class="row">
                             @foreach($categories as $category)
                                 @if($category->isLive() == 1)
-                                    @include('category.template.' . $category->template)
+                                    @if(!empty($category->template))
+                                        @include('category.template.' . $category->template)
+                                    @else
+                                        @include('category.template.default')
+                                    @endif
                                 @endif
                             @endforeach
                         </div>

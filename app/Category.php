@@ -29,4 +29,13 @@ class Category extends Model {
         }
         return 0;
     }
+
+    public static function getTemplates() {
+        return [
+            'default'     => 'Standard',
+            'specials_01' => 'Specials #1 - Einspaltig',
+            'specials_02' => 'Specials #2 - Gerichte oben, Bilder unten',
+            'specials_03' => 'Specials #3 - Zweispaltig'
+        ];
+    }
 }
