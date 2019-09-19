@@ -63,6 +63,7 @@ class CategoryController extends Controller {
             $category->translateOrNew( $locale )->description = $description;
         }
         $category->sort = $sort;
+        $category->template = $request->input( 'template' )[ 0 ];
         $category->status = $request->input( 'status' );
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
@@ -116,6 +117,7 @@ class CategoryController extends Controller {
             $category->translateOrNew( $locale )->description = $description;
         }
         $category->sort = $request->input( 'sort' );
+        $category->template = $request->input( 'template' )[ 0 ];
         $category->status = $request->input( 'status' );
         $category->publication = $request->input( 'publication' );
         $category->expiration = $request->input( 'expiration' );
