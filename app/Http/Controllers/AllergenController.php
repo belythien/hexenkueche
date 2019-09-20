@@ -14,8 +14,7 @@ class AllergenController extends Controller {
      */
     public function index() {
         $allergens = Allergen::all();
-        $menus = Menu::all();
-        return view( 'allergen.index', compact( 'allergens', 'menus' ) );
+        return view( 'allergen.index', compact( 'allergens' ) );
     }
 
     /**
@@ -24,8 +23,7 @@ class AllergenController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $menus = Menu::all();
-        return view( 'allergen.create', compact( 'menus' ) );
+        return view( 'allergen.create' );
     }
 
     /**
@@ -45,7 +43,7 @@ class AllergenController extends Controller {
         }
         $allergen->save();
 
-        return redirect( '/allergen' )->with( 'success', __('Allergen angelegt') );
+        return redirect( '/allergen' )->with( 'success', __( 'Allergen angelegt' ) );
     }
 
     /**
@@ -70,7 +68,7 @@ class AllergenController extends Controller {
         if( !empty( $allergen ) ) {
             return view( 'allergen.edit', compact( 'allergen' ) );
         } else {
-            return view( 'allergen.index' )->with( 'error', __('Allergen nicht gefunden') );
+            return view( 'allergen.index' )->with( 'error', __( 'Allergen nicht gefunden' ) );
         }
     }
 
@@ -92,9 +90,9 @@ class AllergenController extends Controller {
                 $allergen->translateOrNew( $locale )->name = $name;
             }
             $allergen->save();
-            return redirect( '/allergen' )->with( 'success', __('Allergen aktualisiert') );
+            return redirect( '/allergen' )->with( 'success', __( 'Allergen aktualisiert' ) );
         } else {
-            return view( 'allergen.index' )->with( 'error', __('Allergen nicht gefunden') );
+            return view( 'allergen.index' )->with( 'error', __( 'Allergen nicht gefunden' ) );
         }
     }
 
@@ -109,9 +107,9 @@ class AllergenController extends Controller {
         if( !empty( $allergen ) ) {
             $allergen->menuitems()->detach();
             $allergen->delete();
-            return redirect( '/allergen' )->with( 'success', __('Allergen gelöscht') );
+            return redirect( '/allergen' )->with( 'success', __( 'Allergen gelöscht' ) );
         } else {
-            return view( 'allergen.index' )->with( 'error', __('Allergen nicht gefunden') );
+            return view( 'allergen.index' )->with( 'error', __( 'Allergen nicht gefunden' ) );
         }
     }
 }

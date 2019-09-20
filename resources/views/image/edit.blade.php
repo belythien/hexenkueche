@@ -12,19 +12,33 @@
                 </div>
                 <div class="col-md-9">
                     {!! Form::open([ 'action' => ['ImageController@update', $image->id], 'method' => 'POST' ]) !!}
-                    <div class="form-group">
-                        {{Form::label('name', __('Name'))}}
-                        {{Form::text('name', $image->name, ['class' => 'form-control', 'placeholder' => __('Name')])}}
-                    </div>
+                    @foreach(language()->allowed() as $code => $language)
+                        <div class="form-group">
+                            {{Form::label('name[' . $code . ']', __('Name') . ' ' . __($language))}}
+                            {{Form::text('name[' . $code . ']', $image->translate($code)->name, ['class' => 'form-control'])}}
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 mt-3">
-                    <div class="form-group">
-                        {{Form::label('copyright', __('Copyright'))}}
-                        {{Form::textarea('copyright', $image->copyright, ['class' => 'form-control', 'id' => 'text-ckeditor'])}}
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-md-6 mt-3">
+                        <div class="form-group">
+                            {{Form::label('description[' . $code . ']', __('Beschreibung') . ' ' . __($language))}}
+                            {{Form::textarea('description[' . $code . ']', $image->translate($code)->description, ['class' => 'text-ckeditor form-control'])}}
+                        </div>
                     </div>
-                </div>
+                @endforeach
+            </div>
+            <div class="row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="col-md-6 mt-3">
+                        <div class="form-group">
+                            {{Form::label('copyright[' . $code . ']', __('Copyright') . ' ' . __($language))}}
+                            {{Form::textarea('copyright[' . $code . ']', $image->translate($code)->copyright, ['class' => 'text-ckeditor form-control'])}}
+                        </div>
+                    </div>
+                @endforeach
             </div>
             {{Form::button('<i class="fas fa-save"></i> ' . __('Speichern'), ['class'=>'btn btn-danger', 'type' => 'submit'])}}
             <a href="{{ url()->previous() }}" class="btn btn-success"><i class="fas fa-times-circle"

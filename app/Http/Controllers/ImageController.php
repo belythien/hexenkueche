@@ -17,10 +17,9 @@ class ImageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $menus = Menu::all();
         $images = Image::all();
         $pages = Page::all();
-        return view( 'image.index', compact( 'images', 'menus', 'pages' ) );
+        return view( 'image.index', compact( 'images', 'pages' ) );
     }
 
     /**
@@ -49,10 +48,9 @@ class ImageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show( $id ) {
-        $menus = Menu::all();
         $image = Image::find( $id );
         if( isset( $image ) ) {
-            return view( 'image', compact( 'image', 'menus' ) );
+            return view( 'image', compact( 'image' ) );
         }
         return redirect( '/404' );
     }
@@ -69,10 +67,9 @@ class ImageController extends Controller {
         $events = Event::orderby( 'date', 'desc' )->get();
         $categories = Category::orderby( 'sort' )->get();
         if( !empty( $image ) ) {
-            $menus = Menu::all();
-            return view( 'image.edit', compact( 'image', 'pages', 'categories', 'events', 'menus' ) );
+            return view( 'image.edit', compact( 'image', 'pages', 'categories', 'events' ) );
         } else {
-            return redirect( '/image' )->with( 'error', __('Bild nicht gefunden') );
+            return redirect( '/image' )->with( 'error', __( 'Bild nicht gefunden' ) );
         }
     }
 
@@ -94,16 +91,23 @@ class ImageController extends Controller {
             $events = $request->input( 'event' );
             $menuitems = $request->input( 'menuitem' );
 
-            $image->name = $request->input( 'name' );
-            $image->copyright = $request->input( 'copyright' );
+            foreach( $request->input( 'name' ) as $locale => $name ) {
+                $image->translateOrNew( $locale )->name = $name;
+            }
+            foreach( $request->input( 'description' ) as $locale => $description ) {
+                $image->translateOrNew( $locale )->description = $description;
+            }
+            foreach( $request->input( 'copyright' ) as $locale => $copyright ) {
+                $image->translateOrNew( $locale )->copyright = $copyright;
+            }
             $image->pages()->sync( $pages );
             $image->events()->sync( $events );
             $image->menuitems()->sync( $menuitems );
             $image->save();
 
-            return redirect( '/image' )->with( 'success', __('Bilddaten bearbeitet') );
+            return redirect( '/image' )->with( 'success', __( 'Bilddaten bearbeitet' ) );
         } else {
-            return redirect( '/image' )->with( 'error', __('Bild nicht gefunden') );
+            return redirect( '/image' )->with( 'error', __( 'Bild nicht gefunden' ) );
         }
     }
 
@@ -117,11 +121,11 @@ class ImageController extends Controller {
         $image = Image::find( $id );
 
         if( !isset( $image ) ) {
-            return redirect( '/image' )->with( 'error', __('Bild nicht gefunden') );
+            return redirect( '/image' )->with( 'error', __( 'Bild nicht gefunden' ) );
         }
 
         Storage::delete( $image->filename );
         $image->delete();
-        return redirect( '/image' )->with( 'success', __('Bild entfernt') );
+        return redirect( '/image' )->with( 'success', __( 'Bild entfernt' ) );
     }
 }

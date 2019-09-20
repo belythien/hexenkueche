@@ -19,47 +19,45 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                @if(isset($menus[1]))
-                    @foreach($menus[1]->pages as $page)
-                        @if($page->isLive() == 1)
+                @foreach(App\Menu::getMainMenu()->pages as $page)
+                    @if($page->isLive() == 1)
+                        <li class="nav-item">
+                            @if(!empty($page->external_url))
+                                <a class="nav-link" href="{{ $page->external_url }}" target="_blank"
+                                >{{ $page->menu_title }}</a>
+                            @else
+                                <a class="nav-link" href="{{ route('page', [$page->slug]) }}"
+                                >{{ $page->menu_title }}</a>
+                            @endif
+                        </li>
+                    @else
+                        @auth
                             <li class="nav-item">
                                 @if(!empty($page->external_url))
-                                    <a class="nav-link" href="{{ $page->external_url }}" target="_blank"
+                                    <a class="nav-link nav-link-inactive" href="{{ $page->external_url }}"
+                                       target="_blank"
                                     >{{ $page->menu_title }}</a>
                                 @else
-                                    <a class="nav-link" href="{{ route('page', [$page->slug]) }}"
+                                    <a class="nav-link nav-link-inactive" href="{{ route('page', [$page->slug]) }}"
                                     >{{ $page->menu_title }}</a>
                                 @endif
                             </li>
-                        @else
-                            @auth
-                                <li class="nav-item">
-                                    @if(!empty($page->external_url))
-                                        <a class="nav-link nav-link-inactive" href="{{ $page->external_url }}"
-                                           target="_blank"
-                                        >{{ $page->menu_title }}</a>
-                                    @else
-                                        <a class="nav-link nav-link-inactive" href="{{ route('page', [$page->slug]) }}"
-                                        >{{ $page->menu_title }}</a>
-                                    @endif
-                                </li>
-                            @endauth
-                        @endif
-                    @endforeach
-                @endif
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
-                        >
-                            {!! language()->flag() !!} <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    @foreach (language()->allowed() as $code => $name)
-                        <a class="dropdown-item" href="{{ language()->back($code) }}">{{ $name }}</a>
-                    @endforeach
-                        </div>
-                    </li>
-            <!-- Authentication Links -->
+                        @endauth
+                    @endif
+                @endforeach
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                    >
+                        {!! language()->flag() !!} <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        @foreach (language()->allowed() as $code => $name)
+                            <a class="dropdown-item" href="{{ language()->back($code) }}">{{ $name }}</a>
+                        @endforeach
+                    </div>
+                </li>
+                <!-- Authentication Links -->
                 @auth
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

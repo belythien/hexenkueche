@@ -2,12 +2,17 @@
 
 namespace App;
 
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\ImageManagerStatic as ImageMaker;
 
 class Image extends Model {
-    protected $fillable = [ 'name', 'filename' ];
+
+    use Translatable;
+
+    public    $translatedAttributes = [ 'name', 'description', 'copyright' ];
+    protected $fillable             = [ 'filename' ];
 
     public function pages() {
         return $this->morphedByMany( 'App\Page', 'imageable' );

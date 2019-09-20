@@ -89,27 +89,25 @@
             <div
                 class="links {{ isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '' ? 'with-hotbox' : '' }}"
             >
-                @if(isset($menus[0]))
-                    @foreach($menus[0]->pages as $page)
-                        @if($page->isLive() == 1)
-                            @if(!empty($page->external_url))
-                                <a href="{{ $page->external_url }}" target="_blank">{{ $page->menu_title }}</a>
-                            @else
-                                <a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
-                            @endif
+                @foreach(App\Menu::getWelcomeMenu()->pages as $page)
+                    @if($page->isLive() == 1)
+                        @if(!empty($page->external_url))
+                            <a href="{{ $page->external_url }}" target="_blank">{{ $page->menu_title }}</a>
                         @else
-                            @auth
-                                @if(!empty($page->external_url))
-                                    <a class="welcome-inactive-link" href="{{ $page->external_url }}" target="_blank"
-                                    >{{ $page->menu_title }}</a>
-                                @else
-                                    <a class="welcome-inactive-link" href="{{ route('page', [$page->slug]) }}"
-                                    >{{ $page->menu_title }}</a>
-                                @endif
-                            @endauth
+                            <a href="{{ route('page', [$page->slug]) }}">{{ $page->menu_title }}</a>
                         @endif
-                    @endforeach
-                @endif
+                    @else
+                        @auth
+                            @if(!empty($page->external_url))
+                                <a class="welcome-inactive-link" href="{{ $page->external_url }}" target="_blank"
+                                >{{ $page->menu_title }}</a>
+                            @else
+                                <a class="welcome-inactive-link" href="{{ route('page', [$page->slug]) }}"
+                                >{{ $page->menu_title }}</a>
+                            @endif
+                        @endauth
+                    @endif
+                @endforeach
             </div>
             @if(isset($hotbox) && $hotbox->status == 1 && trim($hotbox->text) > '')
                 <div class="hotbox">

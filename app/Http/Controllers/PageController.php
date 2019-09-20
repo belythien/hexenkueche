@@ -27,8 +27,7 @@ class PageController extends Controller {
      */
     public function index() {
         $pages = Page::orderby( 'menu_title' )->with( 'hotbox' )->get();
-        $menus = Menu::all();
-        return view( 'page.index', compact( 'pages', 'menus' ) );
+        return view( 'page.index', compact( 'pages' ) );
     }
 
     /**
@@ -37,9 +36,8 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $menus = Menu::all();
         $hotboxes = Hotbox::pluck( 'text', 'id' );
-        return view( 'page.create', compact( 'hotboxes', 'menus' ) );
+        return view( 'page.create', compact( 'hotboxes' ) );
     }
 
     /**
@@ -105,9 +103,8 @@ class PageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Page $page ) {
-        $menus = Menu::all();
         $hotboxes = Hotbox::pluck( 'text', 'id' );
-        return view( 'page.edit', compact( 'page', 'hotboxes', 'menus' ) );
+        return view( 'page.edit', compact( 'page', 'hotboxes' ) );
     }
 
     /**

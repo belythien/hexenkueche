@@ -29,9 +29,8 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $menus = Menu::all();
         $categories = Category::orderby( 'sort' )->get();
-        return view( 'menuitem.index', compact( 'categories', 'menus' ) );
+        return view( 'menuitem.index', compact( 'categories' ) );
     }
 
     /**
@@ -40,10 +39,9 @@ class MenuItemController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $menus = Menu::all();
         $categories = Category::orderby( 'sort' )->get();
         $allergens = Allergen::all();
-        return view( 'menuitem.create', compact( 'categories', 'menus', 'allergens' ) );
+        return view( 'menuitem.create', compact( 'categories', 'allergens' ) );
     }
 
     /**
@@ -108,7 +106,7 @@ class MenuItemController extends Controller {
 
         $this->updateSort();
 
-        return redirect( '/menuitem' )->with( 'success', __('Gericht/Getränk angelegt') );
+        return redirect( '/menuitem' )->with( 'success', __( 'Gericht/Getränk angelegt' ) );
     }
 
     /**
@@ -135,7 +133,7 @@ class MenuItemController extends Controller {
             $categories = Category::orderby( 'sort' )->pluck( 'name', 'id' );
             return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens' ) );
         } else {
-            return redirect( '/menuitem' )->with( 'error', __('Gericht/Getränk nicht gefunden') );
+            return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
         }
 
     }
@@ -295,7 +293,7 @@ class MenuItemController extends Controller {
 
             return redirect( '/menuitem' )->with( 'success', '<strong>' . $menuitem->name . '</strong> nach unten verschoben' );
         } else {
-            return redirect( '/menuitem' )->with( 'error', __('Weiter runter geht\'s nicht...') );
+            return redirect( '/menuitem' )->with( 'error', __( 'Weiter runter geht\'s nicht...' ) );
         }
     }
 
@@ -320,6 +318,6 @@ class MenuItemController extends Controller {
 
         $image = Image::find( $image_id );
         $menuitem->images()->detach( $image );
-        return redirect( '/menuitem' )->with( 'success', __('Bild entfernt') );
+        return redirect( '/menuitem' )->with( 'success', __( 'Bild entfernt' ) );
     }
 }

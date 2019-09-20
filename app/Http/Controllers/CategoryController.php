@@ -32,8 +32,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $menus = Menu::all();
-        return view( 'category.create', compact( 'menus' ) );
+        return view( 'category.create' );
     }
 
     /**
@@ -92,8 +91,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( category $category ) {
-        $menus = Menu::all();
-        return view( 'category.edit', compact( 'category', 'menus' ) );
+        return view( 'category.edit', compact( 'category' ) );
     }
 
     /**

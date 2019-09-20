@@ -15,8 +15,7 @@ class EventController extends Controller {
      */
     public function index() {
         $events = Event::orderby( 'date', 'desc' )->get();
-        $menus = Menu::all();
-        return view( 'event.index', compact( 'events', 'menus' ) );
+        return view( 'event.index', compact( 'events' ) );
     }
 
     /**
@@ -25,8 +24,7 @@ class EventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $menus = Menu::all();
-        return view( 'event.create', compact('menus') );
+        return view( 'event.create' );
     }
 
     /**
@@ -61,7 +59,7 @@ class EventController extends Controller {
             $event->images()->save( $image );
         }
 
-        return redirect( '/event' )->with( 'success', __('Event angelegt') );
+        return redirect( '/event' )->with( 'success', __( 'Event angelegt' ) );
     }
 
     /**
@@ -86,7 +84,7 @@ class EventController extends Controller {
             $menus = Menu::all();
             return view( 'event.edit', compact( 'event', 'menus' ) );
         } else {
-            return redirect( '/event' )->with( 'error', __('Event nicht gefunden') );
+            return redirect( '/event' )->with( 'error', __( 'Event nicht gefunden' ) );
         }
     }
 
@@ -124,9 +122,9 @@ class EventController extends Controller {
                 $event->images()->save( $image );
             }
 
-            return redirect( '/event' )->with( 'success', __('Event aktualisiert') );
+            return redirect( '/event' )->with( 'success', __( 'Event aktualisiert' ) );
         } else {
-            return redirect( '/event' )->with( 'error', __('Event nicht gefunden') );
+            return redirect( '/event' )->with( 'error', __( 'Event nicht gefunden' ) );
         }
     }
 
@@ -140,10 +138,10 @@ class EventController extends Controller {
         $event = Event::find( $id );
 
         if( !isset( $event ) ) {
-            return redirect( '/event' )->with( 'error', __('Event nicht gefunden') );
+            return redirect( '/event' )->with( 'error', __( 'Event nicht gefunden' ) );
         }
 
         $event->delete();
-        return redirect( '/event' )->with( 'success', __('Event gelöscht') );
+        return redirect( '/event' )->with( 'success', __( 'Event gelöscht' ) );
     }
 }

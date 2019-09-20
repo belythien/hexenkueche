@@ -28,7 +28,9 @@
                             <tr>
                                 <td><strong>{{ $image->name }}</strong><br>
                                     {{ $image->filename }}<br>
-                                    <img src="storage/img/{{ $image->filename }}" class="img-thumbnail mb-3" width="200" />
+                                    <img src="storage/img/{{ $image->filename }}" class="img-thumbnail mb-3"
+                                         width="200"
+                                    />
                                     @if(!empty($image->copyright))
                                         {!! $image->copyright !!}
                                     @endif
@@ -53,13 +55,18 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    {!!Form::open(['action' => ['ImageController@destroy', $image->id], 'method' => 'POST', 'class' => 'float-right'])!!}
-                                    {{Form::hidden('_method', 'DELETE')}}
-                                    {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll das Bild wirklich gelöscht werden?")'])}}
-                                    {!!Form::close()!!}
-                                    <a class="btn btn-sm btn-success float-right"
-                                       href="{{ route('image.edit', [$image->id]) }}"
-                                    ><i class="fas fa-edit"></i></a>
+                                    <div class="btn-group float-right">
+                                        <a class="btn btn-sm btn-success"
+                                           href="{{ route('image.show', [$image->id]) }}"
+                                        ><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-sm btn-success"
+                                           href="{{ route('image.edit', [$image->id]) }}"
+                                        ><i class="fas fa-edit"></i></a>
+                                        {!!Form::open(['action' => ['ImageController@destroy', $image->id], 'method' => 'POST'])!!}
+                                        {{Form::hidden('_method', 'DELETE')}}
+                                        {{Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit', 'onclick' => 'return confirm("Soll das Bild wirklich gelöscht werden?")'])}}
+                                        {!!Form::close()!!}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

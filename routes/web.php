@@ -19,27 +19,24 @@ use App\Page;
 
 Route::group( [ 'middleware' => 'language' ], function () {
     Route::get( '/', function () {
-        $menus = Menu::all();
         $hotbox = Hotbox::find( 1 );
-        return view( 'welcome', compact( 'menus', 'hotbox' ) );
+        return view( 'welcome', compact( 'hotbox' ) );
     } );
 
     Auth::routes( [ 'register' => false ] );
 
     Route::get( '/speisekarte', function () {
         $page = Page::where( 'slug', 'speisekarte' )->first();
-        $menus = Menu::all();
         $allergens = Allergen::all();
         $hotbox = $page->hotbox;
         $categories = App\Category::orderby( 'sort' )->get();
-        return view( 'menu', compact( 'categories', 'page', 'hotbox', 'menus', 'allergens' ) );
+        return view( 'menu', compact( 'categories', 'page', 'hotbox', 'allergens' ) );
     } )->name( 'speisekarte' );
 
     Route::get( '/events', function () {
         $page = Page::where( 'slug', 'events' )->first();
         $events = Event::orderby( 'date', 'desc' )->get();
-        $menus = Menu::all();
-        return view( 'events', compact( 'page', 'events', 'menus' ) );
+        return view( 'events', compact( 'page', 'events' ) );
     } )->name( 'events' );
 
     Route::get( '/image/{id}', 'ImageController@show' )->name( 'image.show' );
@@ -81,9 +78,8 @@ Route::group( [ 'middleware' => 'language' ], function () {
         $page = Page::where( 'slug', $slug )->first();
 
         if( isset( $page ) && ( $page->isLive() || Auth::check() ) ) {
-            $menus = Menu::all();
             $hotbox = $page->hotbox;
-            return view( 'page', compact( 'page', 'hotbox', 'menus' ) );
+            return view( 'page', compact( 'page', 'hotbox' ) );
         } else {
             return redirect( route( 'page', [ '404' ] ) );
         }
