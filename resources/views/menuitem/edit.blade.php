@@ -95,7 +95,6 @@
                 <div class="row">
                     @foreach(language()->allowed() as $code => $language)
                         <div class="col-lg-4">
-                            {{ App::setLocale($code) }}
                             {{Form::label('option_amount[' . $code . ']', __('Menge') . ' ' . __($language))}}
                             {{Form::text('option_amount[' . $code . '][]', $option->translate($code, true)->amount, ['class' => 'form-control'])}}
                         </div>
