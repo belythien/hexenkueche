@@ -33,6 +33,9 @@ class Category extends Model {
     public static function getTemplates() {
         return [
             'default'     => 'Standard',
+            'default_01'  => 'Einspaltig, Bilder am rechten Rand',
+            'default_02'  => 'Gerichte oben, zweispaltig, Bilder darunter',
+            'default_03'  => 'Zweispaltig',
             'specials_01' => 'Specials #1 - Einspaltig',
             'specials_02' => 'Specials #2 - Gerichte oben, Bilder unten',
             'specials_03' => 'Specials #3 - Zweispaltig'

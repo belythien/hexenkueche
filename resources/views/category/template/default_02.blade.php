@@ -1,4 +1,4 @@
-<div class="col-12 specials mb-4">
+<div class="col-12 mb-4">
     <h2 class="category_name mt-4">
         @auth
             <a href="{{ route('category.edit', [ $category->id ]) }}"
