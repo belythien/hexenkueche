@@ -15,7 +15,7 @@
                     @foreach(language()->allowed() as $code => $language)
                         <div class="form-group">
                             {{Form::label('name[' . $code . ']', __('Name') . ' ' . __($language))}}
-                            {{Form::text('name[' . $code . ']', $image->translate($code)->name, ['class' => 'form-control'])}}
+                            {{Form::text('name[' . $code . ']', $image->translate($code) ? $image->translate($code)->name : '', ['class' => 'form-control'])}}
                         </div>
                     @endforeach
                 </div>
@@ -25,7 +25,7 @@
                     <div class="col-md-6 mt-3">
                         <div class="form-group">
                             {{Form::label('description[' . $code . ']', __('Beschreibung') . ' ' . __($language))}}
-                            {{Form::textarea('description[' . $code . ']', $image->translate($code)->description, ['class' => 'text-ckeditor form-control'])}}
+                            {{Form::textarea('description[' . $code . ']', $image->translate($code) ? $image->translate($code)->description : '', ['class' => 'text-ckeditor form-control'])}}
                         </div>
                     </div>
                 @endforeach
@@ -35,7 +35,7 @@
                     <div class="col-md-6 mt-3">
                         <div class="form-group">
                             {{Form::label('copyright[' . $code . ']', __('Copyright') . ' ' . __($language))}}
-                            {{Form::textarea('copyright[' . $code . ']', $image->translate($code)->copyright, ['class' => 'text-ckeditor form-control'])}}
+                            {{Form::textarea('copyright[' . $code . ']', $image->translate($code) ? $image->translate($code)->copyright : '', ['class' => 'text-ckeditor form-control'])}}
                         </div>
                     </div>
                 @endforeach
