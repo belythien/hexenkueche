@@ -64,13 +64,20 @@
                             <tr>
                                 <th scope="row">{{ $menuItem->sort }}</th>
                                 <td>
-                                    {{ $menuItem->name }}@foreach($menuItem->allergens as $allergen)<sup
+                                    <a href="{{ route('menuitem.edit', [ $menuItem->id ]) }}">{{ $menuItem->name }}</a>
+                                    @foreach($menuItem->allergens as $allergen)<sup
                                         class="allergen" title="{{$allergen->name}}"
                                     >{{ $allergen->id }}</sup>@endforeach
                                     @if(!$menuItem->isLive())
                                         <span class="badge badge-sm badge-danger">{{ __('inaktiv') }}</span>
                                     @elseif($menuItem->status == 2)
-                                        <span class="badge badge-sm badge-warning">{{ __('Zur Zeit nicht erhältlich') }}</span>
+                                        <span class="badge badge-sm badge-warning">
+                                            @if(!empty($menuItem->availability_info))
+                                                {!! $menuItem->availability_info !!}
+                                            @else
+                                                {{ __('Zur Zeit nicht erhältlich') }}
+                                            @endif
+                                        </span>
                                     @endif
                                 </td>
                                 <td>

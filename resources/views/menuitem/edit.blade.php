@@ -49,6 +49,14 @@
                        id="status_not_available" {{ $menuItem->status == 2 ? 'checked="checked"' : '' }}>
             </div>
             <div class="row">
+                @foreach(language()->allowed() as $code => $language)
+                    <div class="form-group col-lg-6">
+                        {{Form::label('availability_info[' . $code . ']', __('Info zur Verfügbarkeit') . ' ' . __($language))}}
+                        {{Form::text('availability_info[' . $code . ']', $menuItem->translate($code) ? $menuItem->translate($code)->availability_info : '', ['class' => 'form-control'])}}
+                    </div>
+                @endforeach
+            </div>
+            <div class="row">
                 <div class="form-group col-lg-6">
                     {{Form::label('publication', __('Anzeigen ab'))}}
                     {{Form::date('publication', $menuItem->publication, ['class' => 'form-control'])}}

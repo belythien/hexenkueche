@@ -69,6 +69,9 @@ class MenuItemController extends Controller {
         foreach( $request->input( 'description' ) as $locale => $description ) {
             $menuItem->translateOrNew( $locale )->description = $description;
         }
+        foreach( $request->input( 'availability_info' ) as $locale => $availability_info ) {
+            $menuItem->translateOrNew( $locale )->availability_info = $availability_info;
+        }
         $menuItem->category_id = $category_id;
         $menuItem->sort = 99999;
         $menuItem->status = $request->input( 'status' );
@@ -162,6 +165,9 @@ class MenuItemController extends Controller {
             }
             foreach( $request->input( 'description' ) as $locale => $description ) {
                 $menuItem->translateOrNew( $locale )->description = $description;
+            }
+            foreach( $request->input( 'availability_info' ) as $locale => $availability_info ) {
+                $menuItem->translateOrNew( $locale )->availability_info = $availability_info;
             }
             $menuItem->category_id = $category_id;
             $menuItem->status = $request->input( 'status' );

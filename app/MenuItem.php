@@ -10,7 +10,7 @@ class MenuItem extends Model {
 
     use Translatable;
 
-    public    $translatedAttributes = [ 'name', 'description' ];
+    public    $translatedAttributes = [ 'name', 'description', 'availability_info' ];
     protected $fillable = [ 'category_id', 'sort', 'status', 'publication', 'expiration' ];
 
     public function category() {
