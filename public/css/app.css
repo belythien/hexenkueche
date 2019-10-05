@@ -11013,3 +11013,17 @@ label {
   font-weight: bold;
 }
 
+blockquote {
+  border-left: 3px solid #65b32c;
+  font-style: italic;
+  padding-left: 1em;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 40px;
+          margin-inline-start: 40px;
+  -webkit-margin-end: 40px;
+          margin-inline-end: 40px;
+}
+

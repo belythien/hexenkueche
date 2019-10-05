@@ -361,3 +361,13 @@ label {
     color: $green;
     font-weight: bold;
 }
+
+blockquote {
+    border-left: 3px solid $green;
+    font-style: italic;
+    padding-left: 1em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
