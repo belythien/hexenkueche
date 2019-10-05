@@ -62,6 +62,9 @@
                                                     title="{{ $image->name  }}"
                                                 />
                                             </a>
+                                            @if($image->description)
+                                                {!! $image->description !!}
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
