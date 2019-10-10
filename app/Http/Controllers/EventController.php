@@ -14,7 +14,7 @@ class EventController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $events = Event::orderby( 'date', 'desc' )->get();
+        $events = Event::orderby( 'periodically', 'desc' )->orderby( 'date', 'desc' )->get();
         return view( 'event.index', compact( 'events' ) );
     }
 

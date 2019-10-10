@@ -35,7 +35,7 @@ Route::group( [ 'middleware' => 'language' ], function () {
 
     Route::get( '/events', function () {
         $page = Page::where( 'slug', 'events' )->first();
-        $events = Event::orderby( 'date', 'desc' )->get();
+        $events = Event::orderby('periodically', 'asc')->orderby( 'date', 'asc' )->get();
         return view( 'events', compact( 'page', 'events' ) );
     } )->name( 'events' );
 
