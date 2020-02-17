@@ -48,10 +48,11 @@ class PageController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'menu_title.de' => 'required',
-            'slug'          => 'required|unique:pages',
-            'image'         => 'image|nullable|max:16384',
-            'external_url'  => 'nullable|url'
+            'menu_title.*' => 'required',
+            'title.*'      => 'required',
+            'slug'         => 'required|unique:pages',
+            'image'        => 'image|nullable|max:16384',
+            'external_url' => 'nullable|url'
         ] );
 
         $hotbox_id = $request->input( 'hotbox_id' )[ 0 ];

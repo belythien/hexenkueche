@@ -11953,3 +11953,17 @@ blockquote {
           margin-inline-end: 40px;
 }
 
+.separated-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.separated-list li {
+  display: inline;
+}
+
+.separated-list li:not(:last-child):after {
+  content: " \2022   ";
+}
+

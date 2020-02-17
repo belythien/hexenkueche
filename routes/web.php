@@ -14,7 +14,9 @@
 use App\Allergen;
 use App\Event;
 use App\Hotbox;
+use App\Keyword;
 use App\Menu;
+use App\MenuItem;
 use App\Page;
 
 Route::group( [ 'middleware' => 'language' ], function () {
@@ -33,9 +35,30 @@ Route::group( [ 'middleware' => 'language' ], function () {
         return view( 'menu', compact( 'categories', 'page', 'hotbox', 'allergens' ) );
     } )->name( 'speisekarte' );
 
+    Route::get( '/roulette', function () {
+        $page = Page::where( 'slug', 'roulette' )->first();
+        $keywords = Keyword::join( 'keyword_menu_item as kmi', 'kmi.keyword_id', '=', 'keywords.id' )
+            ->distinct()
+            ->select( 'keywords.*' )
+            ->get();
+        $hotbox = $page->hotbox;
+        return view( 'roulette', compact( 'keywords', 'page', 'hotbox' ) );
+    } )->name( 'roulette' );
+
+    Route::get( '/roulette/{keyword}', function ( Keyword $keyword ) {
+        $page = Page::where( 'slug', 'roulette' )->first();
+        $allergens = Allergen::all();
+        $menuItem = $keyword->menuitems()->where( 'status', 1 )->inRandomOrder()->first();
+        $keywords = Keyword::join( 'keyword_menu_item as kmi', 'kmi.keyword_id', '=', 'keywords.id' )
+            ->distinct()
+            ->select( 'keywords.*' )
+            ->get();
+        return view( 'result', compact( 'page', 'menuItem', 'keywords', 'allergens' ) );
+    } )->name( 'roulette' );
+
     Route::get( '/events', function () {
         $page = Page::where( 'slug', 'events' )->first();
-        $events = Event::orderby('periodically', 'asc')->orderby( 'date', 'asc' )->get();
+        $events = Event::orderby( 'periodically', 'asc' )->orderby( 'date', 'asc' )->get();
         return view( 'events', compact( 'page', 'events' ) );
     } )->name( 'events' );
 
@@ -54,6 +77,8 @@ Route::group( [ 'middleware' => 'language' ], function () {
         Route::resource( '/event', 'EventController' );
 
         Route::resource( '/allergen', 'AllergenController' );
+
+        Route::resource( '/keyword', 'KeywordController' );
 
         Route::resource( '/image', 'ImageController' );
 

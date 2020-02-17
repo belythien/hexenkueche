@@ -79,6 +79,9 @@
                             <a class="dropdown-item" href="{{ route('allergen.index') }}" class="d-block"
                             ><i class="fas fa-allergies"></i> {{ __('Allergene') }}</a>
 
+                            <a class="dropdown-item" href="{{ route('keyword.index') }}" class="d-block"
+                            ><i class="fas fa-tags"></i> {{ __('Keywords') }}</a>
+
                             <a class="dropdown-item" href="{{ route('image.index') }}" class="d-block"
                             ><i class="fas fa-images"></i> {{ __('Bilder') }}</a>
 

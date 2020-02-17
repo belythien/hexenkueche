@@ -25,6 +25,10 @@ class MenuItem extends Model {
         return $this->belongsToMany( 'App\Allergen' )->orderBy('id');
     }
 
+    public function keywords() {
+        return $this->belongsToMany( 'App\Keyword' )->orderBy('id');
+    }
+
     public function images() {
         return $this->morphToMany( 'App\Image', 'imageable' );
     }

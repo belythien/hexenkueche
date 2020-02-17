@@ -56,6 +56,7 @@
                             <th scope="col" style="width:200px">{{ __('Name') }}</th>
                             <th scope="col">{{ __('Beschreibung') }}</th>
                             <th scope="col" style="width:400px">{{ __('Optionen') }}</th>
+                            <th scope="col" style="width:300px">{{ __('Keywords') }}</th>
                             <th scope="col" style="width:40px"></th>
                         </tr>
                     </thead>
@@ -108,6 +109,11 @@
                                                 {{ str_replace('.', ',', number_format($option->price, 2)) }}€
                                             </div>
                                         </div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($menuItem->keywords as $keyword)
+                                        <span class="badge badge-danger">{{$keyword->name}}</span>
                                     @endforeach
                                 </td>
                                 <td>
