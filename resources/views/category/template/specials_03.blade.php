@@ -1,5 +1,5 @@
 <div class="col-12 specials mb-4">
-    <h2 class="category_name mt-4">
+    <h2 class="category_name mt-4" id="category_{{$category->id}}">
         @auth
             <a href="{{ route('category.edit', [ $category->id ]) }}"
                class="btn btn-success btn-sm mr-1"
