@@ -4,7 +4,7 @@
     <div class="container position-relative">
         <div class="card d-none d-xxl-block" style="position: fixed;top: 150px;left:0">
             <ul class="nav flex-column">
-                @foreach($categories as $category)
+                @foreach(App\Category::where('status', 1)->orderby('sort')->get() as $category)
                     <li class="nav-item">
                         <a href="#category_{{$category->id}}"
                            class="nav-link"
