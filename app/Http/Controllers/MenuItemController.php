@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Allergen;
 use App\Category;
 use App\Image;
-use App\Keyword;
+//use App\Keyword;
 use App\Menu;
 use App\Option;
 use Illuminate\Http\Request;
@@ -42,9 +42,9 @@ class MenuItemController extends Controller {
     public function create() {
         $categories = Category::orderby( 'sort' )->get();
         $allergens = Allergen::all();
-        $keywords = Keyword::all();
-        return view( 'menuitem.create', compact( 'categories', 'allergens', 'keywords' ) );
-//        return view( 'menuitem.create', compact( 'categories', 'allergens' ) );
+//        $keywords = Keyword::all();
+//        return view( 'menuitem.create', compact( 'categories', 'allergens', 'keywords' ) );
+        return view( 'menuitem.create', compact( 'categories', 'allergens' ) );
     }
 
     /**
@@ -64,7 +64,7 @@ class MenuItemController extends Controller {
 
         // get next sort
         $allergens = $request->input( 'allergen' );
-        $keywords = $request->input( 'keyword' );
+//        $keywords = $request->input( 'keyword' );
 
         $menuItem = new MenuItem;
         foreach( $request->input( 'name' ) as $locale => $name ) {
@@ -84,7 +84,7 @@ class MenuItemController extends Controller {
         $menuItem->save();
 
         $menuItem->allergens()->sync( $allergens );
-        $menuItem->keywords()->sync( $keywords );
+//        $menuItem->keywords()->sync( $keywords );
 
         if( $request->hasFile( 'image' ) ) {
             $image = new Image;
@@ -136,12 +136,12 @@ class MenuItemController extends Controller {
     public function edit( $id ) {
         $menuItem = MenuItem::find( $id );
         $allergens = Allergen::all();
-        $keywords = Keyword::all();
+//        $keywords = Keyword::all();
         if( isset( $menuItem ) ) {
             $menus = Menu::all();
             $categories = Category::orderby( 'sort' )->get();
-            return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens', 'keywords' ) );
-//            return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens' ) );
+//            return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens', 'keywords' ) );
+            return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens' ) );
         } else {
             return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
         }
@@ -164,7 +164,7 @@ class MenuItemController extends Controller {
         ] );
         $category_id = $request->input( 'category' )[ 0 ];
         $allergens = $request->input( 'allergen' );
-        $keywords = $request->input( 'keyword' );
+//        $keywords = $request->input( 'keyword' );
 
         $menuItem = MenuItem::find( $id );
         if( isset( $menuItem ) ) {
@@ -180,7 +180,7 @@ class MenuItemController extends Controller {
             $menuItem->category_id = $category_id;
             $menuItem->status = $request->input( 'status' );
             $menuItem->allergens()->sync( $allergens );
-            $menuItem->keywords()->sync( $keywords );
+//            $menuItem->keywords()->sync( $keywords );
             $menuItem->publication = $request->input( 'publication' );
             $menuItem->expiration = $request->input( 'expiration' );
             $menuItem->save();
