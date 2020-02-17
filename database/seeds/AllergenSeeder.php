@@ -11,34 +11,40 @@ class AllergenSeeder extends Seeder {
      */
     public function run() {
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Weizen'
+            'id'        => 1
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Soja'
+            'id'        => 2
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Senf'
+            'id'        => 3
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Lupine'
+            'id'        => 4
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Cashew'
+            'id'        => 5
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Sellerie'
+            'id'        => 6
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Gerste'
+            'id'        => 7
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Roggen'
+            'id'        => 8
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Sesam'
+            'id'        => 9
         ] );
         DB::table( 'allergens' )->insert( [
-            'name'        => 'Nüsse'
+            'id'        => 10
+        ] );
+        DB::table( 'allergens' )->insert( [
+            'id'        => 11
+        ] );
+        DB::table( 'allergens' )->insert( [
+            'id'        => 12
         ] );
     }
 }

@@ -27,10 +27,10 @@
                             <hr>
                         @endif
                         <div class="row d-flex justify-content-around">
-{{--                            @foreach($keywords as $keyword)--}}
-{{--                                <a href="{{route('roulette', ['keyword' => $keyword])}}" class="btn btn-danger btn-lg"--}}
-{{--                                >{{$keyword->name}}</a>--}}
-{{--                            @endforeach--}}
+                            @foreach($keywords as $keyword)
+                                <a href="{{route('roulette', ['keyword' => $keyword])}}" class="btn btn-danger btn-lg"
+                                >{{$keyword->name}}</a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

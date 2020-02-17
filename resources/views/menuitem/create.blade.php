@@ -39,16 +39,16 @@
                     </div>
                 @endforeach
             </div>
-{{--            <hr class="strong-hr">--}}
-{{--            <h5>{{__('Keywords')}}</h5>--}}
-{{--            <div class="row">--}}
-{{--                @foreach($keywords as $keyword)--}}
-{{--                    <div class="col-xl-3 col-md-4 col-sm-6">--}}
-{{--                        {{Form::checkbox('keyword[]', $keyword->id, (in_array($keyword->id, $menuItem->keywords->pluck('id')->toArray()) ? true : false )) }}--}}
-{{--                        {{Form::label('keyword', $keyword->name)}}--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
+            <hr class="strong-hr">
+            <h5>{{__('Keywords')}}</h5>
+            <div class="row">
+                @foreach($keywords as $keyword)
+                    <div class="col-xl-3 col-md-4 col-sm-6">
+                        {{Form::checkbox('keyword[]', $keyword->id, (in_array($keyword->id, $menuItem->keywords->pluck('id')->toArray()) ? true : false )) }}
+                        {{Form::label('keyword', $keyword->name)}}
+                    </div>
+                @endforeach
+            </div>
             <hr class="strong-hr">
             <div class="form-group">
                 <label for="status_active" class="badge badge-success">{{__('aktiv')}}</label>

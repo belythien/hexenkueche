@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder {
     public function run() {
         $this->call( UserSeeder::class );
         $this->call( AllergenSeeder::class );
+        $this->call( AllergenTranslationSeeder::class );
         $this->call( CategorySeeder::class );
         $this->call( ImageSeeder::class );
         $this->call( MenuItemSeeder::class );
@@ -21,6 +22,13 @@ class DatabaseSeeder extends Seeder {
         $this->call( PageSeeder::class );
         $this->call( MenuPageSeeder::class );
         $this->call( ImageableSeeder::class );
+        $this->call( MenuItemTranslationSeeder::class );
+        $this->call( CategoryTranslationSeeder::class );
+        $this->call( HotboxTranslationSeeder::class );
+        $this->call( ImageTranslationSeeder::class );
+        $this->call( OptionTranslationSeeder::class );
+        $this->call( PageTranslationSeeder::class );
+
 
 
     }
