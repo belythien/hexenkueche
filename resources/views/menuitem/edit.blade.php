@@ -5,9 +5,17 @@
         <div class="card-header"><h1>{{ __('Gericht/Getränk bearbeiten') }}</h1></div>
         <div class="card-body">
             {!! Form::open([ 'action' => [ 'MenuItemController@update', $menuItem->id ], 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
+
             <div class="form-group">
-                {{Form::label('category', __('Kategorie'))}}
-                {{Form::select('category[]', $categories, $menuItem->category_id, ['class' => 'form-control'])}}
+                <label for="category">{{__('Kategorie')}}</label>
+                <select class="form-control" name="category[]">
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}"
+                                @if($menuItem->category_id == $category->id ) selected @endif
+                        >{{$category->name}}
+                        </option>
+                    @endforeach
+                </select>
             </div>
             <div class="row">
                 @foreach(language()->allowed() as $code => $language)

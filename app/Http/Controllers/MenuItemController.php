@@ -133,7 +133,7 @@ class MenuItemController extends Controller {
         $allergens = Allergen::all();
         if( isset( $menuItem ) ) {
             $menus = Menu::all();
-            $categories = Category::orderby( 'sort' )->pluck( 'name', 'id' );
+            $categories = Category::orderby( 'sort' )->get();
             return view( 'menuitem.edit', compact( 'menuItem', 'categories', 'menus', 'allergens' ) );
         } else {
             return redirect( '/menuitem' )->with( 'error', __( 'Gericht/Getränk nicht gefunden' ) );
