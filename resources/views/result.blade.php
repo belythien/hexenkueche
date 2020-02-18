@@ -15,7 +15,7 @@
                         @endif
                         <div class="row d-flex justify-content-around">
                             @foreach($keywords as $keyword)
-                                <a href="{{route('roulette', ['keyword' => $keyword])}}" class="btn btn-danger btn-lg"
+                                <a href="{{route('roulette', ['keyword' => $keyword])}}" class="btn btn-danger btn-lg mb-1"
                                 >{{$keyword->name}}</a>
                             @endforeach
                         </div>
